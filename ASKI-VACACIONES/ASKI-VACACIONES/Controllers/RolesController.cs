@@ -26,9 +26,15 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    string hola = client.getRolesInfo(model.id);
-                    ViewBag.Desc = hola;
-                    ViewBag.id = model.id;
+                    //VSys_AskiDBContext db = new VSys_AskiDBContext();
+                    //string hola = client.getRolesInfo(model.id);
+                    var context = new VSys_AskiDBContext();
+                    foreach (UsuariosModel u in context.Usuarios)
+                    {
+                        ViewBag.Desc = u.primer_nombre;
+                    }
+                    //ViewBag.Desc = hola.primer_nombre;
+                    //ViewBag.id = model.id;
                     client.Close();
                     return View();
                 case "Modificar":
@@ -41,9 +47,7 @@ namespace ASKI_VACACIONES.Controllers
                     }
                     return View();
                 default:
-                    // If they've submitted the form without a submitButton, 
-                    // just return the view again.
-                    return RedirectToAction("Login");
+                     return RedirectToAction("Login");
             }
 
 

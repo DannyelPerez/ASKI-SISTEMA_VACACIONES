@@ -29,7 +29,7 @@ namespace ASKI_VACACIONES.Controllers
      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(tbl_usuarios user)
+        public ActionResult Login(Login user)
         {
             if(ModelState.IsValid)
             {
