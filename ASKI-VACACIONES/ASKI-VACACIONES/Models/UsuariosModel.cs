@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using System.Data.Entity;
 
 namespace ASKI_VACACIONES.Models
 {
@@ -38,7 +38,7 @@ namespace ASKI_VACACIONES.Models
         public bool activo { get; set; }
     }
 
-    public class vsystem_askiDBContext:DbContext
+    public class VSys_AskiDBContext : DbContext
     {
         //Test
         public DbSet<UsuariosModel> Usuarios { get; set; }

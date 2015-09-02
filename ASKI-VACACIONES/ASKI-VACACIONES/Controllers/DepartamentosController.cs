@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace ASKI_VACACIONES.Controllers
 {
-    public class RolesController : Controller
+    public class DepartamentosController : Controller
     {
-        // GET: Roles
+        // GET: Departamentos
         public ActionResult Index()
         {
             if (Session["User"] != null)
@@ -18,15 +18,33 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
+        [HttpPost]
+        public ActionResult Index(DepartamentoModel model)
+        {
+            if (Session["User"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    client.addDepartamentos(model.descripcion);
+                    client.Close();
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
 
         [HttpPost]
-        public ActionResult Edit(RolesModel model, string submitButton)
+        public ActionResult Edit(DepartamentoModel model, string submitButton)
         {
             Service1Client client = new Service1Client();
             switch (submitButton)
             {
                 case "Buscar":
-                    string hola = client.getRolesInfo(model.id);
+                    string hola = client.getDepartamentosInfo(model.id);
                     ViewBag.Desc = hola;
                     ViewBag.id = model.id;
                     client.Close();
@@ -34,9 +52,9 @@ namespace ASKI_VACACIONES.Controllers
                 case "Modificar":
                     if (Session["User"] != null)
                     {
-                        // var dic = client.getPermisosInfo(model.id);
+                        // var dic = client.getPermisosInfo(model.id
                         //Session["Name"] = dic.descripcion;
-                        client.editRoles(model.id, model.descripcion);
+                        client.editDepartamentos(model.id, model.descripcion);
                         client.Close();
                     }
                     return View();
@@ -49,7 +67,6 @@ namespace ASKI_VACACIONES.Controllers
 
 
         }
-
         public ActionResult Edit()
         {
             if (Session["User"] != null)
@@ -57,26 +74,6 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
-
-        [HttpPost]
-        public ActionResult Index(RolesModel model)
-        {
-            if (Session["User"] != null)
-            {
-                if (ModelState.IsValid)
-                {
-            Service1Client client = new Service1Client();
-            client.addRoles(model.descripcion);
-            client.Close();
-             }
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-
         public ActionResult Delete()
         {
             if (Session["User"] != null)
@@ -84,6 +81,5 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
-
     }
 }
