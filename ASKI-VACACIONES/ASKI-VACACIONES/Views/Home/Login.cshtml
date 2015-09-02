@@ -1,0 +1,69 @@
+﻿@model ASKI_VACACIONES.Models.Login
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
+    <title>Iniciar Sesion- Sistema de vacaciones(UNITEC)</title>
+
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Login/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Login/css/styles.css" />
+
+</head>
+<body>
+    <section class="container login-form">
+        <section>
+            <!--  <form method="post" action="~/Home/Calendario" role="login">-->
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                if (@ViewBag.Message != null)
+                {
+                    <div style="border:1px solid red">
+                        @ViewBag.Message
+                    </div>
+                }
+                <img src="~/Login/images/logo_u.png" alt="" class="img-responsive" />
+                <div class="form-group">
+                    <!--<input type="email" name="email" required class="form-control" placeholder="Correo Electronico" />-->
+                    <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", placeholder = "usuario@unitec.edu" })</p>
+                    @Html.ValidationMessageFor(x => x.email)
+                </div>
+
+                <div class="input-group">
+                    <!--<input type="password" name="password" required class="form-control" placeholder="Contraseña" />-->
+                    <p> @Html.PasswordFor(x => x.password, new { @class = "form-control", placeholder = "Contraseña" })</p>
+                    @Html.ValidationMessageFor(x => x.password)
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="tooltip" data-toggle="tooltip" data-placement="top" title="Forgot password ?">?</button>
+                    </span>
+                </div>
+                <div>
+                    <br />
+                    <p> <button type="submit" name="go" class="btn btn-primary btn-block">Iniciar Sesion</button></p>
+                </div>
+            }
+            <!-- </form>-->
+        </section>
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#tooltip').tooltip();
+        });
+
+    </script>
+</body>
+</html>

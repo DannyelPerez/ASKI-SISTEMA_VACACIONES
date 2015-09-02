@@ -1,0 +1,244 @@
+﻿@model ASKI_VACACIONES.Models.UsuariosModel
+
+
+
+<!--Enteros-->
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('.form-control').keypress(function (event) {
+                if ((event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                    alert('Solo puede ingresar numeros');
+                }
+            });
+        });
+
+    </script>*@
+
+<!--Check-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display = 'block';
+        }
+        else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+<section class="content-header">
+    <h1>
+        Usuarios
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Usuarios</li>
+    </ol>
+</section>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                @using (Html.BeginForm())
+                {
+
+                    <div class="panel-body">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"></h3>
+                            </div><!-- /.box-header -->
+                            @Html.ValidationSummary()
+                            <!-- form start -->
+                            <form class="form-horizontal" id="formulario">
+
+                                <div class="cd-tabs">
+                                    <nav>
+                                        <ul class="cd-tabs-navigation">
+                                            <li><a data-content="inbox" class="selected" href="#0">Agregar</a></li>
+                                            <li><a data-content="new" href="~/Usuarios/Edit">Modificar</a></li>
+                                            <li><a data-content="tash" href="~/Usuarios/Delete">Eliminar</a></li>
+                                        </ul> <!-- cd-tabs-navigation -->
+                                    </nav>
+
+                                    <ul class="cd-tabs-content">
+                                        <li data-content="inbox" class="selected">
+                                            <div class="box-body">
+
+                                                <div class="form-group">
+                                                    <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control", type = "text" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.talento_humano)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", type = "text" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.primer_nombre)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.segundo_nombre)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputprimerapellido" class="col-sm-2 control-label">Primer apellido</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.primer_apellido, new { @class = "form-control", type = "text" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.primer_apellido)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputsegundoapellido" class="col-sm-2 control-label">Segundo apellido</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.segundo_apellido, new { @class = "form-control", type = "text" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.segundo_apellido)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputcorreo" class="col-sm-2 control-label">Correo</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "text", name = "email" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.email)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputpass" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.password, new { @class = "form-control", type = "hidden" })</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <br />
+                                                    <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.fecha_ingreso, new { @class = "form-control", type = "date" })</p>
+                                                        @Html.ValidationMessageFor(Model => Model.fecha_creacion)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputdepto" class="col-sm-2 control-label">Departamento</label>
+                                                    <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
+                                                    <div id="content" style="display: none;">
+
+                                                        <div class="box">
+                                                            <div class="box-header">
+                                                                <h3 class="box-title"></h3>
+                                                            </div><!-- /.box-header -->
+                                                            <div class="box-body">
+                                                                <table id="example1" class="table table-bordered table-striped">
+
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Seleccionar</th>
+                                                                            <th>Departamentos</th>
+
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th><input type="checkbox"></th>
+                                                                            <th></th>
+
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div><!-- /.box-body -->
+                                                        </div><!-- /.box -->
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
+                                                    <input type="checkbox" name="check" id="check" value="2" onchange="javascript:showContent()" />
+                                                    <div id="content" style="display: none;">
+                                                        <div class="box">
+                                                            <div class="box-header">
+                                                                <h3 class="box-title"></h3>
+                                                            </div><!-- /.box-header -->
+                                                            <div class="container demo">
+                                                                <table class="datatable table table-striped table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Seleccionar</th>
+                                                                            <th>Departamento</th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="gradeX">
+                                                                            <td>T</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td class="center"></td>
+                                                                            <td class="center"></td>
+                                                                        </tr>
+
+                                                                        <tr class="gradeU">
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td class="center"></td>
+                                                                            <td class="center"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>Seleccionar</th>
+                                                                            <th>Departamento</th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div><!--/.container.demo -->
+                                                        </div><!-- /.box -->
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="box-footer">
+
+                                                    @*<button type="submit" class="btn btn-info pull-right" onclick="javascript:Generarpasword()">Agregar</button>*@
+                                                    <input type="submit" class="btn btn-info pull-right" value="Agregar" onclick="Generarpasword()" />
+                                                </div><!-- /.box-footer -->
+
+                                            </div>
+                                        </li>
+
+                                    </ul> <!-- cd-tabs-content -->
+                                </div> <!-- cd-tabs -->
+                            </form>
+                        </div><!-- /.box -->
+                    </div>
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable"></section><!-- right col -->
+
+
+</section><!-- /.content -->

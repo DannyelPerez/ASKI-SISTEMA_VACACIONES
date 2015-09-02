@@ -1,0 +1,106 @@
+﻿@model  ASKI_VACACIONES.Models.DepartamentoModel
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.NumberInteger').keypress(function (event) {
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+                alert('Solo puede ingresar numeros');
+            }
+        });
+    });
+
+</script>
+
+<section class="content-header">
+    <h1>
+        Departamentos
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Departamentos</li>
+    </ol>
+</section>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                @using (Html.BeginForm())
+                {
+
+                    <div class="panel-body">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"></h3>
+                            </div><!-- /.box-header -->
+                            <!-- form start -->
+                            <form class="form-horizontal">
+                                <div class="cd-tabs">
+                                    <nav>
+                                        <ul class="cd-tabs-navigation">
+                                            <li><a data-content="inbox" href="~/Departamentos/Index">Agregar</a></li>
+                                            <li><a data-content="new" class="selected">Modificar</a></li>
+                                            <li><a data-content="tash" href="~/Departamentos/Delete">Eliminar</a></li>
+                                        </ul> <!-- cd-tabs-navigation -->
+                                    </nav>
+                                    <ul class="cd-tabs-content">
+                                        <li data-content="new" class="selected">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputiddepartamento" class="col-sm-2 control-label">Id departamento</label>
+                                                    <div class="col-sm-10">
+                                                        <p> @Html.TextBoxFor(x => x.id, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.id })
+
+                                                        <br />
+                                                        <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
+                                                        <br /></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputdescripcion" class="col-sm-2 control-label">Descripcion</label>
+                                                    <div class="col-sm-10">
+                                                        <p>@Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text" , Value=ViewBag.Desc})</p>
+                                                        @*<input type="text" class="form-control" id="inputdescripcion" size="20">*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputestado" class="col-sm-2 control-label">Estado</label>
+                                                    <div class="col-sm-10">
+                                                        <p>
+                                                            <select class="form-control">
+                                                                <option>Activo</option>
+                                                                <option>No Activo</option>
+                                                            </select>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                                <div class="box-footer">
+                                                    <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
+                                                </div><!-- /.box-footer -->
+                                            </div>
+                                        </li>
+                                    </ul> <!-- cd-tabs-content -->
+                                </div> <!-- cd-tabs -->
+                            </form>
+                        </div><!-- /.box -->
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable"></section><!-- right col -->
+
+
+</section><!-- /.content -->                                    
