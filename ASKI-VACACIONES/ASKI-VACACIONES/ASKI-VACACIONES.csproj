@@ -119,6 +119,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Imagenes\login.png" />
     <Content Include="Login\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Login\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Login\bootstrap\css\bootstrap.css" />
@@ -1049,6 +1050,11 @@
     <Content Include="Template\Validacion\index.html" />
     <Content Include="Template\Validacion\jquery-1.9.1.min.js" />
     <Content Include="Template\Validacion\jquery.validate.js" />
+    <Content Include="Template\Validacion\prueba\images\invalid.png" />
+    <Content Include="Template\Validacion\prueba\images\red_asterisk.png" />
+    <Content Include="Template\Validacion\prueba\images\valid.png" />
+    <Content Include="Template\Validacion\prueba\index.html" />
+    <Content Include="Template\Validacion\prueba\styles.css" />
     <Content Include="Template\Validacion\style.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -1208,7 +1214,9 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SolicitudesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1239,6 +1247,11 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Usuarios\detail.cshtml" />
+    <Content Include="Template\Validacion\prueba\.DS_Store" />
+    <Content Include="Views\Solicitudes\NuevaSolicitud.cshtml" />
+    <Content Include="Views\Solicitudes\MisSolicitudes.cshtml" />
+    <Content Include="Views\Reportes\Usuarios.cshtml" />
+    <Content Include="Views\Home\Perfil.cshtml" />
     <None Include="Service References\ServiceReference1\Service13.xsd">
       <SubType>Designer</SubType>
     </None>

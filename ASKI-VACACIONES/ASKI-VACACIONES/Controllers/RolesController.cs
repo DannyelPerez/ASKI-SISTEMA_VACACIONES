@@ -66,7 +66,7 @@ namespace ASKI_VACACIONES.Controllers
                 if (ModelState.IsValid)
                 {
             Service1Client client = new Service1Client();
-            client.addRoles(model.descripcion);
+            client.addRole(model.descripcion);
             client.Close();
              }
                 return View();

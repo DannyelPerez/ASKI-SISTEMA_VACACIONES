@@ -8,10 +8,14 @@ namespace ASKI_VACACIONES.Models
 {
     public class PermisosModel
     {
-        public string descripcion { get; set; }
         [Required(ErrorMessage = "Escriba la descripcion")]
-        public int id { get; set; }
+        public string descripcion { get; set; }
+
+
+
         [Required(ErrorMessage = "Escriba el id")]
+        public int id { get; set; }
+        
         public bool activo { get; set; }
     }
 }

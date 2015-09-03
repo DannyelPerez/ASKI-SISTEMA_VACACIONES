@@ -1,10 +1,10 @@
 ﻿@model  ASKI_VACACIONES.Models.UsuariosModel
 
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.NumberInteger').keypress(function (event) {
+        $('.form-control').keypress(function (event) {
             if ((event.which < 48 || event.which > 57)) {
                 event.preventDefault();
                 alert('Solo puede ingresar numeros');
@@ -44,8 +44,8 @@
                                     <nav>
                                         <ul class="cd-tabs-navigation">
                                             <li><a data-content="inbox" href="~/Usuarios/Index">Agregar</a></li>
-                                            <li><a data-content="new" class="selected">Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Usuarios/Delete">Eliminar</a></li>
+                                            <li><a data-content="new" href="~/Usuarios/Edit">Modificar</a></li>
+                                            <li><a data-content="tash" class ="selected">Eliminar</a></li>
                                         </ul> <!-- cd-tabs-navigation -->
                                     </nav>
                                     <ul class="cd-tabs-content">
@@ -55,7 +55,7 @@
                                                 <div class="form-group">
                                                     <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="NumberInteger" id="inputtalentohumano" size="20">
+                                                        <input type="text" class="form-control" id="inputtalentohumano" size="20">
                                                     </div>
                                                 </div>
 

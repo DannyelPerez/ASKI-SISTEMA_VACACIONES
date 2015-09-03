@@ -29,7 +29,7 @@ namespace ASKI_VACACIONES.Controllers
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
-                    client.addPermisos(model.descripcion);
+                    client.addPermiso(model.descripcion);
                     client.Close();
 
                 }
@@ -56,16 +56,16 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
             case "Buscar":
-            string hola= client.getPermisosInfo(model.id);
-            ViewBag.Desc = hola;
-            client.Close();
-            return View();     
+            //string hola= client.getPermisosInfo(model.id);
+            //ViewBag.Desc = hola;
+            //client.Close();
+            //return View();     
                 case "Modificar":
                     if (Session["User"] != null)
                     {
                         // var dic = client.getPermisosInfo(model.id);
                         //Session["Name"] = dic.descripcion;
-                        client.editPermisos(model.id, model.descripcion, model.activo);
+                        client.editPermiso(model.id, model.descripcion, model.activo);
                         client.Close();
                     }
                     return View();
@@ -83,7 +83,7 @@ namespace ASKI_VACACIONES.Controllers
         public ActionResult Delete(PermisosModel model)
         {
             Service1Client client = new Service1Client();
-            client.deletePermisos(model.id);
+            client.deletePermiso(model.id);
             client.Close();
             return View();
         }
@@ -99,8 +99,7 @@ namespace ASKI_VACACIONES.Controllers
         public ActionResult Cargar(PermisosModel model)
         {
             Service1Client client = new Service1Client();
-            string dic = client.getPermisosInfo(model.id);
-            
+            var dic = client.getPermiso(model.id);
             client.Close();
             return View(dic);
         }
