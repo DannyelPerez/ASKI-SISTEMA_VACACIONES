@@ -12,6 +12,7 @@ namespace ASKI_VACACIONES.Controllers
     {
         // GET: Home
         public ActionResult Login(){return View();}
+        public ActionResult Perfil() { return View(); }
         public ViewResult Calendario() 
         { 
             if(Session["User"]!=null)
