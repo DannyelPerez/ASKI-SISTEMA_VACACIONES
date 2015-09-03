@@ -26,18 +26,17 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    var hola = client.getUsuario(model.id);
-                    //var hola = client.getRolesInfo(model.id);
-                    ViewBag.Desc = hola.primer_nombre;
+                    var hola = client.getRol(model.id);
+                    if (hola != null) { 
+                    ViewBag.Desc = hola.descripcion;
                     ViewBag.id = model.id;
+                    }
                    // client.Close();
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)
                     {
-                        // var dic = client.getPermisosInfo(model.id);
-                        //Session["Name"] = dic.descripcion;
-                        client.editRoles(model.id, model.descripcion);
+                        client.editRol(model.id, model.descripcion);
                         client.Close();
                     }
                     return View();
@@ -65,7 +64,7 @@ namespace ASKI_VACACIONES.Controllers
                 if (ModelState.IsValid)
                 {
             Service1Client client = new Service1Client();
-            client.addRoles(model.descripcion);
+            client.addRole(model.descripcion);
             client.Close();
              }
                 return View();

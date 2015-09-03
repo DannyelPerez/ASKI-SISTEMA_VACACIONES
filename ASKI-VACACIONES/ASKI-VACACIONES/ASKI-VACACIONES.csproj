@@ -152,6 +152,15 @@
     <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.Usuario.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.Departamento1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.Permisos1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.Roles1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ServiceReference1\Service1.disco" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />

@@ -6,7 +6,6 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Data;
-using MySql.Data.MySqlClient;
 using System.Data.EntityClient;
 using Service_Asky.Tables;
 
@@ -130,9 +129,6 @@ namespace Service_Asky
 
         public void editDepartamento(int id, string descripcion)
         {
-
-
-
             vsystem_askiEntities db = new vsystem_askiEntities();
             var dic = (from p in db.tbl_departamento
                        where p.departamentoid == id
@@ -212,6 +208,28 @@ namespace Service_Asky
             u.password = user.password;
             u.activo = user.activo;
             return u;
+        }
+
+        public void editUsuario(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var dic = (from p in db.tbl_usuarios
+                       where p.talento_humano == talentoHumano
+                       select p)
+                       .FirstOrDefault();
+
+            if (dic != null)
+            {
+                dic.talento_humano = talentoHumano;
+                dic.email = email;
+                dic.primer_nombre = primerNombre;
+                dic.segundo_nombre = segundoNombre;
+                dic.primer_apellido = primerApellido;
+                dic.segundo_apellido = segundoApellido;
+                dic.fecha_ingreso = fechaIngreso;
+                db.SaveChanges();
+            }
+
         }
     }
 }
