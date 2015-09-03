@@ -998,11 +998,6 @@
     <Content Include="Template\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Template\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Template\plugins\timepicker\bootstrap-timepicker.min.js" />
-    <Content Include="Template\Solicitudes\css\style.css" />
-    <Content Include="Template\Solicitudes\index.html" />
-    <Content Include="Template\Solicitudes\js\index.js" />
-    <Content Include="Template\Solicitudes\license.txt" />
-    <Content Include="Template\Solicitudes\README.txt" />
     <Content Include="Template\starter.html" />
     <Content Include="Template\tabs\css\reset.css" />
     <Content Include="Template\tabs\css\style.css" />
@@ -1187,6 +1182,7 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SolicitudesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -1223,8 +1219,7 @@
     <Content Include="Template\Validacion\prueba\.DS_Store" />
     <Content Include="Views\Solicitudes\NuevaSolicitud.cshtml" />
     <Content Include="Views\Solicitudes\MisSolicitudes.cshtml" />
-    <Content Include="Template\Solicitudes\config.rb" />
-    <Content Include="Template\Solicitudes\scss\style.scss" />
+    <Content Include="Views\Reportes\Usuarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
