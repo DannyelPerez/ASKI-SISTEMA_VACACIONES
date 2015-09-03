@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
+using Service_Asky.Tables;
 
 namespace Service_Asky
 {
@@ -18,6 +20,12 @@ namespace Service_Asky
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
+
+        [OperationContract]
+        VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem);
+
+        [OperationContract]
+        Usuario getUser(Usuario user);
 
         // TODO: Add your service operations here
 
@@ -53,9 +61,9 @@ namespace Service_Asky
         [OperationContract]
         string getDepartamentosInfo(int id);
 
+      
     }
-
-
+    
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType
@@ -77,4 +85,6 @@ namespace Service_Asky
             set { stringValue = value; }
         }
     }
+
+    
 }

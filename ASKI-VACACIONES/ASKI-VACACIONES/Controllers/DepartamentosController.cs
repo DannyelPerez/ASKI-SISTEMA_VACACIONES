@@ -22,13 +22,14 @@ namespace ASKI_VACACIONES.Controllers
         [HttpPost]
         public ActionResult Index(DepartamentoModel model)
         {
+            
             if (Session["User"] != null)
             {
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
                     client.addDepartamentos(model.descripcion);
-                    client.Close();
+                   client.Close();
                 }
                 return View();
             }

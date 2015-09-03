@@ -26,16 +26,11 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    //VSys_AskiDBContext db = new VSys_AskiDBContext();
-                    //string hola = client.getRolesInfo(model.id);
-                    var context = new VSys_AskiDBContext();
-                    foreach (UsuariosModel u in context.Usuarios)
-                    {
-                        ViewBag.Desc = u.primer_nombre;
-                    }
+                    VSystem_AskiDataBase data = new VSystem_AskiDataBase();
+                    var hola= 
                     //ViewBag.Desc = hola.primer_nombre;
                     //ViewBag.id = model.id;
-                    client.Close();
+                   // client.Close();
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)

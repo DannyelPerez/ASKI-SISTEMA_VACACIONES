@@ -5,6 +5,10 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
+using MySql.Data.MySqlClient;
+using System.Data.EntityClient;
+using Service_Asky.Tables;
 
 namespace Service_Asky
 {
@@ -28,6 +32,18 @@ namespace Service_Asky
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        public VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem)
+        {
+            if (vsystem.variable.Equals("Hello"))
+                vsystem.variable = "Hello WOW";
+            return vsystem;
+        }
+
+        public Usuario getUser(Usuario user)
+        {
+            return user;
         }
 
         public void addDepartamentos(string descripcion)
@@ -97,6 +113,7 @@ namespace Service_Asky
         public void editPermisos(int id, string descripcion, bool Test)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
+            
             var dic = (from p in db.tbl_permisos
                        where p.permisosid == id
                        select p)
@@ -188,6 +205,5 @@ namespace Service_Asky
             }
             return false;
         }
-
     }
 }

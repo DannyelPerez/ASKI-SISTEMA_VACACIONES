@@ -74,6 +74,80 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VSystem_AskiDataBase", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky")]
+    [System.SerializableAttribute()]
+    public partial class VSystem_AskiDataBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int talento_humanoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int talento_humano {
+            get {
+                return this.talento_humanoField;
+            }
+            set {
+                if ((this.talento_humanoField.Equals(value) != true)) {
+                    this.talento_humanoField = value;
+                    this.RaisePropertyChanged("talento_humano");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -89,6 +163,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ASKI_VACACIONES.ServiceReference1.CompositeType composite);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getVSystem", ReplyAction="http://tempuri.org/IService1/getVSystemResponse")]
+        ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase getVSystem(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getVSystem", ReplyAction="http://tempuri.org/IService1/getVSystemResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase> getVSystemAsync(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUser", ReplyAction="http://tempuri.org/IService1/getUserResponse")]
+        ASKI_VACACIONES.ServiceReference1.Usuario getUser(ASKI_VACACIONES.ServiceReference1.Usuario user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUser", ReplyAction="http://tempuri.org/IService1/getUserResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUserAsync(ASKI_VACACIONES.ServiceReference1.Usuario user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addDepartamentos", ReplyAction="http://tempuri.org/IService1/addDepartamentosResponse")]
         void addDepartamentos(string descripcion);
@@ -204,6 +290,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ASKI_VACACIONES.ServiceReference1.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase getVSystem(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem) {
+            return base.Channel.getVSystem(vsystem);
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase> getVSystemAsync(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem) {
+            return base.Channel.getVSystemAsync(vsystem);
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Usuario getUser(ASKI_VACACIONES.ServiceReference1.Usuario user) {
+            return base.Channel.getUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUserAsync(ASKI_VACACIONES.ServiceReference1.Usuario user) {
+            return base.Channel.getUserAsync(user);
         }
         
         public void addDepartamentos(string descripcion) {
