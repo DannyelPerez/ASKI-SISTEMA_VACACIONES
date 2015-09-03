@@ -22,13 +22,14 @@ namespace ASKI_VACACIONES.Controllers
         [HttpPost]
         public ActionResult Index(DepartamentoModel model)
         {
+            
             if (Session["User"] != null)
             {
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
-                    client.addDepartamentos(model.descripcion);
-                    client.Close();
+                    client.addDepartamento(model.descripcion);
+                   client.Close();
                 }
                 return View();
             }
@@ -45,18 +46,18 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    string hola = client.getDepartamentosInfo(model.id);
-                    ViewBag.Desc = hola;
-                    ViewBag.id = model.id;
-                    client.Close();
+                    //string hola = client.getDepartamentosInfo(model.id);
+                    //ViewBag.Desc = hola;
+                    //ViewBag.id = model.id;
+                    //client.Close();
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)
                     {
                         // var dic = client.getPermisosInfo(model.id
                         //Session["Name"] = dic.descripcion;
-                        client.editDepartamentos(model.id, model.descripcion);
-                        client.Close();
+                        //client.editDepartamentos(model.id, model.descripcion);
+                        //client.Close();
                     }
                     return View();
                 default:

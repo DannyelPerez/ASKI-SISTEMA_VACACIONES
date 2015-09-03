@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Permisos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="permisosid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Permisos" nillable="true" type="tns:Permisos" />
+  <xs:complexType name="Roles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rolesid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Roles" nillable="true" type="tns:Roles" />
+  <xs:complexType name="Departamento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="departamentoid" type="xs:int" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Departamento" nillable="true" type="tns:Departamento" />
+  <xs:complexType name="Usuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha_creacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha_ingreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="primer_apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="primer_nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="segundo_apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="segundo_nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
+  <xs:complexType name="ArrayOfCalendario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Calendario" nillable="true" type="tns:Calendario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCalendario" nillable="true" type="tns:ArrayOfCalendario" />
+  <xs:complexType name="Calendario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="talento_humano_empleado" type="xs:int" />
+      <xs:element minOccurs="0" name="talento_humano_jefe" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Calendario" nillable="true" type="tns:Calendario" />
+  <xs:complexType name="ArrayOfDepartamento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Departamento" nillable="true" type="tns:Departamento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDepartamento" nillable="true" type="tns:ArrayOfDepartamento" />
+  <xs:complexType name="ArrayOfJerarquia">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jerarquia" nillable="true" type="tns:Jerarquia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJerarquia" nillable="true" type="tns:ArrayOfJerarquia" />
+  <xs:complexType name="Jerarquia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="departamentoid" type="xs:int" />
+      <xs:element minOccurs="0" name="jefe_talentohumano" type="xs:int" />
+      <xs:element minOccurs="0" name="jerarquiaid" type="xs:int" />
+      <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Jerarquia" nillable="true" type="tns:Jerarquia" />
+  <xs:complexType name="ArrayOfLog_Vacaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Log_Vacaciones" nillable="true" type="tns:Log_Vacaciones" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLog_Vacaciones" nillable="true" type="tns:ArrayOfLog_Vacaciones" />
+  <xs:complexType name="Log_Vacaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estatus_actual" type="xs:int" />
+      <xs:element minOccurs="0" name="estatus_anterior" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha_modificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="logid" type="xs:int" />
+      <xs:element minOccurs="0" name="th_modifico" type="xs:int" />
+      <xs:element minOccurs="0" name="vacacionesid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Log_Vacaciones" nillable="true" type="tns:Log_Vacaciones" />
+  <xs:complexType name="ArrayOfPermisos">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Permisos" nillable="true" type="tns:Permisos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPermisos" nillable="true" type="tns:ArrayOfPermisos" />
+  <xs:complexType name="ArrayOfRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Roles" nillable="true" type="tns:Roles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoles" nillable="true" type="tns:ArrayOfRoles" />
+  <xs:complexType name="ArrayOfStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Status" nillable="true" type="tns:Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStatus" nillable="true" type="tns:ArrayOfStatus" />
+  <xs:complexType name="Status">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estatusid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Status" nillable="true" type="tns:Status" />
+  <xs:complexType name="ArrayOfTipo_Dia">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tipo_Dia" nillable="true" type="tns:Tipo_Dia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipo_Dia" nillable="true" type="tns:ArrayOfTipo_Dia" />
+  <xs:complexType name="Tipo_Dia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tipo_Dia" nillable="true" type="tns:Tipo_Dia" />
+  <xs:complexType name="ArrayOfUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuario" nillable="true" type="tns:ArrayOfUsuario" />
+  <xs:complexType name="ArrayOfVacaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vacaciones" nillable="true" type="tns:Vacaciones" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVacaciones" nillable="true" type="tns:ArrayOfVacaciones" />
+  <xs:complexType name="Vacaciones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dias_solicitados" type="xs:int" />
+      <xs:element minOccurs="0" name="estatusid" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha_de_aprobacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha_entrada" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha_salida" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha_solicitud" type="xs:int" />
+      <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
+      <xs:element minOccurs="0" name="vacacionesid" type="xs:int" />
+      <xs:element minOccurs="0" name="year" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Vacaciones" nillable="true" type="tns:Vacaciones" />
+</xs:schema>
