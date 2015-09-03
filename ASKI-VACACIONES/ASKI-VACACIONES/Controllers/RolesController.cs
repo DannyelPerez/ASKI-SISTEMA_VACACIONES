@@ -29,13 +29,14 @@ namespace ASKI_VACACIONES.Controllers
                     var hola = client.getRol(model.id);
                     if (hola != null) { 
                     ViewBag.Desc = hola.descripcion;
-                    ViewBag.id = model.id;
+                    ViewBag.id = hola.rolesid;
                     }
-                   // client.Close();
+            
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)
                     {
+
                         client.editRol(model.id, model.descripcion);
                         client.Close();
                     }
@@ -43,9 +44,6 @@ namespace ASKI_VACACIONES.Controllers
                 default:
                      return RedirectToAction("Login");
             }
-
-
-
         }
 
         public ActionResult Edit()

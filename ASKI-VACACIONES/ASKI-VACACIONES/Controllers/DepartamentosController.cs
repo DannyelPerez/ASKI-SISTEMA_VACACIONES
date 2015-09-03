@@ -48,8 +48,8 @@ namespace ASKI_VACACIONES.Controllers
                 case "Buscar":
                     var hola = client.getDepartamento(model.id);
                     if (hola != null) { 
-                    ViewBag.Desc = hola;
-                    ViewBag.id = model.id;
+                    ViewBag.Desc = hola.descripcion;
+                    ViewBag.id = hola.departamentoid;
                     }
                     client.Close();
                     return View();
@@ -57,13 +57,12 @@ namespace ASKI_VACACIONES.Controllers
                     if (Session["User"] != null)
                     {
                         client.editDepartamento(model.id, model.descripcion);
-                    }
                         client.Close();
-                    
+                    }
+                                        
                     return View();
                 default:
-                    // If they've submitted the form without a submitButton, 
-                    // just return the view again.
+                  
                     return RedirectToAction("Login");
             }
 

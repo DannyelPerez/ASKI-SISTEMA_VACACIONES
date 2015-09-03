@@ -21,19 +21,16 @@ namespace Service_Asky
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-       // TODO: Add your service operations here
+        // TODO: Add your service operations here
 
-//=================== Add Element to database=============
-
-
+        //=================== Add Element to database=============
+        
         [OperationContract]
         void addDepartamento(string descripcion);
         [OperationContract]
         void addRole(string descripcion);
-
         [OperationContract]
         void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password);
-
         [OperationContract]
         void addPermiso(string descripcion);
 
@@ -41,7 +38,7 @@ namespace Service_Asky
 
 
 
-//=================== Edit Element from database=============
+        //=================== Edit Element from database=============
 
         [OperationContract]
         void editPermiso(int id, string descripcion, bool activo);
@@ -73,9 +70,29 @@ namespace Service_Asky
         Departamento getDepartamento(int id);
         [OperationContract]
         Usuario getUsuario(int talento_humano);
-      
+        [OperationContract]
+        List<Calendario> getTbl_calendario();
+        [OperationContract]
+        List<Departamento> getTbl_departamentos();
+        [OperationContract]
+        List<Jerarquia> getTbl_jerarquia();
+        [OperationContract]
+        List<Log_Vacaciones> getTbl_log_vacaciones();
+        [OperationContract]
+        List<Permisos> getTbl_permisos();
+        [OperationContract]
+        List<Roles> getTbl_roles();
+        [OperationContract]
+        List<Status> getTbl_status();
+        [OperationContract]
+        List<Tipo_Dia> getTbl_tipo_dia();
+        [OperationContract]
+        List<Usuario> getTbl_usuarios();
+        [OperationContract]
+        List<Vacaciones> getTbl_vacaciones();
+
     }
-    
+
 
 
 
@@ -112,5 +129,5 @@ namespace Service_Asky
         }
     }
 
-    
+
 }

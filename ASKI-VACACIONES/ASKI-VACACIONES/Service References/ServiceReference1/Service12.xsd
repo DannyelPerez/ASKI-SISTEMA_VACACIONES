@@ -226,4 +226,124 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getTbl_calendario">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_calendarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_calendarioResult" nillable="true" type="q7:ArrayOfCalendario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_departamentos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_departamentosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_departamentosResult" nillable="true" type="q8:ArrayOfDepartamento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_jerarquia">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_jerarquiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_jerarquiaResult" nillable="true" type="q9:ArrayOfJerarquia" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_log_vacaciones">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_log_vacacionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_log_vacacionesResult" nillable="true" type="q10:ArrayOfLog_Vacaciones" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_permisos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_permisosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_permisosResult" nillable="true" type="q11:ArrayOfPermisos" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_roles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_rolesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_rolesResult" nillable="true" type="q12:ArrayOfRoles" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_status">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_statusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_statusResult" nillable="true" type="q13:ArrayOfStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_tipo_dia">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_tipo_diaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_tipo_diaResult" nillable="true" type="q14:ArrayOfTipo_Dia" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_usuarios">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_usuariosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_usuariosResult" nillable="true" type="q15:ArrayOfUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_vacaciones">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTbl_vacacionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_vacacionesResult" nillable="true" type="q16:ArrayOfVacaciones" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

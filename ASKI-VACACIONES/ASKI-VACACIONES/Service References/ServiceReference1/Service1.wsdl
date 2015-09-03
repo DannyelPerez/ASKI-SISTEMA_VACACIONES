@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:7100/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -104,6 +104,66 @@
   <wsdl:message name="IService1_getUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:getUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getTbl_calendario_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_calendario" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_calendario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_calendarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_departamentos_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_departamentos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_departamentos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_departamentosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_jerarquia_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_jerarquia" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_jerarquia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_jerarquiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_log_vacaciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_log_vacaciones" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_log_vacaciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_log_vacacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_permisos_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_permisos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_permisos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_permisosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_roles_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_roles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_roles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_rolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_status_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_status" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_statusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_tipo_dia_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_tipo_dia" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_tipo_dia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_tipo_diaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_usuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_usuarios" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_usuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_usuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_vacaciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_vacaciones" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTbl_vacaciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTbl_vacacionesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -168,6 +228,46 @@
     <wsdl:operation name="getUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getUsuario" message="tns:IService1_getUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getUsuarioResponse" message="tns:IService1_getUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_calendario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_calendario" message="tns:IService1_getTbl_calendario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_calendarioResponse" message="tns:IService1_getTbl_calendario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_departamentos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_departamentos" message="tns:IService1_getTbl_departamentos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_departamentosResponse" message="tns:IService1_getTbl_departamentos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_jerarquia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_jerarquia" message="tns:IService1_getTbl_jerarquia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_jerarquiaResponse" message="tns:IService1_getTbl_jerarquia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_log_vacaciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_log_vacaciones" message="tns:IService1_getTbl_log_vacaciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_log_vacacionesResponse" message="tns:IService1_getTbl_log_vacaciones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_permisos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_permisos" message="tns:IService1_getTbl_permisos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_permisosResponse" message="tns:IService1_getTbl_permisos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_roles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_roles" message="tns:IService1_getTbl_roles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_rolesResponse" message="tns:IService1_getTbl_roles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_status" message="tns:IService1_getTbl_status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_statusResponse" message="tns:IService1_getTbl_status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_tipo_dia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_tipo_dia" message="tns:IService1_getTbl_tipo_dia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_tipo_diaResponse" message="tns:IService1_getTbl_tipo_dia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_usuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_usuarios" message="tns:IService1_getTbl_usuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_usuariosResponse" message="tns:IService1_getTbl_usuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_vacaciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_vacaciones" message="tns:IService1_getTbl_vacaciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_vacacionesResponse" message="tns:IService1_getTbl_vacaciones_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -309,6 +409,96 @@
     </wsdl:operation>
     <wsdl:operation name="getUsuario">
       <soap:operation soapAction="http://tempuri.org/IService1/getUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_calendario">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_calendario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_departamentos">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_departamentos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_jerarquia">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_jerarquia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_log_vacaciones">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_log_vacaciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_permisos">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_permisos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_roles">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_roles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_status">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_tipo_dia">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_tipo_dia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_usuarios">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_usuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTbl_vacaciones">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTbl_vacaciones" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

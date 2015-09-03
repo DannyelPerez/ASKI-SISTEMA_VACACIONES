@@ -1,9 +1,9 @@
 ﻿@model  ASKI_VACACIONES.Models.RolesModel
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.NumberInteger').keypress(function (event) {
+        $('.form-control').keypress(function (event) {
             if ((event.which < 48 || event.which > 57)) {
                 event.preventDefault();
                 alert('Solo puede ingresar numeros');
@@ -11,7 +11,7 @@
         });
     });
 
-</script>
+</script>*@
 
 <section class="content-header">
     <h1>
@@ -55,7 +55,7 @@
                                                     <label for="inputiddepartamento" class="col-sm-2 control-label">Id rol</label>
                                                     <div class="col-sm-10">
                                                         <p>
-                                                            @Html.TextBoxFor(x => x.id, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.id })
+                                                            @Html.TextBoxFor(x => x.id, new { @class = "form-control ", type = "text", Value = ViewBag.id })
                                                             
                                                             <br />
                                                             <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />

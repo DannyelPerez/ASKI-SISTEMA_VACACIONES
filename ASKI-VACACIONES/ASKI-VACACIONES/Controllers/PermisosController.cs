@@ -55,6 +55,7 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
             case "Buscar":
+
            var hola = client.getPermiso(model.id);
             if (hola != null)
             {
@@ -62,7 +63,7 @@ namespace ASKI_VACACIONES.Controllers
             }
             client.Close();
             return View();     
-                case "Modificar":
+            case "Modificar":
                     if (Session["User"] != null)
                     {
                         // var dic = client.getPermisosInfo(model.id);
@@ -77,8 +78,7 @@ namespace ASKI_VACACIONES.Controllers
                     return RedirectToAction("Login");
             }
 
-            
-           
+          
         }
 
         [HttpPost]

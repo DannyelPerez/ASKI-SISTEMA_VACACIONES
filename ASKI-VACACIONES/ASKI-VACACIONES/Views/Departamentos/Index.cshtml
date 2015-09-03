@@ -1,5 +1,6 @@
 ﻿@model ASKI_VACACIONES.Models.DepartamentoModel
 
+<link href="~/Template/Validacion/prueba/styles.css" rel="stylesheet" />
 <section class="content-header">
     <h1>
         Departamentos
@@ -26,14 +27,14 @@
                                 <h3 class="box-title"></h3>
                             </div><!-- /.box-header -->
                             <!-- form start -->
-                            @Html.ValidationSummary(true)
-                            <form class="form-horizontal">
+                            @Html.ValidationSummary()
+                            <form class="form-horizontal ">
                                 <div class="cd-tabs">
                                     <nav>
                                         <ul class="cd-tabs-navigation">
                                             <li><a data-content="inbox" class="selected" href="#0">Agregar</a></li>
-                                            <li><a data-content="new" href="~/Departamento/Edit">Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Departamento/Delete">Eliminar</a></li>
+                                            <li><a data-content="new" href="~/Departamentos/Edit">Modificar</a></li>
+                                            <li><a data-content="tash" href="~/Departamentos/Delete">Eliminar</a></li>
                                         </ul> <!-- cd-tabs-navigation -->
                                     </nav>
                                     <ul class="cd-tabs-content">
@@ -43,8 +44,9 @@
                                                 <div class="form-group">
                                                     <label for="inputdescripcion" class="col-sm-2 control-label">Descripcion</label>
                                                     <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.descripcion)
+                                                       
+                                                        <p>@Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text"})</p>
+                                                        @*@Html.ValidationMessageFor(Model => Model.descripcion)*@
                                                         @*<input type="text" class="form-control" id="inputdescripcion" size="20">*@
                                                     </div>
                                                 </div>

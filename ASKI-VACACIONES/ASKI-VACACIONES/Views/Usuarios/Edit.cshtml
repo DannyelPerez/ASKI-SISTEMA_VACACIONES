@@ -1,9 +1,9 @@
 ﻿@model  ASKI_VACACIONES.Models.UsuariosModel
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.NumberInteger').keypress(function (event) {
+        $('.form-control').keypress(function (event) {
             if ((event.which < 48 || event.which > 57)) {
                 event.preventDefault();
                 alert('Solo puede ingresar numeros');
@@ -55,6 +55,7 @@
                                                 <div class="form-group">
                                                     <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
                                                     <div class="col-sm-10">
+<<<<<<< HEAD
                                                         
                                                         <p>
                                                             @Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.talentoHumano })
@@ -63,6 +64,9 @@
                                                             <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
                                                             <br />
                                                         
+=======
+                                                        <p><input type="text" class="form-control" id="inputtalentohumano" size="20"></p>
+>>>>>>> Daniel
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
