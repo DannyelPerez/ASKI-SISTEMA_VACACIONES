@@ -24,9 +24,6 @@ namespace Service_Asky
         [OperationContract]
         VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem);
 
-        [OperationContract]
-        Usuario getUsuario(int id);
-
         // TODO: Add your service operations here
 
         [OperationContract]
@@ -61,6 +58,8 @@ namespace Service_Asky
         [OperationContract]
         string getDepartamentosInfo(int id);
 
+        [OperationContract]
+        Usuario getUsuario(int talento_humano);
       
     }
     

@@ -10,25 +10,9 @@ using System.Web;
 namespace Service_Asky
 {
     [DataContract]
-    public partial class VSystem_AskiDataBase:DbContext
+    public partial class VSystem_AskiDataBase
     {
-        public VSystem_AskiDataBase()
-    {
-        Configuration.AutoDetectChangesEnabled = true;
-        Configuration.LazyLoadingEnabled = true;
-        Configuration.ProxyCreationEnabled = true;
-        Configuration.ValidateOnSaveEnabled = true;
-    }
-
-        protected override void Dispose(bool disposing)
-        {
-            Configuration.LazyLoadingEnabled = false;
-            base.Dispose(disposing);
-        }
-
-        public DbSet<Usuario> Usuarios { get; set; }
-
-        //public List<Usuario> tbl_usuariosGet()
+                //public List<Usuario> tbl_usuariosGet()
         //{
         //    List<Usuario> usuario = new List<Usuario>();
         //    foreach (var user in db.tbl_usuarios)

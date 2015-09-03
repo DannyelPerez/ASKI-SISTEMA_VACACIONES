@@ -26,10 +26,9 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    VSystem_AskiDataBase data = new VSystem_AskiDataBase();
-                    var hola= 
-                    //ViewBag.Desc = hola.primer_nombre;
-                    //ViewBag.id = model.id;
+                    var hola = client.getRolesInfo(model.id);
+                    ViewBag.Desc = hola;
+                    ViewBag.id = model.id;
                    // client.Close();
                     return View();
                 case "Modificar":

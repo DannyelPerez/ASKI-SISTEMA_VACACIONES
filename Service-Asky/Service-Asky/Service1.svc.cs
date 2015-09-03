@@ -38,15 +38,7 @@ namespace Service_Asky
         {
             return vsystem;
         }
-
-        public Usuario getUsuario(int id)
-        {
-            using(var contex = new VSystem_AskiDataBase())
-            {
-                return contex.Usuarios.Where(x => x.talento_humano.Equals(id)).FirstOrDefault();
-            }
-        }
-
+        
         public Usuario getUser(Usuario user)
         {
             return user;
@@ -210,6 +202,24 @@ namespace Service_Asky
 
             }
             return false;
+        }
+
+        public Usuario getUsuario(int talento_humano)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            Usuario u = new Usuario();
+            var user = db.tbl_usuarios.Where(x => x.talento_humano.Equals(talento_humano)).FirstOrDefault();
+            u.talento_humano = user.talento_humano;
+            u.email = user.email;
+            u.primer_nombre = user.primer_nombre;
+            u.segundo_nombre = user.segundo_nombre;
+            u.primer_apellido = user.primer_apellido;
+            u.segundo_apellido = user.segundo_apellido;
+            u.fecha_ingreso = user.fecha_ingreso;
+            u.fecha_creacion = user.fecha_creacion;
+            u.password = user.password;
+            u.activo = user.activo;
+            return u;
         }
     }
 }

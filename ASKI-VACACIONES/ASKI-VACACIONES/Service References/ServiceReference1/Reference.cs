@@ -105,12 +105,42 @@ namespace ASKI_VACACIONES.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ASKI_VACACIONES.ServiceReference1.Usuario UsuariosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string emailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_creacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_ingresoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string passwordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string primer_apellidoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string primer_nombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string segundo_apellidoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string segundo_nombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int talento_humanoField;
@@ -122,6 +152,136 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ASKI_VACACIONES.ServiceReference1.Usuario Usuarios {
+            get {
+                return this.UsuariosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuariosField, value) != true)) {
+                    this.UsuariosField = value;
+                    this.RaisePropertyChanged("Usuarios");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.emailField, value) != true)) {
+                    this.emailField = value;
+                    this.RaisePropertyChanged("email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_creacion {
+            get {
+                return this.fecha_creacionField;
+            }
+            set {
+                if ((this.fecha_creacionField.Equals(value) != true)) {
+                    this.fecha_creacionField = value;
+                    this.RaisePropertyChanged("fecha_creacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_ingreso {
+            get {
+                return this.fecha_ingresoField;
+            }
+            set {
+                if ((this.fecha_ingresoField.Equals(value) != true)) {
+                    this.fecha_ingresoField = value;
+                    this.RaisePropertyChanged("fecha_ingreso");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.passwordField, value) != true)) {
+                    this.passwordField = value;
+                    this.RaisePropertyChanged("password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string primer_apellido {
+            get {
+                return this.primer_apellidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.primer_apellidoField, value) != true)) {
+                    this.primer_apellidoField = value;
+                    this.RaisePropertyChanged("primer_apellido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string primer_nombre {
+            get {
+                return this.primer_nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.primer_nombreField, value) != true)) {
+                    this.primer_nombreField = value;
+                    this.RaisePropertyChanged("primer_nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string segundo_apellido {
+            get {
+                return this.segundo_apellidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.segundo_apellidoField, value) != true)) {
+                    this.segundo_apellidoField = value;
+                    this.RaisePropertyChanged("segundo_apellido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string segundo_nombre {
+            get {
+                return this.segundo_nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.segundo_nombreField, value) != true)) {
+                    this.segundo_nombreField = value;
+                    this.RaisePropertyChanged("segundo_nombre");
+                }
             }
         }
         
@@ -169,12 +329,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getVSystem", ReplyAction="http://tempuri.org/IService1/getVSystemResponse")]
         System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase> getVSystemAsync(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUser", ReplyAction="http://tempuri.org/IService1/getUserResponse")]
-        ASKI_VACACIONES.ServiceReference1.Usuario getUser(ASKI_VACACIONES.ServiceReference1.Usuario user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUser", ReplyAction="http://tempuri.org/IService1/getUserResponse")]
-        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUserAsync(ASKI_VACACIONES.ServiceReference1.Usuario user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addDepartamentos", ReplyAction="http://tempuri.org/IService1/addDepartamentosResponse")]
         void addDepartamentos(string descripcion);
@@ -247,6 +401,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentosInfo", ReplyAction="http://tempuri.org/IService1/getDepartamentosInfoResponse")]
         System.Threading.Tasks.Task<string> getDepartamentosInfoAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUsuario", ReplyAction="http://tempuri.org/IService1/getUsuarioResponse")]
+        ASKI_VACACIONES.ServiceReference1.Usuario getUsuario(int talento_humano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUsuario", ReplyAction="http://tempuri.org/IService1/getUsuarioResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUsuarioAsync(int talento_humano);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -298,14 +458,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase> getVSystemAsync(ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase vsystem) {
             return base.Channel.getVSystemAsync(vsystem);
-        }
-        
-        public ASKI_VACACIONES.ServiceReference1.Usuario getUser(ASKI_VACACIONES.ServiceReference1.Usuario user) {
-            return base.Channel.getUser(user);
-        }
-        
-        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUserAsync(ASKI_VACACIONES.ServiceReference1.Usuario user) {
-            return base.Channel.getUserAsync(user);
         }
         
         public void addDepartamentos(string descripcion) {
@@ -402,6 +554,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getDepartamentosInfoAsync(int id) {
             return base.Channel.getDepartamentosInfoAsync(id);
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Usuario getUsuario(int talento_humano) {
+            return base.Channel.getUsuario(talento_humano);
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUsuarioAsync(int talento_humano) {
+            return base.Channel.getUsuarioAsync(talento_humano);
         }
     }
 }

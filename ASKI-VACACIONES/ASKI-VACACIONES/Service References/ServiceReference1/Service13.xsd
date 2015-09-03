@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7100/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Usuario">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Usuarios" nillable="true" type="tns:Usuario" />
+      <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha_creacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecha_ingreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="primer_apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="primer_nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="segundo_apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="segundo_nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
 </xs:schema>
