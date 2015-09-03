@@ -25,7 +25,7 @@ namespace Service_Asky
         VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem);
 
         [OperationContract]
-        Usuario getUser(Usuario user);
+        Usuario getUsuario(int id);
 
         // TODO: Add your service operations here
 

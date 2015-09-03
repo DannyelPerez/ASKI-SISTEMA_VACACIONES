@@ -36,9 +36,15 @@ namespace Service_Asky
 
         public VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem)
         {
-            if (vsystem.variable.Equals("Hello"))
-                vsystem.variable = "Hello WOW";
             return vsystem;
+        }
+
+        public Usuario getUsuario(int id)
+        {
+            using(var contex = new VSystem_AskiDataBase())
+            {
+                return contex.Usuarios.Where(x => x.talento_humano.Equals(id)).FirstOrDefault();
+            }
         }
 
         public Usuario getUser(Usuario user)
