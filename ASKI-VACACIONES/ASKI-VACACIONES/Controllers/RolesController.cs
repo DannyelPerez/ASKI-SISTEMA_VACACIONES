@@ -37,8 +37,9 @@ namespace ASKI_VACACIONES.Controllers
                     {
                         // var dic = client.getPermisosInfo(model.id);
                         //Session["Name"] = dic.descripcion;
-                        client.editRoles(model.id, model.descripcion);
-                        client.Close();
+                       // client.editRoles(model.id, model.descripcion);
+                        
+                        //client.Close();
                     }
                     return View();
                 default:

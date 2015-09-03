@@ -494,6 +494,628 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Calendario", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Calendario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int talento_humano_empleadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int talento_humano_jefeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int tipo_dia_idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha {
+            get {
+                return this.fechaField;
+            }
+            set {
+                if ((this.fechaField.Equals(value) != true)) {
+                    this.fechaField = value;
+                    this.RaisePropertyChanged("fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int talento_humano_empleado {
+            get {
+                return this.talento_humano_empleadoField;
+            }
+            set {
+                if ((this.talento_humano_empleadoField.Equals(value) != true)) {
+                    this.talento_humano_empleadoField = value;
+                    this.RaisePropertyChanged("talento_humano_empleado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int talento_humano_jefe {
+            get {
+                return this.talento_humano_jefeField;
+            }
+            set {
+                if ((this.talento_humano_jefeField.Equals(value) != true)) {
+                    this.talento_humano_jefeField = value;
+                    this.RaisePropertyChanged("talento_humano_jefe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int tipo_dia_id {
+            get {
+                return this.tipo_dia_idField;
+            }
+            set {
+                if ((this.tipo_dia_idField.Equals(value) != true)) {
+                    this.tipo_dia_idField = value;
+                    this.RaisePropertyChanged("tipo_dia_id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Jerarquia", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Jerarquia : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int departamentoidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int jefe_talentohumanoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int jerarquiaidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int talento_humanoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int departamentoid {
+            get {
+                return this.departamentoidField;
+            }
+            set {
+                if ((this.departamentoidField.Equals(value) != true)) {
+                    this.departamentoidField = value;
+                    this.RaisePropertyChanged("departamentoid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int jefe_talentohumano {
+            get {
+                return this.jefe_talentohumanoField;
+            }
+            set {
+                if ((this.jefe_talentohumanoField.Equals(value) != true)) {
+                    this.jefe_talentohumanoField = value;
+                    this.RaisePropertyChanged("jefe_talentohumano");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int jerarquiaid {
+            get {
+                return this.jerarquiaidField;
+            }
+            set {
+                if ((this.jerarquiaidField.Equals(value) != true)) {
+                    this.jerarquiaidField = value;
+                    this.RaisePropertyChanged("jerarquiaid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int talento_humano {
+            get {
+                return this.talento_humanoField;
+            }
+            set {
+                if ((this.talento_humanoField.Equals(value) != true)) {
+                    this.talento_humanoField = value;
+                    this.RaisePropertyChanged("talento_humano");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Log_Vacaciones", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Log_Vacaciones : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int estatus_actualField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> estatus_anteriorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_modificacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int logidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int th_modificoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int vacacionesidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int estatus_actual {
+            get {
+                return this.estatus_actualField;
+            }
+            set {
+                if ((this.estatus_actualField.Equals(value) != true)) {
+                    this.estatus_actualField = value;
+                    this.RaisePropertyChanged("estatus_actual");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> estatus_anterior {
+            get {
+                return this.estatus_anteriorField;
+            }
+            set {
+                if ((this.estatus_anteriorField.Equals(value) != true)) {
+                    this.estatus_anteriorField = value;
+                    this.RaisePropertyChanged("estatus_anterior");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_modificacion {
+            get {
+                return this.fecha_modificacionField;
+            }
+            set {
+                if ((this.fecha_modificacionField.Equals(value) != true)) {
+                    this.fecha_modificacionField = value;
+                    this.RaisePropertyChanged("fecha_modificacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int logid {
+            get {
+                return this.logidField;
+            }
+            set {
+                if ((this.logidField.Equals(value) != true)) {
+                    this.logidField = value;
+                    this.RaisePropertyChanged("logid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int th_modifico {
+            get {
+                return this.th_modificoField;
+            }
+            set {
+                if ((this.th_modificoField.Equals(value) != true)) {
+                    this.th_modificoField = value;
+                    this.RaisePropertyChanged("th_modifico");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int vacacionesid {
+            get {
+                return this.vacacionesidField;
+            }
+            set {
+                if ((this.vacacionesidField.Equals(value) != true)) {
+                    this.vacacionesidField = value;
+                    this.RaisePropertyChanged("vacacionesid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Status : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool activoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descripcionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int estatusidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                if ((this.activoField.Equals(value) != true)) {
+                    this.activoField = value;
+                    this.RaisePropertyChanged("activo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string descripcion {
+            get {
+                return this.descripcionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
+                    this.descripcionField = value;
+                    this.RaisePropertyChanged("descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int estatusid {
+            get {
+                return this.estatusidField;
+            }
+            set {
+                if ((this.estatusidField.Equals(value) != true)) {
+                    this.estatusidField = value;
+                    this.RaisePropertyChanged("estatusid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tipo_Dia", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Tipo_Dia : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int descripcionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int tipo_dia_idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int descripcion {
+            get {
+                return this.descripcionField;
+            }
+            set {
+                if ((this.descripcionField.Equals(value) != true)) {
+                    this.descripcionField = value;
+                    this.RaisePropertyChanged("descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int tipo_dia_id {
+            get {
+                return this.tipo_dia_idField;
+            }
+            set {
+                if ((this.tipo_dia_idField.Equals(value) != true)) {
+                    this.tipo_dia_idField = value;
+                    this.RaisePropertyChanged("tipo_dia_id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Vacaciones", Namespace="http://schemas.datacontract.org/2004/07/Service_Asky.Tables")]
+    [System.SerializableAttribute()]
+    public partial class Vacaciones : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int dias_solicitadosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int estatusidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_de_aprobacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_entradaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime fecha_salidaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int fecha_solicitudField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int talento_humanoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int vacacionesidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int yearField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int dias_solicitados {
+            get {
+                return this.dias_solicitadosField;
+            }
+            set {
+                if ((this.dias_solicitadosField.Equals(value) != true)) {
+                    this.dias_solicitadosField = value;
+                    this.RaisePropertyChanged("dias_solicitados");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int estatusid {
+            get {
+                return this.estatusidField;
+            }
+            set {
+                if ((this.estatusidField.Equals(value) != true)) {
+                    this.estatusidField = value;
+                    this.RaisePropertyChanged("estatusid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_de_aprobacion {
+            get {
+                return this.fecha_de_aprobacionField;
+            }
+            set {
+                if ((this.fecha_de_aprobacionField.Equals(value) != true)) {
+                    this.fecha_de_aprobacionField = value;
+                    this.RaisePropertyChanged("fecha_de_aprobacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_entrada {
+            get {
+                return this.fecha_entradaField;
+            }
+            set {
+                if ((this.fecha_entradaField.Equals(value) != true)) {
+                    this.fecha_entradaField = value;
+                    this.RaisePropertyChanged("fecha_entrada");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime fecha_salida {
+            get {
+                return this.fecha_salidaField;
+            }
+            set {
+                if ((this.fecha_salidaField.Equals(value) != true)) {
+                    this.fecha_salidaField = value;
+                    this.RaisePropertyChanged("fecha_salida");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int fecha_solicitud {
+            get {
+                return this.fecha_solicitudField;
+            }
+            set {
+                if ((this.fecha_solicitudField.Equals(value) != true)) {
+                    this.fecha_solicitudField = value;
+                    this.RaisePropertyChanged("fecha_solicitud");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int talento_humano {
+            get {
+                return this.talento_humanoField;
+            }
+            set {
+                if ((this.talento_humanoField.Equals(value) != true)) {
+                    this.talento_humanoField = value;
+                    this.RaisePropertyChanged("talento_humano");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int vacacionesid {
+            get {
+                return this.vacacionesidField;
+            }
+            set {
+                if ((this.vacacionesidField.Equals(value) != true)) {
+                    this.vacacionesidField = value;
+                    this.RaisePropertyChanged("vacacionesid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int year {
+            get {
+                return this.yearField;
+            }
+            set {
+                if ((this.yearField.Equals(value) != true)) {
+                    this.yearField = value;
+                    this.RaisePropertyChanged("year");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -587,6 +1209,66 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUsuario", ReplyAction="http://tempuri.org/IService1/getUsuarioResponse")]
         System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUsuarioAsync(int talento_humano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_calendario", ReplyAction="http://tempuri.org/IService1/getTbl_calendarioResponse")]
+        ASKI_VACACIONES.ServiceReference1.Calendario[] getTbl_calendario();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_calendario", ReplyAction="http://tempuri.org/IService1/getTbl_calendarioResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Calendario[]> getTbl_calendarioAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_departamentos", ReplyAction="http://tempuri.org/IService1/getTbl_departamentosResponse")]
+        ASKI_VACACIONES.ServiceReference1.Departamento[] getTbl_departamentos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_departamentos", ReplyAction="http://tempuri.org/IService1/getTbl_departamentosResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Departamento[]> getTbl_departamentosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_jerarquia", ReplyAction="http://tempuri.org/IService1/getTbl_jerarquiaResponse")]
+        ASKI_VACACIONES.ServiceReference1.Jerarquia[] getTbl_jerarquia();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_jerarquia", ReplyAction="http://tempuri.org/IService1/getTbl_jerarquiaResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Jerarquia[]> getTbl_jerarquiaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_log_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_log_vacacionesResponse")]
+        ASKI_VACACIONES.ServiceReference1.Log_Vacaciones[] getTbl_log_vacaciones();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_log_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_log_vacacionesResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Log_Vacaciones[]> getTbl_log_vacacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_permisos", ReplyAction="http://tempuri.org/IService1/getTbl_permisosResponse")]
+        ASKI_VACACIONES.ServiceReference1.Permisos[] getTbl_permisos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_permisos", ReplyAction="http://tempuri.org/IService1/getTbl_permisosResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Permisos[]> getTbl_permisosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_roles", ReplyAction="http://tempuri.org/IService1/getTbl_rolesResponse")]
+        ASKI_VACACIONES.ServiceReference1.Roles[] getTbl_roles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_roles", ReplyAction="http://tempuri.org/IService1/getTbl_rolesResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Roles[]> getTbl_rolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_status", ReplyAction="http://tempuri.org/IService1/getTbl_statusResponse")]
+        ASKI_VACACIONES.ServiceReference1.Status[] getTbl_status();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_status", ReplyAction="http://tempuri.org/IService1/getTbl_statusResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Status[]> getTbl_statusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_tipo_dia", ReplyAction="http://tempuri.org/IService1/getTbl_tipo_diaResponse")]
+        ASKI_VACACIONES.ServiceReference1.Tipo_Dia[] getTbl_tipo_dia();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_tipo_dia", ReplyAction="http://tempuri.org/IService1/getTbl_tipo_diaResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Tipo_Dia[]> getTbl_tipo_diaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_usuarios", ReplyAction="http://tempuri.org/IService1/getTbl_usuariosResponse")]
+        ASKI_VACACIONES.ServiceReference1.Usuario[] getTbl_usuarios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_usuarios", ReplyAction="http://tempuri.org/IService1/getTbl_usuariosResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario[]> getTbl_usuariosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_vacacionesResponse")]
+        ASKI_VACACIONES.ServiceReference1.Vacaciones[] getTbl_vacaciones();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_vacacionesResponse")]
+        System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -734,6 +1416,86 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario> getUsuarioAsync(int talento_humano) {
             return base.Channel.getUsuarioAsync(talento_humano);
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Calendario[] getTbl_calendario() {
+            return base.Channel.getTbl_calendario();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Calendario[]> getTbl_calendarioAsync() {
+            return base.Channel.getTbl_calendarioAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Departamento[] getTbl_departamentos() {
+            return base.Channel.getTbl_departamentos();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Departamento[]> getTbl_departamentosAsync() {
+            return base.Channel.getTbl_departamentosAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Jerarquia[] getTbl_jerarquia() {
+            return base.Channel.getTbl_jerarquia();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Jerarquia[]> getTbl_jerarquiaAsync() {
+            return base.Channel.getTbl_jerarquiaAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Log_Vacaciones[] getTbl_log_vacaciones() {
+            return base.Channel.getTbl_log_vacaciones();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Log_Vacaciones[]> getTbl_log_vacacionesAsync() {
+            return base.Channel.getTbl_log_vacacionesAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Permisos[] getTbl_permisos() {
+            return base.Channel.getTbl_permisos();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Permisos[]> getTbl_permisosAsync() {
+            return base.Channel.getTbl_permisosAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Roles[] getTbl_roles() {
+            return base.Channel.getTbl_roles();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Roles[]> getTbl_rolesAsync() {
+            return base.Channel.getTbl_rolesAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Status[] getTbl_status() {
+            return base.Channel.getTbl_status();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Status[]> getTbl_statusAsync() {
+            return base.Channel.getTbl_statusAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Tipo_Dia[] getTbl_tipo_dia() {
+            return base.Channel.getTbl_tipo_dia();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Tipo_Dia[]> getTbl_tipo_diaAsync() {
+            return base.Channel.getTbl_tipo_diaAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Usuario[] getTbl_usuarios() {
+            return base.Channel.getTbl_usuarios();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Usuario[]> getTbl_usuariosAsync() {
+            return base.Channel.getTbl_usuariosAsync();
+        }
+        
+        public ASKI_VACACIONES.ServiceReference1.Vacaciones[] getTbl_vacaciones() {
+            return base.Channel.getTbl_vacaciones();
+        }
+        
+        public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync() {
+            return base.Channel.getTbl_vacacionesAsync();
         }
     }
 }
