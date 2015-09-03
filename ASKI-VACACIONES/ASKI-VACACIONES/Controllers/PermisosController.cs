@@ -31,7 +31,6 @@ namespace ASKI_VACACIONES.Controllers
                     Service1Client client = new Service1Client();
                     client.addPermiso(model.descripcion);
                     client.Close();
-
                 }
                 return View();
             }
@@ -56,11 +55,15 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
             case "Buscar":
-            //string hola= client.getPermisosInfo(model.id);
-            //ViewBag.Desc = hola;
-            //client.Close();
-            //return View();     
-                case "Modificar":
+
+           var hola = client.getPermiso(model.id);
+            if (hola != null)
+            {
+                ViewBag.Desc = hola.descripcion;
+            }
+            client.Close();
+            return View();     
+            case "Modificar":
                     if (Session["User"] != null)
                     {
                         // var dic = client.getPermisosInfo(model.id);
@@ -75,8 +78,7 @@ namespace ASKI_VACACIONES.Controllers
                     return RedirectToAction("Login");
             }
 
-            
-           
+          
         }
 
         [HttpPost]
