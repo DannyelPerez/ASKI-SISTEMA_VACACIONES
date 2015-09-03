@@ -46,23 +46,23 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    //string hola = client.getDepartamentosInfo(model.id);
-                    //ViewBag.Desc = hola;
-                    //ViewBag.id = model.id;
-                    //client.Close();
+                    var hola = client.getDepartamento(model.id);
+                    if (hola != null) { 
+                    ViewBag.Desc = hola.descripcion;
+                    ViewBag.id = hola.departamentoid;
+                    }
+                    client.Close();
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)
                     {
-                        // var dic = client.getPermisosInfo(model.id
-                        //Session["Name"] = dic.descripcion;
-                        //client.editDepartamentos(model.id, model.descripcion);
-                        //client.Close();
+                        client.editDepartamento(model.id, model.descripcion);
+                        client.Close();
                     }
+                                        
                     return View();
                 default:
-                    // If they've submitted the form without a submitButton, 
-                    // just return the view again.
+                  
                     return RedirectToAction("Login");
             }
 

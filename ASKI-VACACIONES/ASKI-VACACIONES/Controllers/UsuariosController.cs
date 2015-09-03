@@ -43,6 +43,37 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
+        [HttpPost]
+        public ActionResult Edit(UsuariosModel model, string submitButton)
+        {
+            Service1Client client = new Service1Client();
+            switch (submitButton)
+            {
+                case "Buscar":
+                    var hola = client.getUsuario(model.talento_humano);
+                    if (hola != null)
+                    {
+                        ViewBag.email = hola.email;
+                        ViewBag.talentoHumano = hola.talento_humano;
+                        ViewBag.primerNombre = hola.primer_nombre;
+                        ViewBag.segundoNombre = hola.segundo_nombre;
+                        ViewBag.primerApellido = hola.primer_apellido;
+                        ViewBag.segundoNombre = hola.segundo_apellido;
+                        ViewBag.fechaIngreso = hola.fecha_ingreso;                       
+                    }
+                    // client.Close();
+                    return View();
+                case "Modificar":
+                    if (Session["User"] != null)
+                    {
+                        client.editUsuario(model.talento_humano, model.email,model.primer_nombre,model.segundo_nombre,model.primer_apellido, model.segundo_apellido,model.fecha_ingreso);
+                        client.Close();
+                    }
+                    return View();
+                default:
+                    return RedirectToAction("Login");
+            }
+        }
         public ActionResult Delete()
         {
             if (Session["User"] != null)

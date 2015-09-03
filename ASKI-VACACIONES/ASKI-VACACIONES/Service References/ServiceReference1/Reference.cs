@@ -1174,6 +1174,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editDepartamento", ReplyAction="http://tempuri.org/IService1/editDepartamentoResponse")]
         System.Threading.Tasks.Task editDepartamentoAsync(int id, string descripcion);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editUsuario", ReplyAction="http://tempuri.org/IService1/editUsuarioResponse")]
+        void editUsuario(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editUsuario", ReplyAction="http://tempuri.org/IService1/editUsuarioResponse")]
+        System.Threading.Tasks.Task editUsuarioAsync(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deletePermiso", ReplyAction="http://tempuri.org/IService1/deletePermisoResponse")]
         void deletePermiso(int id);
         
@@ -1368,6 +1374,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task editDepartamentoAsync(int id, string descripcion) {
             return base.Channel.editDepartamentoAsync(id, descripcion);
+        }
+        
+        public void editUsuario(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso) {
+            base.Channel.editUsuario(talentoHumano, email, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaIngreso);
+        }
+        
+        public System.Threading.Tasks.Task editUsuarioAsync(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso) {
+            return base.Channel.editUsuarioAsync(talentoHumano, email, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaIngreso);
         }
         
         public void deletePermiso(int id) {

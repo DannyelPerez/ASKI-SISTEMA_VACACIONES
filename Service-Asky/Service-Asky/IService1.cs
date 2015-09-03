@@ -46,7 +46,8 @@ namespace Service_Asky
         void editRol(int id, string descripcion);
         [OperationContract]
         void editDepartamento(int id, string descripcion);
-
+        [OperationContract]
+        void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
 
 
 

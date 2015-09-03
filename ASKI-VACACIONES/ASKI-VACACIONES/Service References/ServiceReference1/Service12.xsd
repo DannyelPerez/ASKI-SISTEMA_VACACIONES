@@ -125,6 +125,24 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="editUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="primerNombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundoNombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="primerApellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundoApellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fechaIngreso" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="editUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deletePermiso">
     <xs:complexType>
       <xs:sequence>

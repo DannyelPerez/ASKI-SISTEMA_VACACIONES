@@ -6,7 +6,6 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Data;
-using MySql.Data.MySqlClient;
 using System.Data.EntityClient;
 using Service_Asky.Tables;
 
@@ -131,6 +130,26 @@ namespace Service_Asky
                 dic.descripcion = descripcion;
                 db.SaveChanges();
             }
+        }
+        public void editUsuario(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var dic = (from p in db.tbl_usuarios
+                       where p.talento_humano == talentoHumano
+                       select p)
+                       .FirstOrDefault();
+
+            if (dic != null)
+            {
+                dic.talento_humano = talentoHumano;
+                dic.email = email;
+                dic.primer_nombre = primerNombre;
+                dic.segundo_nombre = segundoNombre;
+                dic.primer_apellido = primerApellido;
+                dic.segundo_apellido = segundoApellido;
+                dic.fecha_ingreso = fechaIngreso;
+                db.SaveChanges();
+            }
 
         }
 
@@ -221,7 +240,8 @@ namespace Service_Asky
             u.activo = user.activo;
             return u;
         }
-        public List<Usuario> getTbl_usuarios()
+
+         public List<Usuario> getTbl_usuarios()
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             List<Usuario> usuario = new List<Usuario>();
@@ -380,6 +400,7 @@ namespace Service_Asky
             }
             return vacaciones;
         }
+
 
 
     }

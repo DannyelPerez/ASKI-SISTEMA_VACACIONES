@@ -26,28 +26,24 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    var hola = client.getUsuario(model.id);
-                    //var hola = client.getRolesInfo(model.id);
-                    ViewBag.Desc = hola.primer_nombre;
-                    ViewBag.id = model.id;
-                   // client.Close();
+                    var hola = client.getRol(model.id);
+                    if (hola != null) { 
+                    ViewBag.Desc = hola.descripcion;
+                    ViewBag.id = hola.rolesid;
+                    }
+            
                     return View();
                 case "Modificar":
                     if (Session["User"] != null)
                     {
-                        // var dic = client.getPermisosInfo(model.id);
-                        //Session["Name"] = dic.descripcion;
-                       // client.editRoles(model.id, model.descripcion);
-                        
-                        //client.Close();
+
+                        client.editRol(model.id, model.descripcion);
+                        client.Close();
                     }
                     return View();
                 default:
                      return RedirectToAction("Login");
             }
-
-
-
         }
 
         public ActionResult Edit()
