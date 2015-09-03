@@ -149,9 +149,6 @@
     <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.VSystem_AskiDataBase.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\ServiceReference1\ASKI_VACACIONES.ServiceReference1.Usuario.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

@@ -78,7 +78,16 @@
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tables\Calendario.cs" />
+    <Compile Include="Tables\Departamento.cs" />
+    <Compile Include="Tables\Jerarquia.cs" />
+    <Compile Include="Tables\Log_Vacaciones.cs" />
+    <Compile Include="Tables\Permisos.cs" />
+    <Compile Include="Tables\Roles.cs" />
+    <Compile Include="Tables\Status.cs" />
+    <Compile Include="Tables\Tipo_Dia.cs" />
     <Compile Include="Tables\Usuario.cs" />
+    <Compile Include="Tables\Vacaciones.cs" />
     <Compile Include="tbl_calendario.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -137,7 +146,6 @@
       <DependentUpon>VSys-Aski.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="VSystem_AskiDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

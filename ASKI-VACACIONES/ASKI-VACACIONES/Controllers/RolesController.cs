@@ -26,8 +26,9 @@ namespace ASKI_VACACIONES.Controllers
             switch (submitButton)
             {
                 case "Buscar":
-                    var hola = client.getRolesInfo(model.id);
-                    ViewBag.Desc = hola;
+                    var hola = client.getUsuario(model.id);
+                    //var hola = client.getRolesInfo(model.id);
+                    ViewBag.Desc = hola.primer_nombre;
                     ViewBag.id = model.id;
                    // client.Close();
                     return View();

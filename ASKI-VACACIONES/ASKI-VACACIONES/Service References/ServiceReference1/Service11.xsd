@@ -7,8 +7,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
-  <xs:complexType name="VSystem_AskiDataBase">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="VSystem_AskiDataBase" nillable="true" type="tns:VSystem_AskiDataBase" />
 </xs:schema>

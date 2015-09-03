@@ -21,48 +21,74 @@ namespace Service_Asky
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        [OperationContract]
-        VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem);
+       // TODO: Add your service operations here
 
-        // TODO: Add your service operations here
+//=================== Add Element to database=============
+
 
         [OperationContract]
-        void addDepartamentos(string descripcion);
+        void addDepartamento(string descripcion);
         [OperationContract]
-        void addRoles(string descripcion);
+        void addRole(string descripcion);
 
         [OperationContract]
         void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password);
 
         [OperationContract]
-        void addPermisos(string descripcion);
+        void addPermiso(string descripcion);
+
+
+
+
+
+//=================== Edit Element from database=============
 
         [OperationContract]
-        void editPermisos(int id, string descripcion, bool Test);
+        void editPermiso(int id, string descripcion, bool activo);
         [OperationContract]
-        void editRoles(int id, string descripcion);
+        void editRol(int id, string descripcion);
         [OperationContract]
-        void editDepartamentos(int id, string descripcion);
+        void editDepartamento(int id, string descripcion);
 
-        [OperationContract]
-        void deletePermisos(int id);
 
+
+
+
+        //=================== Delete Element from database=============
+        [OperationContract]
+        void deletePermiso(int id);
+
+
+
+
+        //=================== Get Elements from database=============
         [OperationContract]
         bool confirmarLogin(string email, string password);
-
         [OperationContract]
-        string getPermisosInfo(int id);
+        Permisos getPermiso(int id);
         [OperationContract]
-        string getRolesInfo(int id);
-
+        Roles getRol(int id);
         [OperationContract]
-        string getDepartamentosInfo(int id);
-
+        Departamento getDepartamento(int id);
         [OperationContract]
         Usuario getUsuario(int talento_humano);
       
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType

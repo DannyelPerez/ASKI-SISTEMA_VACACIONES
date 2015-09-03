@@ -33,18 +33,7 @@ namespace Service_Asky
             }
             return composite;
         }
-
-        public VSystem_AskiDataBase getVSystem(VSystem_AskiDataBase vsystem)
-        {
-            return vsystem;
-        }
-        
-        public Usuario getUser(Usuario user)
-        {
-            return user;
-        }
-
-        public void addDepartamentos(string descripcion)
+        public void addDepartamento(string descripcion)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             tbl_departamento dep = new tbl_departamento();
@@ -54,7 +43,7 @@ namespace Service_Asky
             db.SaveChanges();
 
         }
-        public void addRoles(string descripcion)
+        public void addRole(string descripcion)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             tbl_roles roles = new tbl_roles();
@@ -83,7 +72,7 @@ namespace Service_Asky
             db.SaveChanges();
         }
 
-        public void addPermisos(string descripcion)
+        public void addPermiso(string descripcion)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             tbl_permisos permisos = new tbl_permisos();
@@ -94,7 +83,7 @@ namespace Service_Asky
 
         }
       
-        public void deletePermisos(int id)
+        public void deletePermiso(int id)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             var dic = (from p in db.tbl_permisos
@@ -108,7 +97,7 @@ namespace Service_Asky
                 db.SaveChanges();
             }
         }
-        public void editPermisos(int id, string descripcion, bool Test)
+        public void editPermiso(int id, string descripcion, bool Test)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             
@@ -119,13 +108,12 @@ namespace Service_Asky
 
             if (dic != null)
             {
-                // dic.activo = Test;
                 dic.descripcion = descripcion;
                 db.SaveChanges();
             }
         }
 
-        public void editRoles(int id, string descripcion)
+        public void editRol(int id, string descripcion)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             var dic = (from p in db.tbl_roles
@@ -140,7 +128,7 @@ namespace Service_Asky
             }
         }
 
-        public void editDepartamentos(int id, string descripcion)
+        public void editDepartamento(int id, string descripcion)
         {
 
 
@@ -159,36 +147,40 @@ namespace Service_Asky
 
         }
 
-        public string getPermisosInfo(int id)
+        public Permisos getPermiso(int id)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
-            var dic = (from p in db.tbl_permisos
-                       where p.permisosid == id
-                       select p)
-                       .FirstOrDefault();
-            return dic.descripcion;
+            var perm = (from p in db.tbl_permisos where p.permisosid == id select p).FirstOrDefault();
+            Permisos per = new Permisos();
+            per.permisosid = perm.permisosid;
+            per.descripcion = perm.descripcion;
+            per.activo = perm.activo;
+            return per;
         }
-        public string getRolesInfo(int id)
+        public Roles getRol(int id)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
-            var dic = (from p in db.tbl_roles
-                       where p.rolesid == id
-                       select p)
-                       .FirstOrDefault();
-            if (dic != null)
-                return dic.descripcion;
-
-            return "Error";
+            var dic = (from p in db.tbl_roles where p.rolesid == id select p).FirstOrDefault();
+            Roles rol = new Roles();
+            rol.rolesid = dic.rolesid;
+            rol.descripcion = dic.descripcion;
+            rol.activo = dic.activo;
+            return rol;
+            
         }
 
-        public string getDepartamentosInfo(int id)
+        public Departamento getDepartamento(int id)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             var dic = (from p in db.tbl_departamento
                        where p.departamentoid == id
                        select p)
                        .FirstOrDefault();
-            return dic.descripcion;
+            Departamento dep = new Departamento();
+            dep.departamentoid = dic.departamentoid;
+            dep.descripcion = dic.descripcion;
+            dep.activo = dic.activo;
+            return dep;
 
         }
 
