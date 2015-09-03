@@ -1,9 +1,9 @@
 ﻿@model  ASKI_VACACIONES.Models.RolesModel
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.NumberInteger').keypress(function (event) {
+        $('.form-control').keypress(function (event) {
             if ((event.which < 48 || event.which > 57)) {
                 event.preventDefault();
                 alert('Solo puede ingresar numeros');
@@ -11,7 +11,7 @@
         });
     });
 
-</script>
+</script>*@
 
 <section class="content-header">
     <h1>
@@ -54,7 +54,7 @@
                                                 <div class="form-group">
                                                     <label for="inputidrol" class="col-sm-2 control-label">Id rol</label>
                                                     <div class="col-sm-10">
-                                                        <p><input type="text" class="NumberInteger" id="inputidrol" size="20"></p>
+                                                        <p><input type="text" class="form-control" id="inputidrol" size="20"></p>
                                                     </div>
                                                 </div>
 

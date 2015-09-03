@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
+using Service_Asky.Tables;
 
 namespace Service_Asky
 {
@@ -21,39 +23,88 @@ namespace Service_Asky
 
         // TODO: Add your service operations here
 
+        //=================== Add Element to database=============
+        
         [OperationContract]
-        void addDepartamentos(string descripcion);
+        void addDepartamento(string descripcion);
         [OperationContract]
-        void addRoles(string descripcion);
-
+        void addRole(string descripcion);
         [OperationContract]
         void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password);
+        [OperationContract]
+        void addPermiso(string descripcion);
+
+
+
+
+
+        //=================== Edit Element from database=============
 
         [OperationContract]
-        void addPermisos(string descripcion);
+        void editPermiso(int id, string descripcion, bool activo);
+        [OperationContract]
+        void editRol(int id, string descripcion);
+        [OperationContract]
+        void editDepartamento(int id, string descripcion);
+        [OperationContract]
+        void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
 
-        [OperationContract]
-        void editPermisos(int id, string descripcion, bool Test);
-        [OperationContract]
-        void editRoles(int id, string descripcion);
-        [OperationContract]
-        void editDepartamentos(int id, string descripcion);
 
-        [OperationContract]
-        void deletePermisos(int id);
 
+
+        //=================== Delete Element from database=============
+        [OperationContract]
+        void deletePermiso(int id);
+
+
+
+
+        //=================== Get Elements from database=============
         [OperationContract]
         bool confirmarLogin(string email, string password);
-
         [OperationContract]
-        string getPermisosInfo(int id);
+        Permisos getPermiso(int id);
         [OperationContract]
-        string getRolesInfo(int id);
-
+        Roles getRol(int id);
         [OperationContract]
-        string getDepartamentosInfo(int id);
+        Departamento getDepartamento(int id);
+        [OperationContract]
+        Usuario getUsuario(int talento_humano);
+        [OperationContract]
+        List<Calendario> getTbl_calendario();
+        [OperationContract]
+        List<Departamento> getTbl_departamentos();
+        [OperationContract]
+        List<Jerarquia> getTbl_jerarquia();
+        [OperationContract]
+        List<Log_Vacaciones> getTbl_log_vacaciones();
+        [OperationContract]
+        List<Permisos> getTbl_permisos();
+        [OperationContract]
+        List<Roles> getTbl_roles();
+        [OperationContract]
+        List<Status> getTbl_status();
+        [OperationContract]
+        List<Tipo_Dia> getTbl_tipo_dia();
+        [OperationContract]
+        List<Usuario> getTbl_usuarios();
+        [OperationContract]
+        List<Vacaciones> getTbl_vacaciones();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
@@ -77,4 +128,6 @@ namespace Service_Asky
             set { stringValue = value; }
         }
     }
+
+
 }

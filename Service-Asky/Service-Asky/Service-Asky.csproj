@@ -43,6 +43,8 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Security" />
@@ -66,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service1.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service1.svc.cs">
@@ -74,50 +78,73 @@
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tables\Calendario.cs" />
+    <Compile Include="Tables\Departamento.cs" />
+    <Compile Include="Tables\Jerarquia.cs" />
+    <Compile Include="Tables\Log_Vacaciones.cs" />
+    <Compile Include="Tables\Permisos.cs" />
+    <Compile Include="Tables\Roles.cs" />
+    <Compile Include="Tables\Status.cs" />
+    <Compile Include="Tables\Tipo_Dia.cs" />
+    <Compile Include="Tables\Usuario.cs" />
+    <Compile Include="Tables\Vacaciones.cs" />
     <Compile Include="tbl_calendario.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_departamento.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_estatus.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_jerarquia.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_log_vacaciones.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_permisos.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_roles.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_tipo_dia.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_usuarios.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_vacaciones.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VSys-Aski.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSys-Aski.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VSys-Aski.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSys-Aski.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VSys-Aski.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSys-Aski.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -127,20 +154,24 @@
     <EntityDeploy Include="VSys-Aski.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>VSys-Aski.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EntityDeploy>
     <Content Include="packages.config" />
     <Content Include="VSys-Aski.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSys-Aski.edmx</DependentUpon>
       <LastGenOutput>VSys-Aski.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="VSys-Aski.edmx.diagram">
       <DependentUpon>VSys-Aski.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="VSys-Aski.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSys-Aski.edmx</DependentUpon>
       <LastGenOutput>VSys-Aski.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

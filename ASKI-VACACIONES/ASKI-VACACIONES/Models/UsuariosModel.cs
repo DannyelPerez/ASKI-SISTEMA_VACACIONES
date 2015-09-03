@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 using System.Linq;
 using System.Web;
-using System.Data.Entity;
+
 
 namespace ASKI_VACACIONES.Models
 {
     public class UsuariosModel
     {
+        
         [Required(ErrorMessage = "Porfavor escriba el talento humano")]
+        [Key]
         public int talento_humano { get; set; }
 
         [Required(ErrorMessage = "Porfavor escriba el correo")]
@@ -38,9 +41,4 @@ namespace ASKI_VACACIONES.Models
         public bool activo { get; set; }
     }
 
-    public class vsystem_askiDBContext:DbContext
-    {
-        //Test
-        public DbSet<UsuariosModel> Usuarios { get; set; }
-    }
-}
+   }

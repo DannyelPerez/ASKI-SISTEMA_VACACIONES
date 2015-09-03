@@ -12,10 +12,9 @@ namespace Service_Asky
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
     public partial class vsystem_askiEntities : DbContext
     {
-        public vsystem_askiEntities()
+             public vsystem_askiEntities()
             : base("name=vsystem_askiEntities")
         {
         }
