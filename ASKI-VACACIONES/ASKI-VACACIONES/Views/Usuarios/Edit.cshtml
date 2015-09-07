@@ -1,5 +1,7 @@
 ﻿@model  ASKI_VACACIONES.Models.UsuariosModel
-
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(document).ready(function () {
@@ -55,19 +57,14 @@
                                                 <div class="form-group">
                                                     <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
                                                     <div class="col-sm-10">
-<<<<<<< HEAD
-                                                        
+                                                       
                                                         <p>
                                                             @Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.talentoHumano })
 
                                                             <br />
                                                             <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
                                                             <br />
-                                                        
-=======
-                                                        <p><input type="text" class="form-control" id="inputtalentohumano" size="20"></p>
->>>>>>> Daniel
-                                                    </div>
+                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
@@ -102,7 +99,7 @@
                                                 <div class="form-group">
                                                     <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
                                                     <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.fecha_ingreso, new { @class = "form-control", type = "date", Value = ViewBag.fechaIngreso })
+                                                        <p>@Html.TextBoxFor(x => x.fecha_ingreso,"{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
                                                         </p>
                                                     </div>
                                                 </div>

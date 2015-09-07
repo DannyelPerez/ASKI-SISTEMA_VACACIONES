@@ -51,6 +51,7 @@ namespace ASKI_VACACIONES.Controllers
             {
                 case "Buscar":
                     var hola = client.getUsuario(model.talento_humano);
+                    UsuariosModel usuario = new UsuariosModel();
                     if (hola != null)
                     {
                         ViewBag.email = hola.email;
@@ -58,8 +59,9 @@ namespace ASKI_VACACIONES.Controllers
                         ViewBag.primerNombre = hola.primer_nombre;
                         ViewBag.segundoNombre = hola.segundo_nombre;
                         ViewBag.primerApellido = hola.primer_apellido;
-                        ViewBag.segundoNombre = hola.segundo_apellido;
-                        ViewBag.fechaIngreso = hola.fecha_ingreso;                       
+                        ViewBag.segundoApellido = hola.segundo_apellido;
+                        ViewBag.fechaIngreso = hola.fecha_creacion;
+                        ViewBag.fecha_ingreso = hola.fecha_ingreso;
                     }
                     // client.Close();
                     return View();
