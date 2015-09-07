@@ -976,7 +976,6 @@
     <Content Include="Template\plugins\jQueryUI\jquery-ui.js" />
     <Content Include="Template\plugins\jQueryUI\jquery-ui.min.js" />
     <Content Include="Template\plugins\jQuery\jQuery-2.1.4.min.js" />
-    <Content Include="Template\plugins\jQuery\JQueryCalendar.js" />
     <Content Include="Template\plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Template\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Template\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
