@@ -1,8 +1,81 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<!DOCTYPE html>
+    <html lang="en">
 
-<h2>Aqui hay un layout</h2>
+    <head>
+        
+     <title>WOW</title>
+*@
 
+    @*<link href="~/Content/bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="~/Content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="~/Content/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/Content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/dist/js/sb-admin-2.js"></script>*@
+    
+@*
+
+    </head>
+
+    <body>
+*@
+    <table id="example" class="display responsive nowrap  table-bordered table-striped table-hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+            </tr>
+        </tfoot>
+    </table>
+@*
+
+
+    </body>
+
+    </html>
+*@
+
+
+@*<script type="text/javascript">
+    var datatable;
+    $(document).ready(function () {
+        datatable = $('#example').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSon", "Test")",
+                "type": "POST"
+            },
+            "columns": [
+                    { "data": "talento_humano" },
+                    { "data": "primer_nombre" },
+                    { "data": "primer_apellido" },
+                    { "data": "option" }
+
+            ]
+        });
+
+    });
+</script>*@
