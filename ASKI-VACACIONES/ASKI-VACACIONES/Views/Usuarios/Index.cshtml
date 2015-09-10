@@ -147,8 +147,9 @@
                                                         @Html.ValidationMessageFor(Model => Model.fecha_creacion)
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
-                                                    <label for="inputdepto" class="col-sm-2 control-label">Departamento</label>
+                                                    <label for="inputdepto" class="col-sm-2 control-label">Departamentos</label>
                                                     <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
                                                     <div id="content" style="display: none;">
 
@@ -157,21 +158,20 @@
                                                                 <h3 class="box-title"></h3>
                                                             </div><!-- /.box-header -->
                                                             <div class="box-body">
-                                                                <table id="example1" class="table table-bordered table-striped">
-
+                                                                <table id="departamento" class="display responsive nowrap  table-bordered table-striped table-hover" cellspacing="0" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>Seleccionar</th>
-                                                                            <th>Departamentos</th>
+                                                                            <th>Id</th>
+                                                                            <th>Descripcion</th>
+
 
                                                                         </tr>
                                                                     </thead>
 
                                                                     <tfoot>
                                                                         <tr>
-                                                                            <th><input type="checkbox"></th>
-                                                                            <th></th>
-
+                                                                            <th>Id</th>
+                                                                            <th>Descripcion</th>
                                                                         </tr>
                                                                     </tfoot>
                                                                 </table>
@@ -180,7 +180,6 @@
 
                                                     </div>
                                                 </div>
-
 
 
                                                 <div class="form-group">
@@ -265,3 +264,33 @@
 
 
 </section><!-- /.content -->
+
+<script type="text/javascript">
+    var datatable;
+    $(document).ready(function () {
+        datatable = $('#departamento').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonDepartamentos", "Usuarios")",
+                "type": "POST"
+            },
+
+            "columns": [
+                    { "data": "id" },
+                    { "data": "descripcion" }
+
+            ]
+            //'columnDefs': [{
+            //    'targets': 0,
+            //    'searchable': false,
+            //    'orderable': false,
+            //    'className': 'dt-body-center',
+            //    'render': function (data, type, full, meta) {
+            //        return '<input type="checkbox" name="id[]" value="'
+            //           + $('<div/>').text(data).html() + '">';
+            //    }
+            //}],
+        });
+
+    });
+</script>

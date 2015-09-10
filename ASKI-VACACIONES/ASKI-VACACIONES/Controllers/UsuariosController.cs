@@ -83,5 +83,30 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
+
+        public ActionResult JSonDepartamentos()
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getTbl_departamentos();
+            /* List<PermisosModel> permisos = new List<PermisosModel>();
+             foreach (var item in query)
+             {
+                 PermisosModel roles_permisos = new PermisosModel();
+                 roles_permisos.id = item.permisosid;
+                 roles_permisos.descripcion = item.descripcion;
+                 permisos.Add(roles_permisos);
+             }
+             */
+
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", query.ElementAt(i).departamentoid, query.ElementAt(i).descripcion) + "}";
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
     }
 }
