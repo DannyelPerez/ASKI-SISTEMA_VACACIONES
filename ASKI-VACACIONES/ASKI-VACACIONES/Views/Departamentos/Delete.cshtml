@@ -29,33 +29,31 @@
                             </div><!-- /.box-header -->
                             <!-- form start -->
                             <form class="form-horizontal">
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" href="~/Departamentos/Index">Agregar</a></li>
-                                            <li><a data-content="new" href="~/Departamentos/Edit">Modificar</a></li>
-                                            <li><a data-content="tash" class="selected">Eliminar</a></li>
-                                        </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="new" class="selected">
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label for="inputiddepartamento" class="col-sm-2 control-label">Id departamento</label>
-                                                    <div class="col-sm-10">
-                                                        <p> <input type="text" class="NumberInteger" id="inputiddepartamento" size="20"></p>
-                                                    </div>
+
+                                <ul class="nav nav-tabs">
+                                    <li><a href="~/Usuarios/Index">Agregar</a></li>
+                                    <li><a href="~/Usuarios/Edit">Modificar</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#0">Eliminar</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputiddepartamento" class="col-sm-2 control-label">Id departamento</label>
+                                                <div class="col-sm-10">
+                                                    <p> <input type="text" class="NumberInteger" id="inputiddepartamento" size="20"></p>
                                                 </div>
-
-
-
-                                                <div class="box-footer">
-                                                    <button type="submit" class="btn btn-info pull-right">Eliminar</button>
-                                                </div><!-- /.box-footer -->
                                             </div>
-                                        </li>
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
+
+
+
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-info pull-right">Eliminar</button>
+                                            </div><!-- /.box-footer -->
+                                        </div>
+                                    </div>
+                                </div> <!-- cd-tabs-content -->
                             </form>
                         </div><!-- /.box -->
                     </div>

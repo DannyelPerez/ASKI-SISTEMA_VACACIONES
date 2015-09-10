@@ -31,58 +31,57 @@
                             </div><!-- /.box-header -->
                             <!-- form start -->
                             <form class="form-horizontal">
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" href="~/Roles/Index">Agregar</a></li>
-                                            <li><a data-content="new" class="selected" >Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Roles/Delete">Eliminar</a></li>
-                                        </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="new" class="selected">
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label for="inputiddepartamento" class="col-sm-2 control-label">Id rol</label>
-                                                    <div class="col-sm-10">
-                                                        <p>
-                                                            @Html.TextBoxFor(x => x.id, new { @class = "form-control ", type = "text", Value = ViewBag.id })
-                                                            
-                                                            <br />
-                                                            <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
-                                                            <br />
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li><a href="~/Usuarios/Index">Agregar</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#0">Modificar</a></li>
+                                    <li><a href="~/Usuarios/Delete">Eliminar</a></li>
+                                </ul>
 
-                                                <div class="form-group">
-                                                    <label for="inputdescripcion" class="col-sm-2 control-label">Descripcion</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text", Value = ViewBag.Desc })
-                                                        
-                                                        
-                                                        </p>
-                                                        @*<input type="text" class="form-control" id="inputdescripcion" size="20">*@
-                                                    </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputiddepartamento" class="col-sm-2 control-label">Id rol</label>
+                                                <div class="col-sm-10">
+                                                    <p>
+                                                        @Html.TextBoxFor(x => x.id, new { @class = "form-control ", type = "text", Value = ViewBag.id })
+
+                                                        <br />
+                                                        <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
+                                                        <br />
+                                                    </p>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputestado" class="col-sm-2 control-label">Estado</label>
-                                                    <div class="col-sm-10">
-                                                        <p>
-                                                            <select class="form-control" >
-                                                                <option>Activo</option>
-                                                                <option>No Activo</option>
-                                                            </select>
-                                                        </p>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                                <div class="box-footer">
-                                                    <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
-                                                </div><!-- /.box-footer -->
                                             </div>
-                                        </li>
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
+
+                                            <div class="form-group">
+                                                <label for="inputdescripcion" class="col-sm-2 control-label">Descripcion</label>
+                                                <div class="col-sm-10">
+                                                    <p>
+                                                        @Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text", Value = ViewBag.Desc })
+
+
+                                                </p>
+                                                @*<input type="text" class="form-control" id="inputdescripcion" size="20">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputestado" class="col-sm-2 control-label">Estado</label>
+                                            <div class="col-sm-10">
+                                                <p>
+                                                    <select class="form-control">
+                                                        <option>Activo</option>
+                                                        <option>No Activo</option>
+                                                    </select>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
+                                        </div><!-- /.box-footer -->
+                                    </div>
+                                </div>
+                            </div> <!-- cd-tabs-content -->
+
                             </form>
                         </div><!-- /.box -->
                     </div>

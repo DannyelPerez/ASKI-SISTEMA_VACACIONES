@@ -81,5 +81,30 @@ namespace ASKI_VACACIONES.Controllers
                 return RedirectToAction("Login");
         }
 
+        public ActionResult JSonRoles()
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getTbl_permisos();
+            List<PermisosModel> permisos = new List<PermisosModel>();
+            foreach (var item in query)
+            {
+                PermisosModel  roles_permisos= new PermisosModel();
+                roles_permisos.id = item.permisosid;
+                roles_permisos.descripcion = item.descripcion;
+                permisos.Add(roles_permisos);
+            }
+            for (int i = 0; i < permisos.Count; i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", permisos.ElementAt(i).id, permisos.ElementAt(i).descripcion) + "}";
+
+
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
+
     }
 }
