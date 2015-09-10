@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <table id="example" class="display responsive nowrap  table-bordered table-striped table-hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+            </tr>
+        </tfoot>
+    </table>
+
+ <!--Test-->
+<script type="text/javascript">
+    var datatable;
+    $(document).ready(function () {
+        datatable = $('#example').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSon", "Test")",
+                "type": "POST"
+            },
+            "columns": [
+                    { "data": "talento_humano" },
+                    { "data": "primer_nombre" },
+                    { "data": "primer_apellido" },
+                    { "data": "option" }
+
+            ]
+        });
+
+    });
+</script>
+
+
+
+

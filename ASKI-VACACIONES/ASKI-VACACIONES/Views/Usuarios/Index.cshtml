@@ -1,16 +1,10 @@
 ﻿@model ASKI_VACACIONES.Models.UsuariosModel
 
-
-@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
+<!--MOdel-->
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('.form-control').keypress(function (event) {
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-                alert('Solo puede ingresar numeros');
-            }
-        });
-    });
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
 </script>
 
 <!--Check-->
@@ -25,6 +19,9 @@
             element.style.display = 'none';
         }
     }
+
+    
+
 </script>
 
 <section class="content-header">
@@ -41,9 +38,34 @@
 <!-- Content Wrapper. Contains page content -->
 <!-- Main content -->
 <section class="content">
+
+    <!-- Button HTML (to Trigger Modal) -->
+    <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to save changes you made to document before closing?</p>
+                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
+
                 @using (Html.BeginForm())
                 {
 
@@ -56,17 +78,17 @@
                             <!-- form start -->
                             <form class="form-horizontal" id="formulario">
 
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" class="selected" href="#0">Agregar</a></li>
-                                            <li><a data-content="new" href="~/Usuarios/Edit">Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Usuarios/Delete">Eliminar</a></li>
+                                @*<div class="nav nav-tabs ">*@
+                                    
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#0">Agregar</a></li>
+                                            <li><a href="~/Usuarios/Edit">Modificar</a></li>
+                                            <li><a data-toggle="tab" href="~/Usuarios/Delete">Eliminar</a></li>
                                         </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
+                                    
 
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="inbox" class="selected">
+                                    <div class="tab-content">
+                                          <div class="tab-pane fade in active">
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -158,6 +180,9 @@
 
                                                     </div>
                                                 </div>
+
+
+
                                                 <div class="form-group">
                                                     <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
                                                     <input type="checkbox" name="check" id="check" value="2" onchange="javascript:showContent()" />
@@ -217,10 +242,10 @@
                                                 </div><!-- /.box-footer -->
 
                                             </div>
-                                        </li>
+                                        </div>
 
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
+                                    </div> <!-- cd-tabs-content -->
+                                @*</div>*@ <!-- cd-tabs -->
                             </form>
                         </div><!-- /.box -->
                     </div>

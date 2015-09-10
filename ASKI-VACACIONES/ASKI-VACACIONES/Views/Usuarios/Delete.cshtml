@@ -1,18 +1,5 @@
 ﻿@model  ASKI_VACACIONES.Models.UsuariosModel
 
-
-@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.form-control').keypress(function (event) {
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-                alert('Solo puede ingresar numeros');
-            }
-        });
-    });
-</script>
-
 <section class="content-header">
     <h1>
         Usuarios
@@ -40,33 +27,33 @@
                             </div><!-- /.box-header -->
                             <!-- form start -->
                             <form class="form-horizontal">
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" href="~/Usuarios/Index">Agregar</a></li>
-                                            <li><a data-content="new" href="~/Usuarios/Edit">Modificar</a></li>
-                                            <li><a data-content="tash" class ="selected">Eliminar</a></li>
-                                        </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="new" class="selected">
-                                            <div class="box-body">
 
-                                                <div class="form-group">
-                                                    <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputtalentohumano" size="20">
-                                                    </div>
+
+                                <ul class="nav nav-tabs">
+                                    <li><a href="~/Usuarios/Index">Agregar</a></li>
+                                    <li><a href="~/Usuarios/Edit">Modificar</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#0">Eliminar</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <div class="box-body">
+
+                                            <div class="form-group">
+                                                <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputtalentohumano" size="20">
                                                 </div>
-
-                                                <div class="box-footer">
-                                                    <button type="submit" class="btn btn-info pull-right">Eliminar</button>
-                                                </div><!-- /.box-footer -->
-
                                             </div>
-                                        </li>
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
+
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-info pull-right">Eliminar</button>
+                                            </div><!-- /.box-footer -->
+
+                                        </div>
+                                        </div>
+                                    </div> <!-- cd-tabs-content -->
+
                             </form>
                         </div><!-- /.box -->
                     </div>
@@ -83,4 +70,4 @@
     <section class="col-lg-5 connectedSortable"></section><!-- right col -->
 
 
-</section><!-- /.content -->          
+</section><!-- /.content -->
