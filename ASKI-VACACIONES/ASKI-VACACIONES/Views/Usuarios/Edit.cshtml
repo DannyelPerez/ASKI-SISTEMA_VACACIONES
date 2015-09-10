@@ -1,18 +1,5 @@
 ﻿@model  ASKI_VACACIONES.Models.UsuariosModel
 
-@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.form-control').keypress(function (event) {
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-                alert('Solo puede ingresar numeros');
-            }
-        });
-    });
-</script>
-
-
 <section class="content-header">
     <h1>
         Usuarios
@@ -40,77 +27,78 @@
                             </div><!-- /.box-header -->
                             <!-- form start -->
                             <form class="form-horizontal">
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" href="~/Usuarios/Index">Agregar</a></li>
-                                            <li><a data-content="new" class="selected">Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Usuarios/Delete">Eliminar</a></li>
-                                        </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="new" class="selected">
-                                            <div class="box-body">
 
-                                                <div class="form-group">
-                                                    <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
-                                                    <div class="col-sm-10">
-                                                       
-                                                        <p>
-                                                            @Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.talentoHumano })
 
-                                                            <br />
-                                                            <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
-                                                            <br />
-                                                     </div>
+                                <ul class="nav nav-tabs">
+                                    <li><a href="~/Usuarios/Index">Agregar</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#0">Modificar</a></li>
+                                    <li><a href="~/Usuarios/Delete">Eliminar</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <div class="box-body">
+
+                                            <div class="form-group">
+                                                <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
+                                                <div class="col-sm-10">
+
+                                                    <p>
+                                                        @Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control , NumberInteger ", type = "text", Value = ViewBag.talentoHumano })
+
+                                                        <br />
+                                                        <input type="submit" name="submitButton" value="Buscar" class="btn btn-info pull-right" />
+                                                        <br />
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", type = "text", Value = ViewBag.primerNombre })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <p> @Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text", Value = ViewBag.segundoNombre })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputprimerapellido" class="col-sm-2 control-label">Primer apellido</label>
-                                                    <div class="col-sm-10">
-                                                        <p> @Html.TextBoxFor(x => x.primer_apellido, new { @class = "form-control", type = "text", Value = ViewBag.primerApellido })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputsegundoapellido" class="col-sm-2 control-label">Segundo apellido</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.segundo_apellido, new { @class = "form-control", type = "text", Value = ViewBag.segundoApellido })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputcorreo" class="col-sm-2 control-label">Correo</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "text", Value = ViewBag.email })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.fecha_ingreso,"{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <!-- /.box-body -->
-                                                <div class="box-footer">
-                                                    <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
-                                                </div><!-- /.box-footer -->
                                             </div>
+                                            <div class="form-group">
+                                                <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", type = "text", Value = ViewBag.primerNombre })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
+                                                <div class="col-sm-10">
+                                                    <p> @Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text", Value = ViewBag.segundoNombre })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputprimerapellido" class="col-sm-2 control-label">Primer apellido</label>
+                                                <div class="col-sm-10">
+                                                    <p> @Html.TextBoxFor(x => x.primer_apellido, new { @class = "form-control", type = "text", Value = ViewBag.primerApellido })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputsegundoapellido" class="col-sm-2 control-label">Segundo apellido</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.segundo_apellido, new { @class = "form-control", type = "text", Value = ViewBag.segundoApellido })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputcorreo" class="col-sm-2 control-label">Correo</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "text", Value = ViewBag.email })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
+                                                <div class="col-sm-10">
+                                                    <p>
+                                                        @Html.TextBoxFor(x => x.fecha_ingreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
+                                        </div><!-- /.box-footer -->
+                                    </div>
 
-                                        </li>
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
-                            </form>
+                                    </div>
+                                </div> <!-- cd-tabs-content -->
+
+                        </form>
                         </div><!-- /.box -->
                     </div>
 

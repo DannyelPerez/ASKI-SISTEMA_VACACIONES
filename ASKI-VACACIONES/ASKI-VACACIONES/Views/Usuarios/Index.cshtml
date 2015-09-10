@@ -1,21 +1,5 @@
 ﻿@model ASKI_VACACIONES.Models.UsuariosModel
 
-
-@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>*@
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.form-control').keypress(function (event) {
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-                alert('Solo puede ingresar numeros');
-            }
-        });
-    });
-</script>
-@*<script src="~/Content/js/bootstrap.min.js"></script>
-  <script src="~/Scripts/jquery-2.1.4.min.js"></script>*@
-<link href="~/Content/css/bootstrap-theme.min.css" rel="stylesheet" />
-<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
 <!--MOdel-->
 <script type="text/javascript">
     $('#myModal').on('shown.bs.modal', function () {
@@ -94,17 +78,17 @@
                             <!-- form start -->
                             <form class="form-horizontal" id="formulario">
 
-                                <div class="cd-tabs">
-                                    <nav>
-                                        <ul class="cd-tabs-navigation">
-                                            <li><a data-content="inbox" class="selected" href="#0">Agregar</a></li>
-                                            <li><a data-content="new" href="~/Usuarios/Edit">Modificar</a></li>
-                                            <li><a data-content="tash" href="~/Usuarios/Delete">Eliminar</a></li>
+                                @*<div class="nav nav-tabs ">*@
+                                    
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#0">Agregar</a></li>
+                                            <li><a href="~/Usuarios/Edit">Modificar</a></li>
+                                            <li><a data-toggle="tab" href="~/Usuarios/Delete">Eliminar</a></li>
                                         </ul> <!-- cd-tabs-navigation -->
-                                    </nav>
+                                    
 
-                                    <ul class="cd-tabs-content">
-                                        <li data-content="inbox" class="selected">
+                                    <div class="tab-content">
+                                          <div class="tab-pane fade in active">
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -258,10 +242,10 @@
                                                 </div><!-- /.box-footer -->
 
                                             </div>
-                                        </li>
+                                        </div>
 
-                                    </ul> <!-- cd-tabs-content -->
-                                </div> <!-- cd-tabs -->
+                                    </div> <!-- cd-tabs-content -->
+                                @*</div>*@ <!-- cd-tabs -->
                             </form>
                         </div><!-- /.box -->
                     </div>
