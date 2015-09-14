@@ -317,17 +317,17 @@
         });
 
         // Handle click on checkbox
-        $('#example tbody').on('click', 'input[type="checkbox"]', function (e) {
+        $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
             e.stopPropagation();
         });
 
         // Handle click on table cells with checkboxes
-        $('#example').on('click', 'tbody td, thead th:first-child', function (e) {
+        $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
             $(this).parent().find('input[type="checkbox"]').trigger('click');
         });
 
         // Handle click on "Select all" control
-        $('#example thead input[name="select_all"]').on('click', function (e) {
+        $('#departamento thead input[name="select_all"]').on('click', function (e) {
             if (this.checked) {
                 $('#example tbody input[type="checkbox"]:not(:checked)').trigger('click');
             } else {
