@@ -25,9 +25,9 @@ namespace ASKI_VACACIONES.Controllers
             {
                 if (ModelState.IsValid)
                 {
-            Service1Client client = new Service1Client();
-            client.addUsuario(model.talento_humano, model.email, model.primer_nombre,model.segundo_nombre,model.primer_apellido,model.segundo_apellido,model.fecha_ingreso,model.password);
-            client.Close();
+            //Service1Client client = new Service1Client();
+            //client.addUsuario(model.talento_humano, model.email, model.primer_nombre,model.segundo_nombre,model.primer_apellido,model.segundo_apellido,model.fecha_ingreso,model.password);
+            //client.Close();
                 }
                 return View();
             }
@@ -89,16 +89,6 @@ namespace ASKI_VACACIONES.Controllers
             string json = "";
             Service1Client client = new Service1Client();
             var query = client.getTbl_departamentos();
-            /* List<PermisosModel> permisos = new List<PermisosModel>();
-             foreach (var item in query)
-             {
-                 PermisosModel roles_permisos = new PermisosModel();
-                 roles_permisos.id = item.permisosid;
-                 roles_permisos.descripcion = item.descripcion;
-                 permisos.Add(roles_permisos);
-             }
-             */
-
             for (int i = 0; i < query.Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
@@ -107,6 +97,26 @@ namespace ASKI_VACACIONES.Controllers
 
             json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
             return Content(json);
+        }
+
+        private List<int> splitCadenaID(string cadenaID)
+        {
+            List<int> numero = new List<int>();
+            string valor = "";
+            for (int i = 0; i < cadenaID.Length; i++)
+            {
+                if (cadenaID[i] == '/')
+                {
+                    numero.Add(int.Parse(valor));
+                    valor = "";
+                }
+                else
+                {
+                    valor += cadenaID[i];
+                }
+
+            }
+            return numero;
         }
     }
 }
