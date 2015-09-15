@@ -191,26 +191,28 @@
                                                         <div class="box-header">
                                                             <h3 class="box-title"></h3>
                                                         </div><!-- /.box-header -->
-                                                     @Html.TextBoxFor(x => x.rolesID, new { @class = "hidden", id = "textRoles", type = "text" })
-                                                        <div class="container demo">
-                                                            <table id="Roles" class="datatable table table-striped table-bordered">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><input name="selec_todos" type="checkbox"> ID</th>
+                                                        <div class="box-body">
+                                                            @Html.TextBoxFor(x => x.rolesID, new { @class = "hidden", id = "textRoles", type = "text" })
+                                                            
+                                                                <table id="Roles" class="datatable table table-striped table-bordered" width="65%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><input name="selec_todos" type="checkbox"> ID</th>
 
-                                                                        <th>Rol</th>
-                                                                    </tr>
-                                                                </thead>
+                                                                            <th>Rol</th>
+                                                                        </tr>
+                                                                    </thead>
 
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th>ID</th>
-                                                                        <th>Rol</th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div><!--/.container.demo -->
-                                                    </div><!-- /.box -->
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>ID</th>
+                                                                            <th>Rol</th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                           
+                                                        </div>
+                                                        </div><!-- /.box -->
 
                                                 </div>
                                             </div>

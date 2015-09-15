@@ -56,8 +56,6 @@ namespace Service_Asky
         void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
 
 
-
-
         //=================== Delete Element from database=============
         [OperationContract]
         void deletePermiso(int id);

@@ -508,17 +508,16 @@ namespace Service_Asky
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        numero=dataReader["rolesid"] + "";
-
+                     numero=dataReader["rolesid"] + "";
                     }
                     dataReader.Close();
                     connect.CloseConnection();
-
+                    
                 }
-
                 return int.Parse(numero);
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return 0;
             }
