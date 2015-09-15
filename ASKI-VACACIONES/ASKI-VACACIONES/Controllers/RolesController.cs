@@ -16,7 +16,7 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
          
          private List<int> splitCadenaID(string cadenaID) {
@@ -41,28 +41,34 @@ namespace ASKI_VACACIONES.Controllers
         [HttpPost]
         public ActionResult Edit(RolesModel model, string submitButton)
         {
-            Service1Client client = new Service1Client();
-            switch (submitButton)
+            if (Session["User"] != null)
             {
-                case "Buscar":
-                    var hola = client.getRol(model.id);
-                    if (hola != null) { 
-                    ViewBag.Desc = hola.descripcion;
-                    ViewBag.id = hola.rolesid;
-                    }
-            
-                    return View();
-                case "Modificar":
-                    if (Session["User"] != null)
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    switch (submitButton)
                     {
-
-                        client.editRol(model.id, model.descripcion);
-                        client.Close();
+                        case "Buscar":
+                            var hola = client.getRol(model.id);
+                            if (hola == null)
+                            {
+                                client.Close();
+                                return View();
+                            }
+                            ViewBag.Desc = hola.descripcion;
+                            ViewBag.id = hola.rolesid;
+                            break;
+                        case "Modificar":
+                            client.editRol(model.id, model.descripcion);
+                            break;
                     }
+                    client.Close();
                     return View();
-                default:
-                     return RedirectToAction("Login");
+                }
+                return View();
             }
+            else
+                return RedirectToAction("Login", "Home");
         }
 
         public ActionResult Edit()
@@ -70,7 +76,7 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
 
         [HttpPost]
@@ -80,20 +86,22 @@ namespace ASKI_VACACIONES.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                Service1Client client = new Service1Client();
+                    Service1Client client = new Service1Client();
                     List<int> idpermisos = splitCadenaID(model.permisosID);
+                    if(idpermisos==null)
+                        return View();
                     client.addRole(model.descripcion);
                     foreach (var item in idpermisos)
                     {
                         client.addRoles_Permisos(client.getUltimoId_Roles(),item);
                     }
                    client.Close();
-             }
+                }
                 return View();
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
         }
 
@@ -102,7 +110,7 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
 
         [HttpPost]
@@ -111,20 +119,20 @@ namespace ASKI_VACACIONES.Controllers
             string json = "";
             Service1Client client = new Service1Client();
             var query = client.getTbl_permisos();
+            if (query == null)
+            {
+                json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", "0", "Null") + "}";
+                json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+                return Content(json);
+            }
             for (int i = 0; i < query.Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
                 json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", query.ElementAt(i).permisosid, query.ElementAt(i).descripcion) + "}";
-
-
             }
 
             json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
             return Content(json);
         }
-
-     
-  
-
-    }
+      }
 }

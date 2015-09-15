@@ -65,7 +65,7 @@ namespace Service_Asky
 
         //=================== Get Elements from database=============
         [OperationContract]
-        bool confirmarLogin(string email, string password);
+        Usuario confirmarLogin(string email, string password);
         [OperationContract]
         Permisos getPermiso(int id);
         [OperationContract]
