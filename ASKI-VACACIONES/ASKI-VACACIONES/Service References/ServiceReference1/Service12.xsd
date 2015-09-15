@@ -85,6 +85,45 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="addUsuario_Departamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+        <xs:element minOccurs="0" name="idDepartamento" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addUsuario_DepartamentoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addUsuario_Rol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+        <xs:element minOccurs="0" name="idRol" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addUsuario_RolResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addRoles_Permisos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRol" type="xs:int" />
+        <xs:element minOccurs="0" name="idPermiso" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addRoles_PermisosResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="editPermiso">
     <xs:complexType>
       <xs:sequence>

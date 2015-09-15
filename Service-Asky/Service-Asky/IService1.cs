@@ -33,7 +33,13 @@ namespace Service_Asky
         void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password);
         [OperationContract]
         void addPermiso(string descripcion);
-
+        [OperationContract]
+        void addUsuario_Departamento(int talentoHumano, int idDepartamento);
+        [OperationContract]
+        void addUsuario_Rol(int talentoHumano, int idRol);
+        [OperationContract]
+        void addRoles_Permisos(int idRol, int idPermiso);
+    
 
 
 

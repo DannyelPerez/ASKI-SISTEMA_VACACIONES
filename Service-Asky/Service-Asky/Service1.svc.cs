@@ -8,6 +8,7 @@ using System.Text;
 using System.Data;
 using System.Data.EntityClient;
 using Service_Asky.Tables;
+using MySql.Data.MySqlClient;
 
 namespace Service_Asky
 {
@@ -15,6 +16,8 @@ namespace Service_Asky
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        //cambiar dependiendo del servidor 
+        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -108,6 +111,48 @@ namespace Service_Asky
             catch (Exception ex)
             {
 
+            }
+        }
+
+
+        public  void addUsuario_Departamento(int talentoHumano, int idDepartamento)
+        {
+            try
+            {
+
+                string query = "INSERT INTO tbl_usuarios_departamento (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + idDepartamento + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        
+        public void addUsuario_Rol(int talentoHumano, int idRol)
+        {
+            string query = "INSERT INTO tbl_usuarios_roles (talento_humano, rolesid) VALUES('" + talentoHumano + "', '" + idRol + "')";
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
+        
+        public void addRoles_Permisos(int idRol, int idPermiso)
+        {
+            string query = "INSERT INTO tbl_roles_permisos (rolesid, permisosid) VALUES('" + idRol + "', '" + idPermiso + "')";
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
             }
         }
 

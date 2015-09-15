@@ -25,9 +25,14 @@ namespace ASKI_VACACIONES.Controllers
             {
                 if (ModelState.IsValid)
                 {
-            //Service1Client client = new Service1Client();
-            //client.addUsuario(model.talento_humano, model.email, model.primer_nombre,model.segundo_nombre,model.primer_apellido,model.segundo_apellido,model.fecha_ingreso,model.password);
-            //client.Close();
+                    Service1Client client = new Service1Client();
+                    List<int> idDepartamentos = splitCadenaID(model.departamentosID);
+                    client.addUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso, "temporal");
+                    foreach (var item in idDepartamentos)
+                    {
+                        client.addUsuario_Departamento(model.talento_humano, item);
+                    }
+                    client.Close();
                 }
                 return View();
             }

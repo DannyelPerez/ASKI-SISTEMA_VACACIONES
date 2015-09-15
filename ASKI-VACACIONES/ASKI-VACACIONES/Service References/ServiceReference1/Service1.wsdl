@@ -44,6 +44,24 @@
   <wsdl:message name="IService1_addPermiso_OutputMessage">
     <wsdl:part name="parameters" element="tns:addPermisoResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Departamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_Departamento" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Departamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_DepartamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Rol_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_Rol" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Rol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_RolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addRoles_Permisos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addRoles_Permisos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addRoles_Permisos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addRoles_PermisosResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_editPermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:editPermiso" />
   </wsdl:message>
@@ -189,6 +207,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addPermiso" message="tns:IService1_addPermiso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addPermisoResponse" message="tns:IService1_addPermiso_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="addUsuario_Departamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addUsuario_Departamento" message="tns:IService1_addUsuario_Departamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addUsuario_DepartamentoResponse" message="tns:IService1_addUsuario_Departamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Rol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addUsuario_Rol" message="tns:IService1_addUsuario_Rol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addUsuario_RolResponse" message="tns:IService1_addUsuario_Rol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addRoles_Permisos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addRoles_Permisos" message="tns:IService1_addRoles_Permisos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addRoles_PermisosResponse" message="tns:IService1_addRoles_Permisos_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editPermiso" message="tns:IService1_editPermiso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/editPermisoResponse" message="tns:IService1_editPermiso_OutputMessage" />
@@ -319,6 +349,33 @@
     </wsdl:operation>
     <wsdl:operation name="addPermiso">
       <soap:operation soapAction="http://tempuri.org/IService1/addPermiso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Departamento">
+      <soap:operation soapAction="http://tempuri.org/IService1/addUsuario_Departamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Rol">
+      <soap:operation soapAction="http://tempuri.org/IService1/addUsuario_Rol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRoles_Permisos">
+      <soap:operation soapAction="http://tempuri.org/IService1/addRoles_Permisos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
