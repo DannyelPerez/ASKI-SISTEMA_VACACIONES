@@ -194,18 +194,6 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="getUltimoId_Roles">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getUltimoId_RolesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="getUltimoId_RolesResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="confirmarLogin">
     <xs:complexType>
       <xs:sequence>
@@ -394,6 +382,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_vacacionesResult" nillable="true" type="q16:ArrayOfVacaciones" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUltimoId_Roles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUltimoId_RolesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getUltimoId_RolesResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

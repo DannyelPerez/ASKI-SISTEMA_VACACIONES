@@ -37,7 +37,6 @@ namespace ASKI_VACACIONES.Controllers
                     {
                         client.addUsuario_Rol(model.talento_humano, item);
                     }
-                    
                     client.Close();
                 }
                 return View();

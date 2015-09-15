@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "1234");
+        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -508,15 +508,14 @@ namespace Service_Asky
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        numero = dataReader["rolesid"] + "";
-
+                     numero=dataReader["rolesid"] + "";
                     }
                     dataReader.Close();
                     connect.CloseConnection();
-
+                    
                 }
-
                 return int.Parse(numero);
+                
             }
             catch (Exception ex)
             {

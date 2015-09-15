@@ -65,8 +65,6 @@ namespace Service_Asky
 
         //=================== Get Elements from database=============
         [OperationContract]
-        int getUltimoId_Roles();
-        [OperationContract]
         bool confirmarLogin(string email, string password);
         [OperationContract]
         Permisos getPermiso(int id);
@@ -96,6 +94,8 @@ namespace Service_Asky
         List<Usuario> getTbl_usuarios();
         [OperationContract]
         List<Vacaciones> getTbl_vacaciones();
+        [OperationContract]
+        int getUltimoId_Roles();
 
     }
 
