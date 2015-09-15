@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
+        DBConnect connect = new DBConnect("localhost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -494,6 +494,21 @@ namespace Service_Asky
                 vacaciones.Add(v);
             }
             return vacaciones;
+        }
+
+        public int getUltimoId_Roles()
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                var id = db.tbl_roles.OrderByDescending(x => x.rolesid).Take(1);
+                return int.Parse(id.ToString());
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
         }
 
 

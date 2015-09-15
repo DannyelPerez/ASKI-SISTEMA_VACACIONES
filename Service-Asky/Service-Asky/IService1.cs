@@ -56,8 +56,6 @@ namespace Service_Asky
         void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
 
 
-
-
         //=================== Delete Element from database=============
         [OperationContract]
         void deletePermiso(int id);
@@ -66,6 +64,8 @@ namespace Service_Asky
 
 
         //=================== Get Elements from database=============
+        [OperationContract]
+        int getUltimoId_Roles();
         [OperationContract]
         bool confirmarLogin(string email, string password);
         [OperationContract]
