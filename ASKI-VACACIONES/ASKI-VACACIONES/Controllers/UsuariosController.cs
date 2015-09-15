@@ -99,6 +99,21 @@ namespace ASKI_VACACIONES.Controllers
             return Content(json);
         }
 
+        public ActionResult JSonRoles()
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getTbl_roles();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", query.ElementAt(i).rolesid, query.ElementAt(i).descripcion) + "}";
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
+
         private List<int> splitCadenaID(string cadenaID)
         {
             List<int> numero = new List<int>();
