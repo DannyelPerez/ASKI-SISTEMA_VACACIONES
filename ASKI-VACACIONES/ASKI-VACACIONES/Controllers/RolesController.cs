@@ -18,6 +18,25 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login");
         }
+         
+         private List<int> splitCadenaID(string cadenaID) {
+            List<int> numero = new List<int>();
+            string valor = "";
+            for (int i = 0; i < cadenaID.Length; i++)
+            {
+                if (cadenaID[i] == '/')
+                {
+                    numero.Add(int.Parse(valor));
+                    valor = "";
+                }
+                else
+                {
+                    valor += cadenaID[i];
+                }
+
+            }
+            return numero;
+        }
 
         [HttpPost]
         public ActionResult Edit(RolesModel model, string submitButton)
@@ -61,9 +80,14 @@ namespace ASKI_VACACIONES.Controllers
             {
                 if (ModelState.IsValid)
                 {
-            Service1Client client = new Service1Client();
-            client.addRole(model.descripcion);
-            client.Close();
+                Service1Client client = new Service1Client();
+                    List<int> idpermisos = splitCadenaID(model.permisosID);
+                    client.addRole(model.descripcion);
+                    foreach (var item in idpermisos)
+                    {
+                        client.addRoles_Permisos(client.getUltimoId_Roles(),item);
+                    }
+                   client.Close();
              }
                 return View();
             }
@@ -99,25 +123,8 @@ namespace ASKI_VACACIONES.Controllers
             return Content(json);
         }
 
-        private List<int> splitCadenaID(string cadenaID)
-        {
-            List<int> numero = new List<int>();
-            string valor = "";
-            for (int i = 0; i < cadenaID.Length; i++)
-            {
-                if (cadenaID[i] == '/')
-                {
-                    numero.Add(int.Parse(valor));
-                    valor = "";
-                }
-                else
-                {
-                    valor += cadenaID[i];
-                }
-
-            }
-            return numero;
-        }
+     
+  
 
     }
 }
