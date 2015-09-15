@@ -49,7 +49,7 @@ namespace Service_Asky
                 db.tbl_departamento.Add(dep);
                 db.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -75,21 +75,21 @@ namespace Service_Asky
         public void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password)
         {
             try
-            { 
-            vsystem_askiEntities db = new vsystem_askiEntities();
-            tbl_usuarios usuario = new tbl_usuarios();
-            usuario.talento_humano = talento_humano;
-            usuario.email = email;
-            usuario.primer_nombre = primer_nombre;
-            usuario.segundo_nombre = segundo_nombre;
-            usuario.primer_apellido = primer_apellido;
-            usuario.segundo_apellido = segundo_apellido;
-            usuario.fecha_ingreso = fecha_ingreso;
-            usuario.fecha_creacion = DateTime.Today;
-            usuario.password = password;
-            usuario.activo = true;
-            db.tbl_usuarios.Add(usuario);
-            db.SaveChanges();
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_usuarios usuario = new tbl_usuarios();
+                usuario.talento_humano = talento_humano;
+                usuario.email = email;
+                usuario.primer_nombre = primer_nombre;
+                usuario.segundo_nombre = segundo_nombre;
+                usuario.primer_apellido = primer_apellido;
+                usuario.segundo_apellido = segundo_apellido;
+                usuario.fecha_ingreso = fecha_ingreso;
+                usuario.fecha_creacion = DateTime.Today;
+                usuario.password = password;
+                usuario.activo = true;
+                db.tbl_usuarios.Add(usuario);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -100,13 +100,13 @@ namespace Service_Asky
         public void addPermiso(string descripcion)
         {
             try
-            { 
-            vsystem_askiEntities db = new vsystem_askiEntities();
-            tbl_permisos permisos = new tbl_permisos();
-            permisos.descripcion = descripcion;
-            permisos.activo = true;
-            db.tbl_permisos.Add(permisos);
-            db.SaveChanges();
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_permisos permisos = new tbl_permisos();
+                permisos.descripcion = descripcion;
+                permisos.activo = true;
+                db.tbl_permisos.Add(permisos);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Service_Asky
         }
 
 
-        public  void addUsuario_Departamento(int talentoHumano, int idDepartamento)
+        public void addUsuario_Departamento(int talentoHumano, int idDepartamento)
         {
             try
             {
@@ -128,12 +128,12 @@ namespace Service_Asky
                     connect.CloseConnection();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
         }
-        
+
         public void addUsuario_Rol(int talentoHumano, int idRol)
         {
             try
@@ -153,18 +153,18 @@ namespace Service_Asky
 
             }
         }
-        
+
         public void addRoles_Permisos(int idRol, int idPermiso)
         {
             try
             {
-            string query = "INSERT INTO tbl_roles_permisos (rolesid, permisosid) VALUES('" + idRol + "', '" + idPermiso + "')";
-            if (connect.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
-                cmd.ExecuteNonQuery();
-                connect.CloseConnection();
-            }
+                string query = "INSERT INTO tbl_roles_permisos (rolesid, permisosid) VALUES('" + idRol + "', '" + idPermiso + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
             }
             catch (Exception ex)
             {
@@ -263,16 +263,25 @@ namespace Service_Asky
 
         //=================== Get Elements from database=============
 
-        public bool confirmarLogin(string email, string password)
+        public Usuario confirmarLogin(string email, string password)
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
-            var v = db.tbl_usuarios.Where(x => x.email.Equals(email) && x.password.Equals(password)).FirstOrDefault();
-            if (v != null)
-            {
-                return true;
+            var v = db.tbl_usuarios.Where(x => x.email.Equals(email) && x.password.Equals(password) && x.activo.Equals(true)).FirstOrDefault();
+            if (v == null)
+                return null;
 
-            }
-            return false;
+            Usuario u = new Usuario();
+            u.activo = v.activo;
+            u.email = v.email;
+            u.fecha_creacion = v.fecha_creacion;
+            u.fecha_ingreso = v.fecha_ingreso;
+            u.password = v.password;
+            u.primer_apellido = v.primer_apellido;
+            u.primer_nombre = v.primer_nombre;
+            u.segundo_apellido = v.segundo_apellido;
+            u.segundo_nombre = v.segundo_nombre;
+            u.talento_humano = v.talento_humano;
+            return u;
         }
         public Permisos getPermiso(int id)
         {
@@ -336,7 +345,7 @@ namespace Service_Asky
             return u;
         }
 
-         public List<Usuario> getTbl_usuarios()
+        public List<Usuario> getTbl_usuarios()
         {
             vsystem_askiEntities db = new vsystem_askiEntities();
             List<Usuario> usuario = new List<Usuario>();
@@ -520,14 +529,14 @@ namespace Service_Asky
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                     numero=dataReader["rolesid"] + "";
+                        numero = dataReader["rolesid"] + "";
                     }
                     dataReader.Close();
                     connect.CloseConnection();
-                    
+
                 }
                 return int.Parse(numero);
-                
+
             }
             catch (Exception ex)
             {
@@ -541,7 +550,7 @@ namespace Service_Asky
             List<string> permisos = new List<string>();
             try
             {
-                string query = "SELECT p.descripcion from tbl_roles as r, tbl_usuarios_roles as ur, tbl_usuarios as u, tbl_permisos as p, tbl_roles_permisos as rp where r.rolesid=ur.rolesid and ur.talento_humano='"+talento_humano+"' and u.activo=true and r.activo=true and u.talento_humano=ur.talento_humano and p.permisosid=rp.permisosid and r.rolesid=rp.rolesid and p.activo=true group by p.descripcion";
+                string query = "SELECT p.descripcion from tbl_roles as r, tbl_usuarios_roles as ur, tbl_usuarios as u, tbl_permisos as p, tbl_roles_permisos as rp where r.rolesid=ur.rolesid and ur.talento_humano='" + talento_humano + "' and u.activo=true and r.activo=true and u.talento_humano=ur.talento_humano and p.permisosid=rp.permisosid and r.rolesid=rp.rolesid and p.activo=true group by p.descripcion";
                 if (connect.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
@@ -554,7 +563,7 @@ namespace Service_Asky
                     connect.CloseConnection();
 
                 }
-             
+
             }
             catch (Exception ex)
             {
@@ -565,6 +574,6 @@ namespace Service_Asky
         }
 
 
- 
+
     }
 }

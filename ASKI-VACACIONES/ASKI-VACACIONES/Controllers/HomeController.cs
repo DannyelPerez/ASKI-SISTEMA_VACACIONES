@@ -12,7 +12,13 @@ namespace ASKI_VACACIONES.Controllers
     {
         // GET: Home
         public ActionResult Login(){return View();}
-        public ActionResult Perfil() { return View(); }
+        public ActionResult Perfil() 
+        {
+            if (Session["User"] != null)
+                return View();
+            else
+                return View("Login");
+        }
         public ViewResult Calendario() 
         { 
             if(Session["User"]!=null)
@@ -34,13 +40,20 @@ namespace ASKI_VACACIONES.Controllers
         {
             if(ModelState.IsValid)
             {
-                Service1Client client = new Service1Client();
-                bool aceder = client.confirmarLogin(user.email, user.password);
-                if(aceder)
-                    {
-                        Session["User"] = user.email;
-                        return RedirectToAction("AfterLogin");
-                    }
+                try
+                {
+                    Service1Client client = new Service1Client();
+                    var aceder = client.confirmarLogin(user.email, user.password);
+                    if (aceder == null)
+                        return View("Login");
+
+                    Session["User"] = user.email;
+                    return RedirectToAction("AfterLogin");
+                }
+                catch(Exception ex)
+                {
+                    return View("Login");
+                }
                 
             }
             return View("Login");
