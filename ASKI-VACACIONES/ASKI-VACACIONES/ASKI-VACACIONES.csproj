@@ -2516,6 +2516,9 @@
     </None>
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\JSon.cshtml" />
+    <None Include="Service References\ServiceReference1\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

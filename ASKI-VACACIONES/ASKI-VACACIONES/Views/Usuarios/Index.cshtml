@@ -233,8 +233,6 @@
                     </div>
 
                 }
-
-
             </div>
 
         </div>
@@ -311,6 +309,10 @@
 
             }
         });
+
+        setInterval(function () {
+            table.ajax.reload();
+        }, 60000);
 
         // Handle click on checkbox
         $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
@@ -394,6 +396,12 @@
 
         //Modal second phase
         $("#myModal").modal('show');
+
+
+        @*//try
+        $post('@Url.Action("Index", "Usuarios")').always(function () {
+            $('.traget').Load('/Usuarios/Index');
+        })*@
     }
 </script>
 
@@ -462,6 +470,10 @@
 
             }
         });
+
+        setInterval(function () {
+            table2.ajax.reload();
+        }, 60000);
 
         // Handle click on checkbox
         $('#Roles tbody').on('click', 'input[type="checkbox"]', function (e) {
