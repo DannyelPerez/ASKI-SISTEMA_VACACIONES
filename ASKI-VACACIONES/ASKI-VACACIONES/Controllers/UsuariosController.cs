@@ -33,7 +33,7 @@ namespace ASKI_VACACIONES.Controllers
                         client.addUsuario_Departamento(model.talento_humano, item);
                     }
                     List<int> idRoles = splitCadenaID(model.rolesID);
-                    foreach (var item in idDepartamentos)
+                    foreach (var item in idRoles)
                     {
                         client.addUsuario_Rol(model.talento_humano, item);
                     }

@@ -1299,6 +1299,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUltimoId_Roles", ReplyAction="http://tempuri.org/IService1/getUltimoId_RolesResponse")]
         System.Threading.Tasks.Task<int> getUltimoId_RolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getLista_Permisos", ReplyAction="http://tempuri.org/IService1/getLista_PermisosResponse")]
+        string[] getLista_Permisos(int talento_humano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getLista_Permisos", ReplyAction="http://tempuri.org/IService1/getLista_PermisosResponse")]
+        System.Threading.Tasks.Task<string[]> getLista_PermisosAsync(int talento_humano);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1566,6 +1572,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<int> getUltimoId_RolesAsync() {
             return base.Channel.getUltimoId_RolesAsync();
+        }
+        
+        public string[] getLista_Permisos(int talento_humano) {
+            return base.Channel.getLista_Permisos(talento_humano);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getLista_PermisosAsync(int talento_humano) {
+            return base.Channel.getLista_PermisosAsync(talento_humano);
         }
     }
 }

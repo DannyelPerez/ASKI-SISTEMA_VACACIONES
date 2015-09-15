@@ -200,6 +200,10 @@
 
             }
         });
+        
+        setInterval(function () {
+            table.ajax.reload();
+        }, 60000);
 
         // Handle click on checkbox
         $('#permiso tbody').on('click', 'input[type="checkbox"]', function (e) {

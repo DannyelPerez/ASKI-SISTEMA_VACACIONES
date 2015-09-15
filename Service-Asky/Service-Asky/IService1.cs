@@ -96,6 +96,9 @@ namespace Service_Asky
         List<Vacaciones> getTbl_vacaciones();
         [OperationContract]
         int getUltimoId_Roles();
+        [OperationContract]
+        List<string> getLista_Permisos(int talento_humano);
+
 
     }
 
