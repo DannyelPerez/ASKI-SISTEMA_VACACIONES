@@ -1,11 +1,6 @@
 ﻿@model ASKI_VACACIONES.Models.UsuariosModel
 
-<!--Model-->
-<script type="text/javascript">
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
-</script>
+
 
 <!--Check-->
 <script type="text/javascript">
@@ -20,8 +15,7 @@
                 element.style.display = 'none';
             }
         }
-        else
-        {
+        else {
             element = document.getElementById("contentRoles");
             check = document.getElementById("checkRoles");
             if (check.checked) {
@@ -50,28 +44,6 @@
 <!-- Main content -->
 <section class="content">
 
-    <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
-
-    <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Confirmation</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Do you want to save changes you made to document before closing?</p>
-                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -79,6 +51,26 @@
 
                 @using (Html.BeginForm())
                 {
+
+                    <!-- Modal HTML -->
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h2 class="modal-title">Confirmación</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Usuario alamacenado exitosamente, su contraseña es la siguiente: </p>
+                                    <p><pre id="passwordModal"></pre></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="panel-body">
                         <div class="box box-primary">
@@ -105,7 +97,7 @@
                                             <div class="form-group">
                                                 <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
                                                 <div class="col-sm-10">
-                                                    <p>@Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control", type = "text" })</p>
+                                                    <p>@Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control", type = "text", id = "talentohumano" })</p>
                                                     @Html.ValidationMessageFor(Model => Model.talento_humano)
                                                 </div>
                                             </div>
@@ -119,7 +111,7 @@
                                             <div class="form-group">
                                                 <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
                                                 <div class="col-sm-10">
-                                                    <p>@Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text" })</p>
+                                                    <p>@Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text", id="segundonombre" })</p>
                                                     @Html.ValidationMessageFor(Model => Model.segundo_nombre)
                                                 </div>
                                             </div>
@@ -147,7 +139,7 @@
                                             <div class="form-group">
                                                 <label for="inputpass" class="col-sm-2 control-label"></label>
                                                 <div class="col-sm-10">
-                                                    <p>@Html.TextBoxFor(x => x.password, new { @class = "form-control", type = "hidden" })</p>
+                                                    <p>@Html.TextBoxFor(x => x.password, new { @class = "form-control", type = "hidden", id="textPass" })</p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -169,7 +161,7 @@
                                                             <h3 class="box-title"></h3>
                                                         </div><!-- /.box-header -->
                                                         <div class="box-body">
-                                                            <table id="departamento" class="display responsive nowrap  table-bordered table-striped table-hover" cellspacing="0" width="65%">
+                                                            <table id="departamento" class="datatable table table-striped table-bordered" width="65%">
                                                                 <thead>
                                                                     <tr>
                                                                         <th><input name="select_all" type="checkbox">         ID</th>
@@ -189,54 +181,54 @@
 
                                                 </div>
                                             </div>
-                                            @Html.TextBoxFor(x => x.departamentosID, new { @class ="hidden", id = "textDepartamentos", type = "text" })
+                                            @Html.TextBoxFor(x => x.departamentosID, new { @class = "hidden", id = "textDepartamentos", type = "text" })
 
-                                                <div class="form-group">
-                                                    <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
-                                                    <input type="checkbox" name="check" id="checkRoles" value="2" onchange="javascript:showContent(2)" />
-                                                    <div id="contentRoles" style="display: none;">
-                                                        <div class="box">
-                                                            <div class="box-header">
-                                                                <h3 class="box-title"></h3>
-                                                            </div><!-- /.box-header -->
-                                                            @Html.TextBoxFor(x => x.rolesID, new { @class = "hidden", id = "textRoles", type = "text" })
-                                                            <div class="container demo">
-                                                                <table id="Roles" class="datatable table table-striped table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th><input name="selec_todos" type="checkbox"> ID</th>
-                                                                            
-                                                                            <th>Rol</th>
-                                                                        </tr>
-                                                                    </thead>
+                                            <div class="form-group">
+                                                <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
+                                                <input type="checkbox" name="check" id="checkRoles" value="2" onchange="javascript:showContent(2)" />
+                                                <div id="contentRoles" style="display: none;">
+                                                    <div class="box">
+                                                        <div class="box-header">
+                                                            <h3 class="box-title"></h3>
+                                                        </div><!-- /.box-header -->
+                                                     @Html.TextBoxFor(x => x.rolesID, new { @class = "hidden", id = "textRoles", type = "text" })
+                                                        <div class="container demo">
+                                                            <table id="Roles" class="datatable table table-striped table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th><input name="selec_todos" type="checkbox"> ID</th>
 
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th>ID</th>
-                                                                            <th>Rol</th>
-                                                                        </tr>
-                                                                    </tfoot>
-                                                                </table>
-                                                            </div><!--/.container.demo -->
-                                                        </div><!-- /.box -->
+                                                                        <th>Rol</th>
+                                                                    </tr>
+                                                                </thead>
 
-                                                    </div>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Rol</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div><!--/.container.demo -->
+                                                    </div><!-- /.box -->
+
                                                 </div>
-
-                                                <div class="box-footer">
-
-                                                    @*<button type="submit" class="btn btn-info pull-right" onclick="javascript:Generarpasword()">Agregar</button>*@
-                                                    <input type="submit" class="btn btn-info pull-right" value="Agregar" onclick="beforeSendInformation()" />
-                                                </div><!-- /.box-footer -->
-
                                             </div>
-                                        </div>
 
-                                    </div> <!-- cd-tabs-content -->
-                                    @*</div>*@ <!-- cd-tabs -->
-                                </form>
-                            </div><!-- /.box -->
-                        </div>
+                                            <div class="box-footer">
+
+                                               
+                                                <input type="submit" class="btn btn-info pull-right" value="Agregar" onclick="beforeSendInformation()" />
+                                            </div><!-- /.box-footer -->
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- cd-tabs-content -->
+                                @*</div>*@ <!-- cd-tabs -->
+                            </form>
+                        </div><!-- /.box -->
+                    </div>
 
                 }
 
@@ -331,9 +323,9 @@
         // Handle click on "Select all" control
         $('#departamento thead input[name="select_all"]').on('click', function (e) {
             if (this.checked) {
-                $('#example tbody input[type="checkbox"]:not(:checked)').trigger('click');
+                $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
             } else {
-                $('#example tbody input[type="checkbox"]:checked').trigger('click');
+                $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
             }
 
             // Prevent click event from propagating to parent
@@ -352,7 +344,16 @@
 
 <script type="text/javascript">
     function beforeSendInformation() {
-
+        //Modal
+        var Segundonombre = document.getElementById("segundonombre").value;
+        var talento = document.getElementById("talentohumano").value;
+        var longi = talento.length;
+        var longi2 = longi - 2;
+        var cortar_cadena = talento.slice(longi2, longi);
+        var concatenar = Segundonombre.concat(cortar_cadena);
+        $('#textPass').val(concatenar);
+        $('#passwordModal').text(concatenar);
+       
 
         //Departamentos
         var table = $('#departamento').DataTable();
@@ -370,7 +371,7 @@
         });
         console.log("checbox_value: " + cadena);
         $('#textDepartamentos').val(cadena)
-        
+
 
         //Roles
         var table2 = $('#Roles').DataTable();
@@ -388,6 +389,9 @@
         });
         console.log("checbox_value: " + cadena2);
         $('#textRoles').val(cadena2)
+
+        //Modal second phase
+        $("#myModal").modal('show');
     }
 </script>
 

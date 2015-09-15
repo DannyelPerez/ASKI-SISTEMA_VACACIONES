@@ -136,23 +136,39 @@ namespace Service_Asky
         
         public void addUsuario_Rol(int talentoHumano, int idRol)
         {
-            string query = "INSERT INTO tbl_usuarios_roles (talento_humano, rolesid) VALUES('" + talentoHumano + "', '" + idRol + "')";
-            if (connect.OpenConnection() == true)
+            try
             {
-                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
-                cmd.ExecuteNonQuery();
-                connect.CloseConnection();
+
+                string query = "INSERT INTO tbl_usuarios_roles (talento_humano, rolesid) VALUES('" + talentoHumano + "', '" + idRol + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         
         public void addRoles_Permisos(int idRol, int idPermiso)
         {
+            try
+            {
             string query = "INSERT INTO tbl_roles_permisos (rolesid, permisosid) VALUES('" + idRol + "', '" + idPermiso + "')";
             if (connect.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
                 cmd.ExecuteNonQuery();
                 connect.CloseConnection();
+            }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

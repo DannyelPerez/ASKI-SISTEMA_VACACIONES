@@ -99,5 +99,25 @@ namespace ASKI_VACACIONES.Controllers
             return Content(json);
         }
 
+        private List<int> splitCadenaID(string cadenaID)
+        {
+            List<int> numero = new List<int>();
+            string valor = "";
+            for (int i = 0; i < cadenaID.Length; i++)
+            {
+                if (cadenaID[i] == '/')
+                {
+                    numero.Add(int.Parse(valor));
+                    valor = "";
+                }
+                else
+                {
+                    valor += cadenaID[i];
+                }
+
+            }
+            return numero;
+        }
+
     }
 }
