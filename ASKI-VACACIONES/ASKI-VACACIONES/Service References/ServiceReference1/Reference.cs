@@ -1293,6 +1293,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_vacacionesResponse")]
         System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUltimoId_Roles", ReplyAction="http://tempuri.org/IService1/getUltimoId_RolesResponse")]
+        int getUltimoId_Roles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUltimoId_Roles", ReplyAction="http://tempuri.org/IService1/getUltimoId_RolesResponse")]
+        System.Threading.Tasks.Task<int> getUltimoId_RolesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1552,6 +1558,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync() {
             return base.Channel.getTbl_vacacionesAsync();
+        }
+        
+        public int getUltimoId_Roles() {
+            return base.Channel.getUltimoId_Roles();
+        }
+        
+        public System.Threading.Tasks.Task<int> getUltimoId_RolesAsync() {
+            return base.Channel.getUltimoId_RolesAsync();
         }
     }
 }

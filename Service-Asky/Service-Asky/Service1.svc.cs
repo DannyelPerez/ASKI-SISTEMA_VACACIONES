@@ -496,6 +496,35 @@ namespace Service_Asky
             return vacaciones;
         }
 
+        public int getUltimoId_Roles()
+        {
+            try
+            {
+                string numero = "";
+                string query = "SELECT rolesid from tbl_roles order by rolesid desc limit 1";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        numero=dataReader["rolesid"] + "";
+
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+                return int.Parse(numero);
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+
+        }
+
 
  
     }
