@@ -342,18 +342,21 @@ namespace Service_Asky
             List<Usuario> usuario = new List<Usuario>();
             foreach (var user in db.tbl_usuarios)
             {
-                Usuario u = new Usuario();
-                u.talento_humano = user.talento_humano;
-                u.email = user.email;
-                u.primer_nombre = user.primer_nombre;
-                u.segundo_nombre = user.segundo_nombre;
-                u.primer_apellido = user.primer_apellido;
-                u.segundo_apellido = user.segundo_apellido;
-                u.fecha_ingreso = user.fecha_ingreso;
-                u.fecha_creacion = user.fecha_creacion;
-                u.password = user.password;
-                u.activo = user.activo;
-                usuario.Add(u);
+                if (user.activo)
+                {
+                    Usuario u = new Usuario();
+                    u.talento_humano = user.talento_humano;
+                    u.email = user.email;
+                    u.primer_nombre = user.primer_nombre;
+                    u.segundo_nombre = user.segundo_nombre;
+                    u.primer_apellido = user.primer_apellido;
+                    u.segundo_apellido = user.segundo_apellido;
+                    u.fecha_ingreso = user.fecha_ingreso;
+                    u.fecha_creacion = user.fecha_creacion;
+                    u.password = user.password;
+                    u.activo = user.activo;
+                    usuario.Add(u);
+                }
             }
             return usuario;
         }
@@ -380,11 +383,14 @@ namespace Service_Asky
             List<Departamento> departamentos = new List<Departamento>();
             foreach (var item in db.tbl_departamento)
             {
-                Departamento d = new Departamento();
-                d.activo = item.activo;
-                d.departamentoid = item.departamentoid;
-                d.descripcion = item.descripcion;
-                departamentos.Add(d);
+                if (item.activo)
+                {
+                    Departamento d = new Departamento();
+                    d.activo = item.activo;
+                    d.departamentoid = item.departamentoid;
+                    d.descripcion = item.descripcion;
+                    departamentos.Add(d);
+                }
             }
             return departamentos;
         }
@@ -426,11 +432,14 @@ namespace Service_Asky
             List<Permisos> permisos = new List<Permisos>();
             foreach (var item in db.tbl_permisos)
             {
-                Permisos p = new Permisos();
-                p.activo = item.activo;
-                p.permisosid = item.permisosid;
-                p.descripcion = item.descripcion;
-                permisos.Add(p);
+                if (item.activo)
+                {
+                    Permisos p = new Permisos();
+                    p.activo = item.activo;
+                    p.permisosid = item.permisosid;
+                    p.descripcion = item.descripcion;
+                    permisos.Add(p);
+                }
             }
             return permisos;
         }
@@ -440,11 +449,14 @@ namespace Service_Asky
             List<Roles> roles = new List<Roles>();
             foreach (var item in db.tbl_roles)
             {
-                Roles r = new Roles();
-                r.activo = item.activo;
-                r.rolesid = item.rolesid;
-                r.descripcion = item.descripcion;
-                roles.Add(r);
+                if (item.activo)
+                {
+                    Roles r = new Roles();
+                    r.activo = item.activo;
+                    r.rolesid = item.rolesid;
+                    r.descripcion = item.descripcion;
+                    roles.Add(r);
+                }
             }
             return roles;
         }
@@ -521,6 +533,34 @@ namespace Service_Asky
             {
                 return 0;
             }
+
+        }
+
+        public List<string> getLista_Permisos(int talento_humano)
+        {
+            List<string> permisos = new List<string>();
+            try
+            {
+                string query = "SELECT p.descripcion from tbl_roles as r, tbl_usuarios_roles as ur, tbl_usuarios as u, tbl_permisos as p, tbl_roles_permisos as rp where r.rolesid=ur.rolesid and ur.talento_humano='"+talento_humano+"' and u.activo=true and r.activo=true and u.talento_humano=ur.talento_humano and p.permisosid=rp.permisosid and r.rolesid=rp.rolesid and p.activo=true group by p.descripcion";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos.Add(dataReader["descripcion"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+             
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return permisos;
 
         }
 
