@@ -44,6 +44,24 @@
   <wsdl:message name="IService1_addPermiso_OutputMessage">
     <wsdl:part name="parameters" element="tns:addPermisoResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Departamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_Departamento" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Departamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_DepartamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Rol_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_Rol" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addUsuario_Rol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUsuario_RolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addRoles_Permisos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addRoles_Permisos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addRoles_Permisos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addRoles_PermisosResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_editPermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:editPermiso" />
   </wsdl:message>
@@ -164,6 +182,12 @@
   <wsdl:message name="IService1_getTbl_vacaciones_OutputMessage">
     <wsdl:part name="parameters" element="tns:getTbl_vacacionesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getUltimoId_Roles_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUltimoId_Roles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getUltimoId_Roles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUltimoId_RolesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -188,6 +212,18 @@
     <wsdl:operation name="addPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addPermiso" message="tns:IService1_addPermiso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addPermisoResponse" message="tns:IService1_addPermiso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Departamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addUsuario_Departamento" message="tns:IService1_addUsuario_Departamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addUsuario_DepartamentoResponse" message="tns:IService1_addUsuario_Departamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Rol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addUsuario_Rol" message="tns:IService1_addUsuario_Rol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addUsuario_RolResponse" message="tns:IService1_addUsuario_Rol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addRoles_Permisos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addRoles_Permisos" message="tns:IService1_addRoles_Permisos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addRoles_PermisosResponse" message="tns:IService1_addRoles_Permisos_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editPermiso" message="tns:IService1_editPermiso_InputMessage" />
@@ -269,6 +305,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTbl_vacaciones" message="tns:IService1_getTbl_vacaciones_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTbl_vacacionesResponse" message="tns:IService1_getTbl_vacaciones_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getUltimoId_Roles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getUltimoId_Roles" message="tns:IService1_getUltimoId_Roles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getUltimoId_RolesResponse" message="tns:IService1_getUltimoId_Roles_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -319,6 +359,33 @@
     </wsdl:operation>
     <wsdl:operation name="addPermiso">
       <soap:operation soapAction="http://tempuri.org/IService1/addPermiso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Departamento">
+      <soap:operation soapAction="http://tempuri.org/IService1/addUsuario_Departamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUsuario_Rol">
+      <soap:operation soapAction="http://tempuri.org/IService1/addUsuario_Rol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRoles_Permisos">
+      <soap:operation soapAction="http://tempuri.org/IService1/addRoles_Permisos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -499,6 +566,15 @@
     </wsdl:operation>
     <wsdl:operation name="getTbl_vacaciones">
       <soap:operation soapAction="http://tempuri.org/IService1/getTbl_vacaciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUltimoId_Roles">
+      <soap:operation soapAction="http://tempuri.org/IService1/getUltimoId_Roles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

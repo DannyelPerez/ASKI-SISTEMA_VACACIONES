@@ -73,6 +73,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConnect.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -90,43 +91,33 @@
     <Compile Include="Tables\Vacaciones.cs" />
     <Compile Include="tbl_calendario.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_departamento.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_estatus.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_jerarquia.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_log_vacaciones.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_permisos.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_roles.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_tipo_dia.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_usuarios.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="tbl_vacaciones.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VSys-Aski.Context.cs">
       <AutoGen>True</AutoGen>

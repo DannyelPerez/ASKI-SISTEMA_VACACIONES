@@ -15,5 +15,7 @@ namespace ASKI_VACACIONES.Models
         public int id { get; set; }
 
         public bool activo { get; set; }
+
+        public string permisosID { get; set; }
     }
 }

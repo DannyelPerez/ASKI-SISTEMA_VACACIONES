@@ -39,6 +39,12 @@ namespace ASKI_VACACIONES.Models
         public string password { get; set; }
 
         public bool activo { get; set; }
+
+       // [Required(ErrorMessage = "Porfavor seleccione los departamentos del usuario")]
+        public string departamentosID { get; set; }
+
+        //[Required(ErrorMessage = "Porfavor seleccione los roles del usuario")]
+        public string rolesID { get; set; }
     }
 
    }

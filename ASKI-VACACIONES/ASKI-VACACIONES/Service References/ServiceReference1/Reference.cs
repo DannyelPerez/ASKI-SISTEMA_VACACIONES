@@ -1156,6 +1156,24 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addPermiso", ReplyAction="http://tempuri.org/IService1/addPermisoResponse")]
         System.Threading.Tasks.Task addPermisoAsync(string descripcion);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addUsuario_Departamento", ReplyAction="http://tempuri.org/IService1/addUsuario_DepartamentoResponse")]
+        void addUsuario_Departamento(int talentoHumano, int idDepartamento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addUsuario_Departamento", ReplyAction="http://tempuri.org/IService1/addUsuario_DepartamentoResponse")]
+        System.Threading.Tasks.Task addUsuario_DepartamentoAsync(int talentoHumano, int idDepartamento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addUsuario_Rol", ReplyAction="http://tempuri.org/IService1/addUsuario_RolResponse")]
+        void addUsuario_Rol(int talentoHumano, int idRol);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addUsuario_Rol", ReplyAction="http://tempuri.org/IService1/addUsuario_RolResponse")]
+        System.Threading.Tasks.Task addUsuario_RolAsync(int talentoHumano, int idRol);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addRoles_Permisos", ReplyAction="http://tempuri.org/IService1/addRoles_PermisosResponse")]
+        void addRoles_Permisos(int idRol, int idPermiso);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addRoles_Permisos", ReplyAction="http://tempuri.org/IService1/addRoles_PermisosResponse")]
+        System.Threading.Tasks.Task addRoles_PermisosAsync(int idRol, int idPermiso);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
         
@@ -1275,6 +1293,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTbl_vacaciones", ReplyAction="http://tempuri.org/IService1/getTbl_vacacionesResponse")]
         System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUltimoId_Roles", ReplyAction="http://tempuri.org/IService1/getUltimoId_RolesResponse")]
+        int getUltimoId_Roles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUltimoId_Roles", ReplyAction="http://tempuri.org/IService1/getUltimoId_RolesResponse")]
+        System.Threading.Tasks.Task<int> getUltimoId_RolesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1350,6 +1374,30 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task addPermisoAsync(string descripcion) {
             return base.Channel.addPermisoAsync(descripcion);
+        }
+        
+        public void addUsuario_Departamento(int talentoHumano, int idDepartamento) {
+            base.Channel.addUsuario_Departamento(talentoHumano, idDepartamento);
+        }
+        
+        public System.Threading.Tasks.Task addUsuario_DepartamentoAsync(int talentoHumano, int idDepartamento) {
+            return base.Channel.addUsuario_DepartamentoAsync(talentoHumano, idDepartamento);
+        }
+        
+        public void addUsuario_Rol(int talentoHumano, int idRol) {
+            base.Channel.addUsuario_Rol(talentoHumano, idRol);
+        }
+        
+        public System.Threading.Tasks.Task addUsuario_RolAsync(int talentoHumano, int idRol) {
+            return base.Channel.addUsuario_RolAsync(talentoHumano, idRol);
+        }
+        
+        public void addRoles_Permisos(int idRol, int idPermiso) {
+            base.Channel.addRoles_Permisos(idRol, idPermiso);
+        }
+        
+        public System.Threading.Tasks.Task addRoles_PermisosAsync(int idRol, int idPermiso) {
+            return base.Channel.addRoles_PermisosAsync(idRol, idPermiso);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {
@@ -1510,6 +1558,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ASKI_VACACIONES.ServiceReference1.Vacaciones[]> getTbl_vacacionesAsync() {
             return base.Channel.getTbl_vacacionesAsync();
+        }
+        
+        public int getUltimoId_Roles() {
+            return base.Channel.getUltimoId_Roles();
+        }
+        
+        public System.Threading.Tasks.Task<int> getUltimoId_RolesAsync() {
+            return base.Channel.getUltimoId_RolesAsync();
         }
     }
 }

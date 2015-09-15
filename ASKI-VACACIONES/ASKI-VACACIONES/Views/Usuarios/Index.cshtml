@@ -1,26 +1,31 @@
 ﻿@model ASKI_VACACIONES.Models.UsuariosModel
 
-<!--MOdel-->
-<script type="text/javascript">
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
-</script>
+
 
 <!--Check-->
 <script type="text/javascript">
-    function showContent() {
-        element = document.getElementById("content");
-        check = document.getElementById("check");
-        if (check.checked) {
-            element.style.display = 'block';
+    function showContent(tabla) {
+        if (tabla == 1) {
+            element = document.getElementById("contentDepartamento");
+            check = document.getElementById("checkDepartamento");
+            if (check.checked) {
+                element.style.display = 'block';
+            }
+            else {
+                element.style.display = 'none';
+            }
         }
         else {
-            element.style.display = 'none';
+            element = document.getElementById("contentRoles");
+            check = document.getElementById("checkRoles");
+            if (check.checked) {
+                element.style.display = 'block';
+            }
+            else {
+                element.style.display = 'none';
+            }
         }
     }
-
-    
 
 </script>
 
@@ -39,35 +44,33 @@
 <!-- Main content -->
 <section class="content">
 
-    <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>
 
-    <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Confirmation</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Do you want to save changes you made to document before closing?</p>
-                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
 
                 @using (Html.BeginForm())
                 {
+
+                    <!-- Modal HTML -->
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h2 class="modal-title">Confirmación</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Usuario alamacenado exitosamente, su contraseña es la siguiente: </p>
+                                    <p><pre id="passwordModal"></pre></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="panel-body">
                         <div class="box box-primary">
@@ -79,172 +82,151 @@
                             <form class="form-horizontal" id="formulario">
 
                                 @*<div class="nav nav-tabs ">*@
-                                    
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a data-toggle="tab" href="#0">Agregar</a></li>
-                                            <li><a href="~/Usuarios/Edit">Modificar</a></li>
-                                            <li><a data-toggle="tab" href="~/Usuarios/Delete">Eliminar</a></li>
-                                        </ul> <!-- cd-tabs-navigation -->
-                                    
 
-                                    <div class="tab-content">
-                                          <div class="tab-pane fade in active">
-                                            <div class="box-body">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#0">Agregar</a></li>
+                                    <li><a href="~/Usuarios/Edit">Modificar</a></li>
+                                    <li><a data-toggle="tab" href="~/Usuarios/Delete">Eliminar</a></li>
+                                </ul> <!-- cd-tabs-navigation -->
 
-                                                <div class="form-group">
-                                                    <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.talento_humano)
-                                                    </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <div class="box-body">
+
+                                            <div class="form-group">
+                                                <label for="inputtalentohumano" class="col-sm-2 control-label">Talento humano</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.talento_humano, new { @class = "form-control", type = "text", id = "talentohumano" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.talento_humano)
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.primer_nombre)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.segundo_nombre)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputprimerapellido" class="col-sm-2 control-label">Primer apellido</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.primer_apellido, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.primer_apellido)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputsegundoapellido" class="col-sm-2 control-label">Segundo apellido</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.segundo_apellido, new { @class = "form-control", type = "text" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.segundo_apellido)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputcorreo" class="col-sm-2 control-label">Correo</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "text", name = "email" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.email)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputpass" class="col-sm-2 control-label"></label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.password, new { @class = "form-control", type = "hidden" })</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <br />
-                                                    <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
-                                                    <div class="col-sm-10">
-                                                        <p>@Html.TextBoxFor(x => x.fecha_ingreso, new { @class = "form-control", type = "date" })</p>
-                                                        @Html.ValidationMessageFor(Model => Model.fecha_creacion)
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputdepto" class="col-sm-2 control-label">Departamento</label>
-                                                    <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
-                                                    <div id="content" style="display: none;">
-
-                                                        <div class="box">
-                                                            <div class="box-header">
-                                                                <h3 class="box-title"></h3>
-                                                            </div><!-- /.box-header -->
-                                                            <div class="box-body">
-                                                                <table id="example1" class="table table-bordered table-striped">
-
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Seleccionar</th>
-                                                                            <th>Departamentos</th>
-
-                                                                        </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th><input type="checkbox"></th>
-                                                                            <th></th>
-
-                                                                        </tr>
-                                                                    </tfoot>
-                                                                </table>
-                                                            </div><!-- /.box-body -->
-                                                        </div><!-- /.box -->
-
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
-                                                    <input type="checkbox" name="check" id="check" value="2" onchange="javascript:showContent()" />
-                                                    <div id="content" style="display: none;">
-                                                        <div class="box">
-                                                            <div class="box-header">
-                                                                <h3 class="box-title"></h3>
-                                                            </div><!-- /.box-header -->
-                                                            <div class="container demo">
-                                                                <table class="datatable table table-striped table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Seleccionar</th>
-                                                                            <th>Departamento</th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr class="gradeX">
-                                                                            <td>T</td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td class="center"></td>
-                                                                            <td class="center"></td>
-                                                                        </tr>
-
-                                                                        <tr class="gradeU">
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td class="center"></td>
-                                                                            <td class="center"></td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th>Seleccionar</th>
-                                                                            <th>Departamento</th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </tfoot>
-                                                                </table>
-                                                            </div><!--/.container.demo -->
-                                                        </div><!-- /.box -->
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="box-footer">
-
-                                                    @*<button type="submit" class="btn btn-info pull-right" onclick="javascript:Generarpasword()">Agregar</button>*@
-                                                    <input type="submit" class="btn btn-info pull-right" value="Agregar" onclick="Generarpasword()" />
-                                                </div><!-- /.box-footer -->
-
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="inputprimernombre" class="col-sm-2 control-label">Primer nombre</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", type = "text" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.primer_nombre)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputsegundonombre" class="col-sm-2 control-label">Segundo nombre</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.segundo_nombre, new { @class = "form-control", type = "text", id="segundonombre" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.segundo_nombre)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputprimerapellido" class="col-sm-2 control-label">Primer apellido</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.primer_apellido, new { @class = "form-control", type = "text" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.primer_apellido)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputsegundoapellido" class="col-sm-2 control-label">Segundo apellido</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.segundo_apellido, new { @class = "form-control", type = "text" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.segundo_apellido)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputcorreo" class="col-sm-2 control-label">Correo</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "text", name = "email" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.email)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpass" class="col-sm-2 control-label"></label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.password, new { @class = "form-control", type = "hidden", id="textPass" })</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <br />
+                                                <label for="inputfecha" class="col-sm-2 control-label">Fecha ingreso</label>
+                                                <div class="col-sm-10">
+                                                    <p>@Html.TextBoxFor(x => x.fecha_ingreso, new { @class = "form-control", type = "date" })</p>
+                                                    @Html.ValidationMessageFor(Model => Model.fecha_creacion)
+                                                </div>
+                                            </div>
 
-                                    </div> <!-- cd-tabs-content -->
+                                            <div class="form-group">
+                                                <label for="inputdepto" class="col-sm-2 control-label">Departamentos</label>
+                                                <input type="checkbox" name="check" id="checkDepartamento" value="1" onchange="javascript:showContent(1)" />
+                                                <div id="contentDepartamento" style="display: none;">
+
+                                                    <div class="box">
+                                                        <div class="box-header">
+                                                            <h3 class="box-title"></h3>
+                                                        </div><!-- /.box-header -->
+                                                        <div class="box-body">
+                                                            <table id="departamento" class="datatable table table-striped table-bordered" width="65%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th><input name="select_all" type="checkbox">         ID</th>
+                                                                        <th>Descripcion</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Id</th>
+                                                                        <th>Descripcion</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div><!-- /.box-body -->
+                                                    </div><!-- /.box -->
+
+                                                </div>
+                                            </div>
+                                            @Html.TextBoxFor(x => x.departamentosID, new { @class = "hidden", id = "textDepartamentos", type = "text" })
+
+                                            <div class="form-group">
+                                                <label for="inputdepto" class="col-sm-2 control-label">Roles</label>
+                                                <input type="checkbox" name="check" id="checkRoles" value="2" onchange="javascript:showContent(2)" />
+                                                <div id="contentRoles" style="display: none;">
+                                                    <div class="box">
+                                                        <div class="box-header">
+                                                            <h3 class="box-title"></h3>
+                                                        </div><!-- /.box-header -->
+                                                        <div class="box-body">
+                                                            @Html.TextBoxFor(x => x.rolesID, new { @class = "hidden", id = "textRoles", type = "text" })
+                                                            
+                                                                <table id="Roles" class="datatable table table-striped table-bordered" width="65%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><input name="selec_todos" type="checkbox"> ID</th>
+
+                                                                            <th>Rol</th>
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>ID</th>
+                                                                            <th>Rol</th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                           
+                                                        </div>
+                                                        </div><!-- /.box -->
+
+                                                </div>
+                                            </div>
+
+                                            <div class="box-footer">
+
+                                               
+                                                <input type="submit" class="btn btn-info pull-right" value="Agregar" onclick="beforeSendInformation()" />
+                                            </div><!-- /.box-footer -->
+
+                                        </div>
+                                    </div>
+
+                                </div> <!-- cd-tabs-content -->
                                 @*</div>*@ <!-- cd-tabs -->
                             </form>
                         </div><!-- /.box -->
@@ -265,3 +247,248 @@
 
 
 </section><!-- /.content -->
+
+<script type="text/javascript">
+    function updateDataTableSelectAllCtrl(table) {
+        var $table = table.table().node();
+        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
+
+        // If none of the checkboxes are checked
+        if ($chkbox_checked.length === 0) {
+            chkbox_select_all.checked = false;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If all of the checkboxes are checked
+        } else if ($chkbox_checked.length === $chkbox_all.length) {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If some of the checkboxes are checked
+        } else {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = true;
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        var rows_selected = [];
+        var table = $('#departamento').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonDepartamentos", "Usuarios")",
+                "type": "POST"
+            },
+
+            "columns": [
+                    {
+                        "data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                        }
+                    },
+                    { "data": "descripcion" }
+
+            ],
+            'order': [1, 'asc'],
+            'rowCallback': function (row, data, dataIndex) {
+                // Get row ID
+                var rowId = data[0];
+
+                // If row ID is in the list of selected row IDs
+                if ($.inArray(rowId, rows_selected) !== -1) {
+                    $(row).find('input[type="checkbox"]').prop('checked', true);
+                    $(row).addClass('selected');
+                }
+
+            }
+        });
+
+        // Handle click on checkbox
+        $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
+
+        // Handle click on table cells with checkboxes
+        $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
+
+        // Handle click on "Select all" control
+        $('#departamento thead input[name="select_all"]').on('click', function (e) {
+            if (this.checked) {
+                $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
+            }
+
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
+
+        // Handle table draw event
+        table.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl(table);
+        });
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    function beforeSendInformation() {
+        //Modal
+        var Segundonombre = document.getElementById("segundonombre").value;
+        var talento = document.getElementById("talentohumano").value;
+        var longi = talento.length;
+        var longi2 = longi - 2;
+        var cortar_cadena = talento.slice(longi2, longi);
+        var concatenar = Segundonombre.concat(cortar_cadena);
+        $('#textPass').val(concatenar);
+        $('#passwordModal').text(concatenar);
+       
+
+        //Departamentos
+        var table = $('#departamento').DataTable();
+        table
+         .search('')
+         .columns().search('')
+         .draw();
+
+        var oTable = $('#departamento').DataTable();
+        var cadena = "";
+        var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
+        rowcollection.each(function (index, elem) {
+            var checkbox_value = $(elem).val();
+            cadena += checkbox_value + "/";
+        });
+        console.log("checbox_value: " + cadena);
+        $('#textDepartamentos').val(cadena)
+
+
+        //Roles
+        var table2 = $('#Roles').DataTable();
+        table2
+         .search('')
+         .columns().search('')
+         .draw();
+
+        var oTable2 = $('#Roles').DataTable();
+        var cadena2 = "";
+        var rowcollection2 = oTable2.$(".call-checkbox:checked", { "page": "all" });
+        rowcollection2.each(function (index, elem) {
+            var checkbox_value = $(elem).val();
+            cadena2 += checkbox_value + "/";
+        });
+        console.log("checbox_value: " + cadena2);
+        $('#textRoles').val(cadena2)
+
+        //Modal second phase
+        $("#myModal").modal('show');
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    function updateDataTableSelectAllCtrl2(table) {
+        var $table = table.table().node();
+        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+        var chkbox_select_all = $('thead input[name="selec_todos"]', $table).get(0);
+
+        // If none of the checkboxes are checked
+        if ($chkbox_checked.length === 0) {
+            chkbox_select_all.checked = false;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If all of the checkboxes are checked
+        } else if ($chkbox_checked.length === $chkbox_all.length) {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If some of the checkboxes are checked
+        } else {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = true;
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        var rows_selected2 = [];
+        var table2 = $('#Roles').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonRoles", "Usuarios")",
+                "type": "POST"
+            },
+
+            "columns": [
+                    {
+                        "data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                        }
+                    },
+                    { "data": "descripcion" }
+
+            ],
+            'order': [1, 'asc'],
+            'rowCallback': function (row, data, dataIndex) {
+                // Get row ID
+                var rowId = data[0];
+
+                // If row ID is in the list of selected row IDs
+                if ($.inArray(rowId, rows_selected2) !== -1) {
+                    $(row).find('input[type="checkbox"]').prop('checked', true);
+                    $(row).addClass('selected');
+                }
+
+            }
+        });
+
+        // Handle click on checkbox
+        $('#Roles tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
+
+        // Handle click on table cells with checkboxes
+        $('#Roles').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
+
+        // Handle click on "Select all" control
+        $('#Roles thead input[name="selec_todos"]').on('click', function (e) {
+            if (this.checked) {
+                $('#Roles tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#Roles tbody input[type="checkbox"]:checked').trigger('click');
+            }
+
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
+
+        // Handle table draw event
+        table2.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl2(table2);
+        });
+    });
+</script>

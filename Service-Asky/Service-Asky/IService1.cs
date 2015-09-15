@@ -33,7 +33,13 @@ namespace Service_Asky
         void addUsuario(int talento_humano, string email, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, DateTime fecha_ingreso, string password);
         [OperationContract]
         void addPermiso(string descripcion);
-
+        [OperationContract]
+        void addUsuario_Departamento(int talentoHumano, int idDepartamento);
+        [OperationContract]
+        void addUsuario_Rol(int talentoHumano, int idRol);
+        [OperationContract]
+        void addRoles_Permisos(int idRol, int idPermiso);
+    
 
 
 
@@ -48,8 +54,6 @@ namespace Service_Asky
         void editDepartamento(int id, string descripcion);
         [OperationContract]
         void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
-
-
 
 
         //=================== Delete Element from database=============
@@ -90,6 +94,8 @@ namespace Service_Asky
         List<Usuario> getTbl_usuarios();
         [OperationContract]
         List<Vacaciones> getTbl_vacaciones();
+        [OperationContract]
+        int getUltimoId_Roles();
 
     }
 

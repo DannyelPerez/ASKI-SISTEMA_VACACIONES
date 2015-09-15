@@ -1,50 +1,184 @@
-﻿@{
+﻿@model ASKI_VACACIONES.Models.UsuariosModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-    <table id="example" class="display responsive nowrap  table-bordered table-striped table-hover" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-
-            </tr>
-        </thead>
-
-        <tfoot>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-            </tr>
-        </tfoot>
-    </table>
-
- <!--Test-->
 <script type="text/javascript">
-    var datatable;
-    $(document).ready(function () {
-        datatable = $('#example').DataTable({
-            responsive: true,
-            "ajax": {
-                "url": "@Url.Action("JSon", "Test")",
-                "type": "POST"
-            },
-            "columns": [
-                    { "data": "talento_humano" },
-                    { "data": "primer_nombre" },
-                    { "data": "primer_apellido" },
-                    { "data": "option" }
-
-            ]
-        });
-
-    });
+    function Clear() {
+        var table = $('#example').DataTable();
+        table
+         .search('')
+         .columns().search('')
+         .draw();
+    }
 </script>
+
+    <form id="frm-example" action="#">
+     <table id="example" class="display responsive display select" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th><input name="select_all" type="checkbox"></th>
+                        <th>Descripcion</th>
+
+
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Descripcion</th>
+                    </tr>
+                </tfoot>
+            </table>
+ 
+        <p><button type="submit" onclick="Clear()">Submit</button></p>
+
+        <b>Data submitted to the server:</b>
+        <br>
+       @*<input id="example-console" type="text"  value=""/>*@
+    <p> @Html.TextBoxFor(x => x.primer_nombre, new { @class = "form-control", id = "example-console", type = "text",  @Value="hola" })</p>
+   @* <pre id="example-console">
+    </pre>*@
+        </form>
+
+
+        <script type="text/javascript">
+            function updateDataTableSelectAllCtrl(table) {
+                var $table = table.table().node();
+                var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+                var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+                var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
+
+                // If none of the checkboxes are checked
+                if ($chkbox_checked.length === 0) {
+                    chkbox_select_all.checked = false;
+                    if ('indeterminate' in chkbox_select_all) {
+                        chkbox_select_all.indeterminate = false;
+                    }
+
+                    // If all of the checkboxes are checked
+                } else if ($chkbox_checked.length === $chkbox_all.length) {
+                    chkbox_select_all.checked = true;
+                    if ('indeterminate' in chkbox_select_all) {
+                        chkbox_select_all.indeterminate = false;
+                    }
+
+                    // If some of the checkboxes are checked
+                } else {
+                    chkbox_select_all.checked = true;
+                    if ('indeterminate' in chkbox_select_all) {
+                        chkbox_select_all.indeterminate = true;
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+                // Array holding selected row IDs
+                var rows_selected = [];
+                var table = $('#example').DataTable({
+
+                    'ajax': {
+                        "url": "@Url.Action("JSonRoles", "Roles")",
+                        "type": "POST"
+                    },
+
+
+                    "columns": [
+                        {
+
+                            "data": "id",
+                            'className': 'dt-body-center',
+                            'render': function (id) {
+                                return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                            }
+                        },
+
+                        { "data": "descripcion" }
+
+                    ],
+                    'order': [1, 'asc'],
+                    'rowCallback': function (row, data, dataIndex) {
+                        // Get row ID
+                        var rowId = data[0];
+
+                        // If row ID is in the list of selected row IDs
+                        if ($.inArray(rowId, rows_selected) !== -1) {
+                            $(row).find('input[type="checkbox"]').prop('checked', true);
+                            $(row).addClass('selected');
+                        }
+
+                    }
+
+                });
+
+                // Handle click on checkbox
+                $('#example tbody').on('click', 'input[type="checkbox"]', function (e) {
+                    e.stopPropagation();
+                });
+
+                // Handle click on table cells with checkboxes
+                $('#example').on('click', 'tbody td, thead th:first-child', function (e) {
+                    $(this).parent().find('input[type="checkbox"]').trigger('click');
+                });
+
+                // Handle click on "Select all" control
+                $('#example thead input[name="select_all"]').on('click', function (e) {
+                    if (this.checked) {
+                        $('#example tbody input[type="checkbox"]:not(:checked)').trigger('click');
+                    } else {
+                        $('#example tbody input[type="checkbox"]:checked').trigger('click');
+                    }
+
+                    // Prevent click event from propagating to parent
+                    e.stopPropagation();
+                });
+
+                // Handle table draw event
+                table.on('draw', function () {
+                    // Update state of "Select all" control
+                    updateDataTableSelectAllCtrl(table);
+                });
+
+                // Handle form submission event
+                $('#frm-example').on('submit', function (e) {
+                    var form = this;
+                    //var cadena = "";
+                    //// Iterate over all selected checkboxes
+                    $.each(rows_selected, function (index, rowId) {
+                         //Create a hidden element
+                        $(form).append(
+                            $('<input>')
+                               //.attr('type', 'hidden')
+                               .attr('name', 'id[]')
+                               .val(rowId)
+                        );
+                        //console.log("en el each: " + rowId);
+
+                    });
+                    var oTable = $('#example').DataTable();
+                    var cadena = "";
+                   var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
+                    rowcollection.each(function (index, elem) {
+                        var checkbox_value = $(elem).val();
+                        cadena += checkbox_value + "/";
+                    });
+                    console.log("checbox_value: " + cadena);
+                    // FOR DEMONSTRATION ONLY
+
+                    // Output form data to a console
+                    $('#example-console').text(cadena);
+                    console.log("Form submission", $(form).serialize());
+                    $('#example-console').val(cadena)
+                    // Remove added elements
+                    $('input[name="id\[\]"]', form).remove();
+
+                    // Prevent actual form submission
+                    e.preventDefault();
+                });
+        });
+    </script>
 
 
 
