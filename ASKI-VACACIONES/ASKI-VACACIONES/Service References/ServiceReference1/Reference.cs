@@ -1204,6 +1204,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deletePermiso", ReplyAction="http://tempuri.org/IService1/deletePermisoResponse")]
         System.Threading.Tasks.Task deletePermisoAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteRoles_Usuarios", ReplyAction="http://tempuri.org/IService1/deleteRoles_UsuariosResponse")]
+        void deleteRoles_Usuarios(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteRoles_Usuarios", ReplyAction="http://tempuri.org/IService1/deleteRoles_UsuariosResponse")]
+        System.Threading.Tasks.Task deleteRoles_UsuariosAsync(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteDepartamento_Usuarios", ReplyAction="http://tempuri.org/IService1/deleteDepartamento_UsuariosResponse")]
+        void deleteDepartamento_Usuarios(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteDepartamento_Usuarios", ReplyAction="http://tempuri.org/IService1/deleteDepartamento_UsuariosResponse")]
+        System.Threading.Tasks.Task deleteDepartamento_UsuariosAsync(int talentoHumano);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/confirmarLogin", ReplyAction="http://tempuri.org/IService1/confirmarLoginResponse")]
         ASKI_VACACIONES.ServiceReference1.Usuario confirmarLogin(string email, string password);
         
@@ -1305,6 +1317,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getLista_Permisos", ReplyAction="http://tempuri.org/IService1/getLista_PermisosResponse")]
         System.Threading.Tasks.Task<string[]> getLista_PermisosAsync(int talento_humano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getIdsRoles_Usuario", ReplyAction="http://tempuri.org/IService1/getIdsRoles_UsuarioResponse")]
+        string[] getIdsRoles_Usuario(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getIdsRoles_Usuario", ReplyAction="http://tempuri.org/IService1/getIdsRoles_UsuarioResponse")]
+        System.Threading.Tasks.Task<string[]> getIdsRoles_UsuarioAsync(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getIdDepartamentos_Usuario", ReplyAction="http://tempuri.org/IService1/getIdDepartamentos_UsuarioResponse")]
+        string[] getIdDepartamentos_Usuario(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getIdDepartamentos_Usuario", ReplyAction="http://tempuri.org/IService1/getIdDepartamentos_UsuarioResponse")]
+        System.Threading.Tasks.Task<string[]> getIdDepartamentos_UsuarioAsync(int talentoHumano);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1446,6 +1470,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.deletePermisoAsync(id);
         }
         
+        public void deleteRoles_Usuarios(int talentoHumano) {
+            base.Channel.deleteRoles_Usuarios(talentoHumano);
+        }
+        
+        public System.Threading.Tasks.Task deleteRoles_UsuariosAsync(int talentoHumano) {
+            return base.Channel.deleteRoles_UsuariosAsync(talentoHumano);
+        }
+        
+        public void deleteDepartamento_Usuarios(int talentoHumano) {
+            base.Channel.deleteDepartamento_Usuarios(talentoHumano);
+        }
+        
+        public System.Threading.Tasks.Task deleteDepartamento_UsuariosAsync(int talentoHumano) {
+            return base.Channel.deleteDepartamento_UsuariosAsync(talentoHumano);
+        }
+        
         public ASKI_VACACIONES.ServiceReference1.Usuario confirmarLogin(string email, string password) {
             return base.Channel.confirmarLogin(email, password);
         }
@@ -1580,6 +1620,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> getLista_PermisosAsync(int talento_humano) {
             return base.Channel.getLista_PermisosAsync(talento_humano);
+        }
+        
+        public string[] getIdsRoles_Usuario(int talentoHumano) {
+            return base.Channel.getIdsRoles_Usuario(talentoHumano);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getIdsRoles_UsuarioAsync(int talentoHumano) {
+            return base.Channel.getIdsRoles_UsuarioAsync(talentoHumano);
+        }
+        
+        public string[] getIdDepartamentos_Usuario(int talentoHumano) {
+            return base.Channel.getIdDepartamentos_Usuario(talentoHumano);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getIdDepartamentos_UsuarioAsync(int talentoHumano) {
+            return base.Channel.getIdDepartamentos_UsuarioAsync(talentoHumano);
         }
     }
 }

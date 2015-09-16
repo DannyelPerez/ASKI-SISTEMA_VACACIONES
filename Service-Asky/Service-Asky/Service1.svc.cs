@@ -258,6 +258,31 @@ namespace Service_Asky
             }
         }
 
+        public void deleteRoles_Usuarios(int talentoHumano)
+        {
+            string query = "DELETE FROM tbl_usuarios_roles WHERE talento_humano='" + talentoHumano + "'";
+
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
+
+
+        public void deleteDepartamento_Usuarios(int talentoHumano)
+        {
+            string query = "DELETE FROM tbl_usuarios_departamento WHERE talento_humano='" + talentoHumano + "'";
+
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
+
 
 
 
@@ -571,6 +596,67 @@ namespace Service_Asky
 
             return permisos;
 
+        }
+
+        public List<string> getIdDepartamentos_Usuario(int talentoHumano)
+        {
+            List<string> ids = new List<string>();
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            try
+            {
+                string query = "SELECT * FROM tbl_usuarios_departamento WHERE talento_humano='" + talentoHumano + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    string id = "";
+                    while (dataReader.Read())
+                    {
+                        id = dataReader["departamentoid"] + "";
+                        ids.Add(id);
+
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ids;
+        }
+
+
+
+        public List<string> getIdsRoles_Usuario(int talentoHumano)
+        {
+            List<string> ids = new List<string>();
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            try
+            {
+                string query = "SELECT * FROM tbl_usuarios_roles WHERE talento_humano='" + talentoHumano + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    string id = "";
+                    while (dataReader.Read())
+                    {
+                        id = dataReader["rolesid"] + "";
+                        ids.Add(id);
+
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ids;
         }
 
 
