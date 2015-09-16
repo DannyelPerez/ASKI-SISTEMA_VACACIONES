@@ -59,6 +59,11 @@ namespace Service_Asky
         //=================== Delete Element from database=============
         [OperationContract]
         void deletePermiso(int id);
+        [OperationContract]
+        void deleteRoles_Usuarios(int talentoHumano);
+        [OperationContract]
+        void deleteDepartamento_Usuarios(int talentoHumano);
+
 
 
 
@@ -98,6 +103,10 @@ namespace Service_Asky
         int getUltimoId_Roles();
         [OperationContract]
         List<string> getLista_Permisos(int talento_humano);
+        [OperationContract]
+        List<string> getIdsRoles_Usuario(int talentoHumano);
+        [OperationContract]
+        List<string> getIdDepartamentos_Usuario(int talentoHumano);
 
 
     }

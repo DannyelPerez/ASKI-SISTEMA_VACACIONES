@@ -86,6 +86,22 @@ namespace ASKI_VACACIONES.Controllers
                             break;
                         case "Modificar":
                             client.editUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso);
+                            client.deleteRoles_Usuarios(model.talento_humano);
+                        client.deleteDepartamento_Usuarios(model.talento_humano);
+                        var seleccionados=client.getIdsRoles_Usuario(model.talento_humano);
+                        //Rebuild Table
+                        List<int> idDepartamentos = splitCadenaID(model.departamentosID);
+                        foreach (var item in idDepartamentos)
+                        {
+                            client.addUsuario_Departamento(model.talento_humano, item);
+                        }
+
+                        List<int> idRoles = splitCadenaID(model.rolesID);
+                        foreach (var item in idRoles)
+                        {
+                            client.addUsuario_Rol(model.talento_humano, item);
+                        }
+
                             break;
                     }
                     client.Close();
@@ -165,5 +181,38 @@ namespace ASKI_VACACIONES.Controllers
             }
             return numero;
         }
+
+        public ActionResult JSonGetActiveRoles(int id)
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getIdsRoles_Usuario(id);
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"id\":\"{0}\"", query.ElementAt(i)) + "}";
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
+
+        public ActionResult JSonGetActiveDepartementos(int id)
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getIdDepartamentos_Usuario(id);
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"id\":\"{0}\"", query.ElementAt(i)) + "}";
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
+
+
+
     }
 }
