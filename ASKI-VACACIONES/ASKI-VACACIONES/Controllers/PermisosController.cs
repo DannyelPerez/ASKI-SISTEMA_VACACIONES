@@ -53,8 +53,6 @@ namespace ASKI_VACACIONES.Controllers
         {
             if (Session["User"] != null)
             {
-                if (ModelState.IsValid)
-                {
                     Service1Client client = new Service1Client();
                     switch (submitButton)
                     {
@@ -68,15 +66,16 @@ namespace ASKI_VACACIONES.Controllers
                             ViewBag.Desc = hola.descripcion;
                             break;
                         case "Modificar":
-                            client.editPermiso(model.id, model.descripcion, model.activo);
+                            if (ModelState.IsValid)
+                            {
+                                client.editPermiso(model.id, model.descripcion, model.activo);
+                            }
                             break;
 
                     }
                     client.Close();
                     return View();
-                }
-                return View();
-            }
+             }
             else
             {
                 return RedirectToAction("Login", "Home");
