@@ -9,7 +9,19 @@ namespace ASKI_VACACIONES.Controllers
     public class SolicitudesController : Controller
     {
         // GET: Solicitudes
-        public ActionResult NuevaSolicitud() {  return View();}
-        public ActionResult MisSolicitudes() { return View(); }
+        public ActionResult NuevaSolicitud() 
+        {
+            if (Session["User"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Home");
+        }
+        public ActionResult MisSolicitudes() 
+        {
+            if (Session["User"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Home");
+        }
     }
 }

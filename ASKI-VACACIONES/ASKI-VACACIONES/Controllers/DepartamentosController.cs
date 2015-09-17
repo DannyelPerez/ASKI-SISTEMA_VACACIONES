@@ -17,71 +17,77 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
         [HttpPost]
         public ActionResult Index(DepartamentoModel model)
         {
-            
+
             if (Session["User"] != null)
             {
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
                     client.addDepartamento(model.descripcion);
-                   client.Close();
+                    client.Close();
                 }
                 return View();
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
         }
 
         [HttpPost]
         public ActionResult Edit(DepartamentoModel model, string submitButton)
         {
-            Service1Client client = new Service1Client();
-            switch (submitButton)
+
+            if (Session["User"] != null)
             {
-                case "Buscar":
-                    var hola = client.getDepartamento(model.id);
-                    if (hola != null) { 
-                    ViewBag.Desc = hola.descripcion;
-                    ViewBag.id = hola.departamentoid;
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    switch (submitButton)
+                    {
+                        case "Buscar":
+                            var hola = client.getDepartamento(model.id);
+                            if (hola == null)
+                            {
+                                client.Close();
+                                return View();
+                            }
+                            ViewBag.Desc = hola.descripcion;
+                            ViewBag.id = hola.departamentoid;
+                            break;
+                        case "Modificar":
+                            client.editDepartamento(model.id, model.descripcion);
+                            break;
                     }
                     client.Close();
                     return View();
-                case "Modificar":
-                    if (Session["User"] != null)
-                    {
-                        client.editDepartamento(model.id, model.descripcion);
-                        client.Close();
-                    }
-                                        
-                    return View();
-                default:
-                  
-                    return RedirectToAction("Login");
+                }
+                return View();
             }
-
-
-
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
+
         public ActionResult Edit()
         {
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
         public ActionResult Delete()
         {
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace ASKI_VACACIONES.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
         }
 
@@ -45,65 +45,86 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
 
         [HttpPost]
         public ActionResult Edit(PermisosModel model, string submitButton)
         {
-            Service1Client client = new Service1Client();
-            switch (submitButton)
+            if (Session["User"] != null)
             {
-            case "Buscar":
-
-           var hola = client.getPermiso(model.id);
-            if (hola != null)
-            {
-                ViewBag.Desc = hola.descripcion;
-            }
-            client.Close();
-            return View();     
-            case "Modificar":
-                    if (Session["User"] != null)
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    switch (submitButton)
                     {
-                        // var dic = client.getPermisosInfo(model.id);
-                        //Session["Name"] = dic.descripcion;
-                        client.editPermiso(model.id, model.descripcion, model.activo);
-                        client.Close();
-                    }
-                    return View();
-                default:
-                    // If they've submitted the form without a submitButton, 
-                    // just return the view again.
-                    return RedirectToAction("Login");
-            }
+                        case "Buscar":
+                            var hola = client.getPermiso(model.id);
+                            if (hola == null)
+                            {
+                                client.Close();
+                                return RedirectToAction("Login", "Home");
+                            }
+                            ViewBag.Desc = hola.descripcion;
+                            break;
+                        case "Modificar":
+                            client.editPermiso(model.id, model.descripcion, model.activo);
+                            break;
 
-          
+                    }
+                    client.Close();
+                    return View();
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
         public ActionResult Delete(PermisosModel model)
         {
-            Service1Client client = new Service1Client();
-            client.deletePermiso(model.id);
-            client.Close();
-            return View();
+            if (Session["User"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    client.deletePermiso(model.id);
+                    client.Close();
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
         public ActionResult Delete()
         {
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
         }
 
         [HttpPost]
         public ActionResult Cargar(PermisosModel model)
         {
-            Service1Client client = new Service1Client();
-            var dic = client.getPermiso(model.id);
-            client.Close();
-            return View(dic);
+            if (Session["User"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    var dic = client.getPermiso(model.id);
+                    client.Close();
+                    return View(dic);
+                }
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Home");
         }
     }
 }

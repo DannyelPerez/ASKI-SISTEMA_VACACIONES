@@ -9,6 +9,12 @@ namespace ASKI_VACACIONES.Controllers
     public class ReportesController : Controller
     {
         // GET: Reportes
-        public ActionResult Usuarios() {return View();}
+        public ActionResult Usuarios() 
+        {
+            if (Session["User"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Home");
+        }
     }
 }

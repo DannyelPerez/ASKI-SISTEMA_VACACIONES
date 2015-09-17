@@ -195,6 +195,30 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="deleteRoles_Usuarios">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteRoles_UsuariosResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteDepartamento_Usuarios">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteDepartamento_UsuariosResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="confirmarLogin">
     <xs:complexType>
       <xs:sequence>
@@ -206,7 +230,7 @@
   <xs:element name="confirmarLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="confirmarLoginResult" type="xs:boolean" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="confirmarLoginResult" nillable="true" type="q3:Usuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -220,7 +244,7 @@
   <xs:element name="getPermisoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getPermisoResult" nillable="true" type="q3:Permisos" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getPermisoResult" nillable="true" type="q4:Permisos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -234,7 +258,7 @@
   <xs:element name="getRolResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getRolResult" nillable="true" type="q4:Roles" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getRolResult" nillable="true" type="q5:Roles" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -248,7 +272,7 @@
   <xs:element name="getDepartamentoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getDepartamentoResult" nillable="true" type="q5:Departamento" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getDepartamentoResult" nillable="true" type="q6:Departamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -262,7 +286,7 @@
   <xs:element name="getUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getUsuarioResult" nillable="true" type="q6:Usuario" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getUsuarioResult" nillable="true" type="q7:Usuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -274,7 +298,7 @@
   <xs:element name="getTbl_calendarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_calendarioResult" nillable="true" type="q7:ArrayOfCalendario" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_calendarioResult" nillable="true" type="q8:ArrayOfCalendario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -286,7 +310,7 @@
   <xs:element name="getTbl_departamentosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_departamentosResult" nillable="true" type="q8:ArrayOfDepartamento" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_departamentosResult" nillable="true" type="q9:ArrayOfDepartamento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -298,7 +322,7 @@
   <xs:element name="getTbl_jerarquiaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_jerarquiaResult" nillable="true" type="q9:ArrayOfJerarquia" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_jerarquiaResult" nillable="true" type="q10:ArrayOfJerarquia" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -310,7 +334,7 @@
   <xs:element name="getTbl_log_vacacionesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_log_vacacionesResult" nillable="true" type="q10:ArrayOfLog_Vacaciones" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_log_vacacionesResult" nillable="true" type="q11:ArrayOfLog_Vacaciones" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -322,7 +346,7 @@
   <xs:element name="getTbl_permisosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_permisosResult" nillable="true" type="q11:ArrayOfPermisos" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_permisosResult" nillable="true" type="q12:ArrayOfPermisos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -334,7 +358,7 @@
   <xs:element name="getTbl_rolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_rolesResult" nillable="true" type="q12:ArrayOfRoles" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_rolesResult" nillable="true" type="q13:ArrayOfRoles" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -346,7 +370,7 @@
   <xs:element name="getTbl_statusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_statusResult" nillable="true" type="q13:ArrayOfStatus" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_statusResult" nillable="true" type="q14:ArrayOfStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -358,7 +382,7 @@
   <xs:element name="getTbl_tipo_diaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_tipo_diaResult" nillable="true" type="q14:ArrayOfTipo_Dia" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_tipo_diaResult" nillable="true" type="q15:ArrayOfTipo_Dia" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -370,7 +394,7 @@
   <xs:element name="getTbl_usuariosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_usuariosResult" nillable="true" type="q15:ArrayOfUsuario" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_usuariosResult" nillable="true" type="q16:ArrayOfUsuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -382,7 +406,7 @@
   <xs:element name="getTbl_vacacionesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_vacacionesResult" nillable="true" type="q16:ArrayOfVacaciones" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service_Asky.Tables" minOccurs="0" name="getTbl_vacacionesResult" nillable="true" type="q17:ArrayOfVacaciones" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -408,7 +432,35 @@
   <xs:element name="getLista_PermisosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getLista_PermisosResult" nillable="true" type="q17:ArrayOfstring" />
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getLista_PermisosResult" nillable="true" type="q18:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getIdsRoles_Usuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getIdsRoles_UsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getIdsRoles_UsuarioResult" nillable="true" type="q19:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getIdDepartamentos_Usuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getIdDepartamentos_UsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getIdDepartamentos_UsuarioResult" nillable="true" type="q20:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

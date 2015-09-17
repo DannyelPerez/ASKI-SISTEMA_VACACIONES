@@ -34,7 +34,7 @@
             </table>
  
         <p><button type="submit" onclick="Clear()">Submit</button></p>
-
+        <p><input type="submit" value="Prueba" onclick="beforeSendInformation()" /></p>
         <b>Data submitted to the server:</b>
         <br>
        @*<input id="example-console" type="text"  value=""/>*@
@@ -91,7 +91,7 @@
                             "data": "id",
                             'className': 'dt-body-center',
                             'render': function (id) {
-                                return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                                return '<input type="checkbox" class="call-checkbox"  id="D'+id+'" name="' + id + '" value="' + id + '">';
                             }
                         },
 
@@ -177,8 +177,17 @@
                     // Prevent actual form submission
                     e.preventDefault();
                 });
+
+                
         });
     </script>
+
+<script type="text/javascript">
+    function beforeSendInformation() {
+        $('#D8').attr('checked', true);
+  
+    }
+</script>
 
 
 
