@@ -44,6 +44,7 @@ namespace ASKI_VACACIONES.Controllers
                 {
                     Service1Client client = new Service1Client();
                     var aceder = client.confirmarLogin(user.email, user.password);
+                    Session["Permisos"]=client.getLista_Permisos(aceder.talento_humano);
                     if (aceder == null)
                         return View("Login");
 
