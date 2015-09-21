@@ -95,6 +95,9 @@
     <Compile Include="tbl_departamento.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_departamento_jefe.cs">
+      <DependentUpon>VSys-Aski.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_estatus.cs">
       <DependentUpon>VSys-Aski.tt</DependentUpon>
     </Compile>

@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "1234");
+        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -402,8 +402,7 @@ namespace Service_Asky
             {
                 Calendario c = new Calendario();
                 c.fecha = item.fecha;
-                c.talento_humano_empleado = item.talento_humano_empleado;
-                c.talento_humano_jefe = item.talento_humano_jefe;
+               c.talento_humano_jefe = item.talento_humano_jefe;
                 c.tipo_dia_id = item.tipo_dia_id;
                 calendario.Add(c);
 
