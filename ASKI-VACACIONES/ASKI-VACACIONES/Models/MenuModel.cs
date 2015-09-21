@@ -15,5 +15,7 @@ namespace ASKI_VACACIONES.Models
         public bool Permisos {get;set;}
         public bool Reporte {get;set;}
         public bool Solicitud { get; set; }
+        public bool Eventos { get; set; }
+
     }
 }

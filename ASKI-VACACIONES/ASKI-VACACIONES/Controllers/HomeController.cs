@@ -12,6 +12,7 @@ namespace ASKI_VACACIONES.Controllers
     {
         // GET: Home
         public ActionResult Login(){return View();}
+        public ActionResult Bienvenida() { return View(); }
         public ActionResult Perfil() 
         {
             if (Session["User"] != null)
@@ -64,7 +65,7 @@ namespace ASKI_VACACIONES.Controllers
         {
             if(Session["User"]!=null)
             {
-                return RedirectToAction("Calendario");
+                return RedirectToAction("Bienvenida");
             }
             else
             {
@@ -78,21 +79,6 @@ namespace ASKI_VACACIONES.Controllers
             Session["User"] = null;
             Session.Abandon();
             return View("Login");
-        }
-
-        public ActionResult JSonPermisos()
-        {
-            string json = "";
-            Service1Client client = new Service1Client();
-            var query = client.getTbl_permisos();
-            for (int i = 0; i < query.Count(); i++)
-            {
-                if (!json.Equals("")) { json += ","; }
-                json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", query.ElementAt(i).permisosid, query.ElementAt(i).descripcion) + "}";
-            }
-
-            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
-            return Content(json);
         }
        
     }
