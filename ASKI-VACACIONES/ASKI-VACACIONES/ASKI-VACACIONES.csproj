@@ -2472,6 +2472,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JerarquiaController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -2529,6 +2530,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DataTables-1.10.9\extensions\FixedColumns\examples\integration\" />
+    <Folder Include="Views\Jerarquia\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
