@@ -172,6 +172,24 @@ namespace Service_Asky
             }
         }
 
+        public void addTipo_dia(string descripcion, string color)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tipo.descripcion = descripcion;
+                tipo.color = color;
+                db.tbl_tipo_dia.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         //=================== Edit Element from database=============
 
@@ -256,6 +274,7 @@ namespace Service_Asky
                 dic.segundo_apellido = segundo_apellido;
                 dic.email = correo;
                 db.SaveChanges();
+            
             }
 
         }

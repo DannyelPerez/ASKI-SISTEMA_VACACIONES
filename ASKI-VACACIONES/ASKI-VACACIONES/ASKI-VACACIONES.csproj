@@ -2482,10 +2482,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoDiaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MenuModel.cs" />
-    <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\PermisosModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />

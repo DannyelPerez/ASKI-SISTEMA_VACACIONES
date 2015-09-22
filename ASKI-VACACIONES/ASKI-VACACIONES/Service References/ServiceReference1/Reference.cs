@@ -1174,6 +1174,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addRoles_Permisos", ReplyAction="http://tempuri.org/IService1/addRoles_PermisosResponse")]
         System.Threading.Tasks.Task addRoles_PermisosAsync(int idRol, int idPermiso);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
+        void addTipo_dia(string descripcion, string color);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
+        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
         
@@ -1434,6 +1440,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task addRoles_PermisosAsync(int idRol, int idPermiso) {
             return base.Channel.addRoles_PermisosAsync(idRol, idPermiso);
+        }
+        
+        public void addTipo_dia(string descripcion, string color) {
+            base.Channel.addTipo_dia(descripcion, color);
+        }
+        
+        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color) {
+            return base.Channel.addTipo_diaAsync(descripcion, color);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {

@@ -39,10 +39,10 @@ namespace Service_Asky
         void addUsuario_Rol(int talentoHumano, int idRol);
         [OperationContract]
         void addRoles_Permisos(int idRol, int idPermiso);
+
+        [OperationContract]
+        void addTipo_dia(string descripcion, string color);
     
-
-
-
 
         //=================== Edit Element from database=============
 
