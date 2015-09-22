@@ -12,17 +12,9 @@ namespace Service_Asky
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_tipo_dia
+    public partial class tbl_departamento_jefe
     {
-        public tbl_tipo_dia()
-        {
-            this.tbl_calendario = new HashSet<tbl_calendario>();
-        }
-    
-        public int tipo_dia_id { get; set; }
-        public string descripcion { get; set; }
-        public string color { get; set; }
-    
-        public virtual ICollection<tbl_calendario> tbl_calendario { get; set; }
+        public int talento_humano { get; set; }
+        public int departamentoid { get; set; }
     }
 }

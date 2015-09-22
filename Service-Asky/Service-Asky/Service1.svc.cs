@@ -402,8 +402,7 @@ namespace Service_Asky
             {
                 Calendario c = new Calendario();
                 c.fecha = item.fecha;
-                c.talento_humano_empleado = item.talento_humano_empleado;
-                c.talento_humano_jefe = item.talento_humano_jefe;
+               c.talento_humano_jefe = item.talento_humano_jefe;
                 c.tipo_dia_id = item.tipo_dia_id;
                 calendario.Add(c);
 

@@ -8,6 +8,7 @@ namespace Service_Asky.Tables
     public class Tipo_Dia
     {
         public int tipo_dia_id { get; set; }
-        public int descripcion { get; set; }
+        public string descripcion { get; set; }
+        public string color { get; set; }
     }
 }

@@ -15,12 +15,10 @@ namespace Service_Asky
     public partial class tbl_calendario
     {
         public int talento_humano_jefe { get; set; }
-        public int talento_humano_empleado { get; set; }
         public System.DateTime fecha { get; set; }
         public int tipo_dia_id { get; set; }
     
         public virtual tbl_tipo_dia tbl_tipo_dia { get; set; }
         public virtual tbl_usuarios tbl_usuarios { get; set; }
-        public virtual tbl_usuarios tbl_usuarios1 { get; set; }
     }
 }
