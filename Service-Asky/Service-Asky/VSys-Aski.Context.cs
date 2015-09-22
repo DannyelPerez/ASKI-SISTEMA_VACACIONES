@@ -25,15 +25,16 @@ namespace Service_Asky
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<tbl_calendario> tbl_calendario { get; set; }
         public DbSet<tbl_departamento> tbl_departamento { get; set; }
         public DbSet<tbl_estatus> tbl_estatus { get; set; }
         public DbSet<tbl_jerarquia> tbl_jerarquia { get; set; }
         public DbSet<tbl_log_vacaciones> tbl_log_vacaciones { get; set; }
         public DbSet<tbl_permisos> tbl_permisos { get; set; }
         public DbSet<tbl_roles> tbl_roles { get; set; }
-        public DbSet<tbl_tipo_dia> tbl_tipo_dia { get; set; }
         public DbSet<tbl_usuarios> tbl_usuarios { get; set; }
+        public DbSet<tbl_departamento_jefe> tbl_departamento_jefe { get; set; }
         public DbSet<tbl_vacaciones> tbl_vacaciones { get; set; }
+        public DbSet<tbl_tipo_dia> tbl_tipo_dia { get; set; }
+        public DbSet<tbl_calendario> tbl_calendario { get; set; }
     }
 }

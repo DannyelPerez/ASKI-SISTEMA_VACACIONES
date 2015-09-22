@@ -167,6 +167,48 @@
         }
     }
 
+    function checkPermissonsHierarchy() {
+
+        var table = document.getElementById("permiso");
+        
+        var isAdministracionActive=false;
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            if (row.cells[1].innerHTML === "Administracion") {
+                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
+                var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
+                isAdministracionActive = check.checked;
+            }
+        }
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            //iterate through rows
+
+            if(row.cells[1].innerHTML==="Usuarios" || row.cells[1].innerHTML==="Roles" || row.cells[1].innerHTML==="Permisos" || row.cells[1].innerHTML==="Departamentos")
+            {
+                
+                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
+                if (pattern !== null) {
+                    var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
+                
+                    if (isAdministracionActive) {
+                        if (check != null)
+                            check.disabled = false;
+                    }
+                    else
+                    {
+                        if (check != null) {
+                            check.disabled = true;
+                            check.checked = false;
+                        }
+
+                    }
+                }
+            }
+          
+        }
+
+        
+    }
+
     $(document).ready(function () {
         var rows_selected = [];
         var table = $('#permiso').DataTable({
@@ -181,7 +223,7 @@
                         "data": "id",
                         'className': 'dt-body-center',
                         'render': function (id) {
-                            return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                            return '<input type="checkbox" id="' + "dynamicCheck"+id + '" onchange="checkPermissonsHierarchy()" class="call-checkbox" name="' + id + '" value="' + id + '">';
                         }
                     },
                     { "data": "descripcion" }

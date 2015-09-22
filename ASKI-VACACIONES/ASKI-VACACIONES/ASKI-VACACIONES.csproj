@@ -2473,7 +2473,8 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JerarquiaController.cs" />
-    <Compile Include="Controllers\PermisosController.cs" />
+   <Compile Include="Controllers\MenuController.cs" />
+   <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SolicitudesController.cs" />
@@ -2484,6 +2485,8 @@
     </Compile>
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\Permisos.cs" />
     <Compile Include="Models\PermisosModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
@@ -2520,6 +2523,8 @@
     <None Include="Service References\ServiceReference1\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Menu\_Menu.cshtml" />
+    <Content Include="Views\Home\Bienvenida.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
