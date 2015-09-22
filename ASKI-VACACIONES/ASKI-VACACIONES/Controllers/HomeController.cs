@@ -28,13 +28,14 @@ namespace ASKI_VACACIONES.Controllers
                 Service1Client client = new Service1Client();
                 if (submitButton.Equals("Perfil"))
                 {
-                    var hola = client.getUsuario(model.talento_humano);
+                    var aceder = client.getUsuario(int.Parse(Session["Talento_Humano"].ToString()));
                     UsuariosModel usuario = new UsuariosModel();
-                    if (hola == null)
+                    if (aceder == null)
                     {
                         client.Close();
                         return View();
                     }
+                    setSessionVar(aceder.email, aceder.primer_nombre, aceder.primer_apellido, aceder.segundo_nombre, aceder.segundo_apellido);
                     ViewBag.email = Session["Email"];
                     ViewBag.primerNombre = Session["Primer_nombre"];
                     ViewBag.segundoNombre = Session["Segundo_nombre"];
@@ -48,7 +49,7 @@ namespace ASKI_VACACIONES.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        client.perfil(model.talento_humano, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.email);
+                        client.perfil(int.Parse(Session["Talento_Humano"].ToString()), model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.email);
                        
                      }
                 }
@@ -91,12 +92,9 @@ namespace ASKI_VACACIONES.Controllers
                     if (aceder == null)
                         return View("Login");
                     Session["User"] = aceder.email;
-                    Session["Primer_nombre"] = aceder.primer_nombre;
-                    Session["Primer_apellido"] = aceder.primer_apellido;
-                    Session["Segundo_nombre"] = aceder.segundo_nombre;
-                    Session["Segundo_apellido"] = aceder.segundo_apellido;
-                    Session["Email"] = aceder.email;
                     Session["Pass"] = aceder.password;
+                    Session["Talento_Humano"] = aceder.talento_humano;
+                    setSessionVar(aceder.email, aceder.primer_nombre, aceder.primer_apellido, aceder.segundo_nombre, aceder.segundo_apellido);
 
                     return RedirectToAction("AfterLogin");
                 }
@@ -107,6 +105,17 @@ namespace ASKI_VACACIONES.Controllers
                 
             }
             return View("Login");
+        }
+
+        private void setSessionVar(string email, string primer_nombre, string primer_apellido, string segundo_nombre, string segundo_apellido)
+        {
+            
+            Session["Primer_nombre"] = primer_nombre;
+            Session["Primer_apellido"] = primer_apellido;
+            Session["Segundo_nombre"] = segundo_nombre;
+            Session["Segundo_apellido"] = segundo_apellido;
+            Session["Email"] = email;
+
         }
 
         public ActionResult AfterLogin()
