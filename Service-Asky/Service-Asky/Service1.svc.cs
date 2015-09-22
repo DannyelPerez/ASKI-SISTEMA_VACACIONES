@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
+        DBConnect connect = new DBConnect("localhost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -172,6 +172,24 @@ namespace Service_Asky
             }
         }
 
+        public void addTipo_dia(string descripcion, string color)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tipo.descripcion = descripcion;
+                tipo.color = color;
+                db.tbl_tipo_dia.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         //=================== Edit Element from database=============
 
@@ -236,6 +254,27 @@ namespace Service_Asky
                 dic.segundo_apellido = segundoApellido;
                 dic.fecha_ingreso = fechaIngreso;
                 db.SaveChanges();
+            }
+
+        }
+
+        public void perfil(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var dic = (from p in db.tbl_usuarios
+                       where p.talento_humano == talentohumano
+                       select p)
+                       .FirstOrDefault();
+
+            if (dic != null)
+            {
+                dic.primer_nombre = primer_nombre;
+                dic.segundo_nombre = segundo_nombre;
+                dic.primer_apellido = primer_apellido;
+                dic.segundo_apellido = segundo_apellido;
+                dic.email = correo;
+                db.SaveChanges();
+            
             }
 
         }

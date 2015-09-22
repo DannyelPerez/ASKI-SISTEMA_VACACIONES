@@ -39,10 +39,10 @@ namespace Service_Asky
         void addUsuario_Rol(int talentoHumano, int idRol);
         [OperationContract]
         void addRoles_Permisos(int idRol, int idPermiso);
+
+        [OperationContract]
+        void addTipo_dia(string descripcion, string color);
     
-
-
-
 
         //=================== Edit Element from database=============
 
@@ -54,8 +54,8 @@ namespace Service_Asky
         void editDepartamento(int id, string descripcion);
         [OperationContract]
         void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
-
-
+        [OperationContract]
+        void perfil(int talentohumano, string primer_nombre, string segundo_nombre,string primer_apellido, string segundo_apellido ,string correo);
         //=================== Delete Element from database=============
         [OperationContract]
         void deletePermiso(int id);
