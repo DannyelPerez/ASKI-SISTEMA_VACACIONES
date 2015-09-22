@@ -183,6 +183,23 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="perfil">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentohumano" type="xs:int" />
+        <xs:element minOccurs="0" name="primer_nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundo_nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="primer_apellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundo_apellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="perfilResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deletePermiso">
     <xs:complexType>
       <xs:sequence>

@@ -87,6 +87,12 @@
   <wsdl:message name="IService1_editUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:editUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_perfil_InputMessage">
+    <wsdl:part name="parameters" element="tns:perfil" />
+  </wsdl:message>
+  <wsdl:message name="IService1_perfil_OutputMessage">
+    <wsdl:part name="parameters" element="tns:perfilResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_deletePermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:deletePermiso" />
   </wsdl:message>
@@ -271,6 +277,10 @@
     <wsdl:operation name="editUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editUsuario" message="tns:IService1_editUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/editUsuarioResponse" message="tns:IService1_editUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="perfil">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/perfil" message="tns:IService1_perfil_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/perfilResponse" message="tns:IService1_perfil_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="deletePermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/deletePermiso" message="tns:IService1_deletePermiso_InputMessage" />
@@ -473,6 +483,15 @@
     </wsdl:operation>
     <wsdl:operation name="editUsuario">
       <soap:operation soapAction="http://tempuri.org/IService1/editUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="perfil">
+      <soap:operation soapAction="http://tempuri.org/IService1/perfil" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
