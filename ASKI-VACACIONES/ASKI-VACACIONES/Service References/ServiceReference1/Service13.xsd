@@ -48,7 +48,6 @@
   <xs:complexType name="Calendario">
     <xs:sequence>
       <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="talento_humano_empleado" type="xs:int" />
       <xs:element minOccurs="0" name="talento_humano_jefe" type="xs:int" />
       <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
     </xs:sequence>
@@ -126,7 +125,8 @@
   <xs:element name="ArrayOfTipo_Dia" nillable="true" type="tns:ArrayOfTipo_Dia" />
   <xs:complexType name="Tipo_Dia">
     <xs:sequence>
-      <xs:element minOccurs="0" name="descripcion" type="xs:int" />
+      <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -150,7 +150,7 @@
       <xs:element minOccurs="0" name="fecha_de_aprobacion" type="xs:dateTime" />
       <xs:element minOccurs="0" name="fecha_entrada" type="xs:dateTime" />
       <xs:element minOccurs="0" name="fecha_salida" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="fecha_solicitud" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha_solicitud" type="xs:dateTime" />
       <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
       <xs:element minOccurs="0" name="vacacionesid" type="xs:int" />
       <xs:element minOccurs="0" name="year" type="xs:int" />

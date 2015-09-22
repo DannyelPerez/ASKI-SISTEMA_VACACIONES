@@ -64,9 +64,9 @@
                 </ul>
             </li>
         }
-        
+
         @if (@ViewBag.Administracion)
-        { 
+        {
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Administracion</span>
@@ -88,6 +88,19 @@
                     @if (@ViewBag.Departamentos)
                     {
                         <li><a href="~/Departamentos/Index"><i class="fa fa-circle-o"></i> Departamentos</a></li>
+                    }
+                    @if (@ViewBag.Jerarquia)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>Jerarquía</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="~/Jerarquia/AddJefe"><i class="fa fa-circle-o"></i> Agregar Jefe de Departamento</a></li>
+                                <li><a href="~/Jerarquia/AddJefe"><i class="fa fa-circle-o"></i> Editar Jefe de Empleado</a></li> 
+                            </ul>
+                        </li>
                     }
 
                 </ul>

@@ -19,7 +19,7 @@ namespace ASKI_VACACIONES.Controllers
            
             var permisos = Session["Permisos"] as string[];
 
-            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Calendario = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud =  ViewBag.Eventos = false;
+            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Calendario = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud =  ViewBag.Eventos = ViewBag.Jerarquia = false;
             foreach (var permiso in permisos)
             {
                 switch (permiso)
@@ -61,6 +61,9 @@ namespace ASKI_VACACIONES.Controllers
                         ViewBag.Eventos = true;
                         break;
 
+                    case "Jerarquia":
+                        ViewBag.Jerarquia = true;
+                        break;
                     default:
                         break;
                 }

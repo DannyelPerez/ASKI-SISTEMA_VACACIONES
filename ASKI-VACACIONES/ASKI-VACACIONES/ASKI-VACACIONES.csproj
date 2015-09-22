@@ -2473,8 +2473,8 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JerarquiaController.cs" />
-   <Compile Include="Controllers\MenuController.cs" />
-   <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SolicitudesController.cs" />
@@ -2484,6 +2484,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DepartamentoModel.cs" />
+    <Compile Include="Models\JerarquiaModel.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\Permisos.cs" />
@@ -2525,6 +2526,7 @@
     </None>
     <Content Include="Views\Menu\_Menu.cshtml" />
     <Content Include="Views\Home\Bienvenida.cshtml" />
+    <Content Include="Views\Jerarquia\AddJefe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2535,7 +2537,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DataTables-1.10.9\extensions\FixedColumns\examples\integration\" />
-    <Folder Include="Views\Jerarquia\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

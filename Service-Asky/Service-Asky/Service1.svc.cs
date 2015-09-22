@@ -172,6 +172,42 @@ namespace Service_Asky
             }
         }
 
+        public void addDepartamento_Jefe(int talentoHumano, int idDepartamento)
+        {
+            try
+            {
+                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + idDepartamento + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+      
+        public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_jerarquia jerar = new tbl_jerarquia();
+                jerar.talento_humano = talento_humano;
+                jerar.jefe_talentohumano = talento_humano_Jefe;
+                jerar.departamentoid = departamentoid;
+                db.tbl_jerarquia.Add(jerar);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         //=================== Edit Element from database=============
 
@@ -283,6 +319,17 @@ namespace Service_Asky
             }
         }
 
+        public void deleteDepartamento_Jefe(int talentoHumano)
+        {
+            string query = "DELETE FROM tbl_departamento_JEFE WHERE talento_humano='" + talentoHumano + "'";
+
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
 
 
 

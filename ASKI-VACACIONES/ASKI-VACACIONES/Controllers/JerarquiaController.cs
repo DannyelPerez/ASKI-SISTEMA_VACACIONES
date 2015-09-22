@@ -9,7 +9,7 @@ namespace ASKI_VACACIONES.Controllers
     public class JerarquiaController : Controller
     {
         // GET: Jerarquia
-        public ActionResult Index()
+        public ActionResult AddJefe()
         {
             return View();
         }
