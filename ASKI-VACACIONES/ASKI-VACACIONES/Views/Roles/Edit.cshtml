@@ -15,6 +15,24 @@
     </ol>
 </section>
 
+
+
+<!--Check-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display = 'block';
+        }
+        else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+
+
 <!-- Content Wrapper. Contains page content -->
 <!-- Main content -->
 <section class="content">
@@ -64,6 +82,14 @@
                                                 @*<input type="text" class="form-control" id="inputdescripcion" size="20">*@
                                             </div>
                                         </div>
+
+
+
+
+
+
+
+
                                         <div class="form-group">
                                             <label for="inputestado" class="col-sm-2 control-label">Estado</label>
                                             <div class="col-sm-10">
@@ -76,11 +102,48 @@
                                             </div>
                                         </div><!-- /.box-body -->
                                         <div class="box-footer">
-                                            <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" />
+                                            <input type="submit" name="submitButton" value="Modificar" class="btn btn-info pull-right" onclick="beforeSendInformation()" />
                                         </div><!-- /.box-footer -->
                                     </div>
                                 </div>
                             </div> <!-- cd-tabs-content -->
+
+
+                                <div class="form-group">
+                                    <label for="inputdepto" class="col-sm-2 control-label">Permisos</label>
+                                    <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
+                                    <div id="content" style="display: none;">
+
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h3 class="box-title"></h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+
+
+                                                <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><input name="select_all" type="checkbox">         Id</th>
+                                                            <th>Descripcion</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Descripcion</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                        @Html.TextBoxFor(x => x.permisosID, new { @class = "hidden", id = "textPermiso", type = "text" })
+
+
+                                    </div>
+                                </div>
+
 
                             </form>
                         </div><!-- /.box -->
@@ -99,3 +162,131 @@
 
 
 </section><!-- /.content -->
+
+
+<script type="text/javascript">
+    function updateDataTableSelectAllCtrl(table) {
+        var $table = table.table().node();
+        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
+
+        // If none of the checkboxes are checked
+        if ($chkbox_checked.length === 0) {
+            chkbox_select_all.checked = false;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If all of the checkboxes are checked
+        } else if ($chkbox_checked.length === $chkbox_all.length) {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If some of the checkboxes are checked
+        } else {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = true;
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        var rows_selected = [];
+        var table = $('#permiso').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonRoles", "Roles")",
+                "type": "POST"
+            },
+
+            "columns": [
+                    {
+                        "data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                        }
+                    },
+                    { "data": "descripcion" }
+
+            ],
+            'order': [1, 'asc'],
+            'rowCallback': function (row, data, dataIndex) {
+                // Get row ID
+                var rowId = data[0];
+
+                // If row ID is in the list of selected row IDs
+                if ($.inArray(rowId, rows_selected) !== -1) {
+                    $(row).find('input[type="checkbox"]').prop('checked', true);
+                    $(row).addClass('selected');
+                }
+
+            }
+        });
+
+        setInterval(function () {
+            table.ajax.reload();
+        }, 60000);
+
+        // Handle click on checkbox
+        $('#permiso tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
+
+        // Handle click on table cells with checkboxes
+        $('#permiso').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
+
+        // Handle click on "Select all" control
+        $('#permiso thead input[name="select_all"]').on('click', function (e) {
+            if (this.checked) {
+                $('#permiso tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#permiso tbody input[type="checkbox"]:checked').trigger('click');
+            }
+
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
+
+        // Handle table draw event
+        table.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl(table);
+        });
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    function beforeSendInformation() {
+
+        //Permisos
+        var table = $('#permiso').DataTable();
+        table
+         .search('')
+         .columns().search('')
+         .draw();
+
+        var oTable = $('#permiso').DataTable();
+        var cadena = "";
+        var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
+        rowcollection.each(function (index, elem) {
+            var checkbox_value = $(elem).val();
+            cadena += checkbox_value + "/";
+        });
+        console.log("checbox_value: " + cadena);
+        $('#textPermiso').val(cadena)
+
+
+
+    }
+</script>
+
