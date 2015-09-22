@@ -69,6 +69,25 @@ namespace ASKI_VACACIONES.Controllers
             else 
            return View("Login");
         }
+
+         [HttpPost]
+        public ActionResult Calendario(TipoDiaModel calendario)
+        {
+            if (Session["User"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Service1Client client = new Service1Client();
+                    client.addTipo_dia(calendario.descripcion, calendario.color);
+                    client.Close();
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
         public ViewResult Ayuda() 
         {
             if (Session["User"] != null)
