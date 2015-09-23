@@ -1192,6 +1192,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
         System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
+        void addCalendario(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
+        System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
         
@@ -1482,6 +1488,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color) {
             return base.Channel.addTipo_diaAsync(descripcion, color);
+        }
+        
+        public void addCalendario(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id) {
+            base.Channel.addCalendario(talento_humano_jefe, fecha, tipo_dia_id);
+        }
+        
+        public System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id) {
+            return base.Channel.addCalendarioAsync(talento_humano_jefe, fecha, tipo_dia_id);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {

@@ -215,7 +215,7 @@ namespace Service_Asky
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
                 tbl_tipo_dia tipo = new tbl_tipo_dia();
-                tipo.descripcion = descripcion;
+               tipo.descripcion = descripcion;
                 tipo.color = color;
                 db.tbl_tipo_dia.Add(tipo);
                db.SaveChanges();
@@ -224,6 +224,26 @@ namespace Service_Asky
             {
 
             }
+        }
+
+        public void addCalendario(int talento_humano_jefe, DateTime fecha, int tipo_dia_id)
+        {
+
+            try
+            {
+                string query = "INSERT INTO tbl_calendario (talento_humano_jefe, fecha,tipo_dia_id) VALUES('" + talento_humano_jefe + "', '" + fecha + "'  , '" + tipo_dia_id + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
 

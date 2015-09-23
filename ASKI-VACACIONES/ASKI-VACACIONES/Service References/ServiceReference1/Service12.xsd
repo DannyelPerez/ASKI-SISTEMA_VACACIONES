@@ -165,6 +165,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="addCalendario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talento_humano_jefe" type="xs:int" />
+        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addCalendarioResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="editPermiso">
     <xs:complexType>
       <xs:sequence>
