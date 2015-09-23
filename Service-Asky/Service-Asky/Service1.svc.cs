@@ -209,14 +209,13 @@ namespace Service_Asky
 
        }
 
-        public void addTipo_dia(string descripcion, string color)
+        public void addTipo_dia(string descripcion)
         {
             try
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
                 tbl_tipo_dia tipo = new tbl_tipo_dia();
                 tipo.descripcion = descripcion;
-                tipo.color = color;
                 db.tbl_tipo_dia.Add(tipo);
                db.SaveChanges();
             }
@@ -602,8 +601,7 @@ namespace Service_Asky
                 Tipo_Dia t = new Tipo_Dia();
                 t.tipo_dia_id = item.tipo_dia_id;
                 t.descripcion = item.descripcion;
-                t.color = item.color;
-                tipoDia.Add(t);
+                     tipoDia.Add(t);
             }
             return tipoDia;
         }

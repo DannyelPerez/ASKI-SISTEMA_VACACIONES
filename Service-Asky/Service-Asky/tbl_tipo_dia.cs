@@ -21,7 +21,6 @@ namespace Service_Asky
     
         public int tipo_dia_id { get; set; }
         public string descripcion { get; set; }
-        public string color { get; set; }
     
         public virtual ICollection<tbl_calendario> tbl_calendario { get; set; }
     }

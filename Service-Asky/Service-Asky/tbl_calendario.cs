@@ -18,7 +18,7 @@ namespace Service_Asky
         public System.DateTime fecha { get; set; }
         public int tipo_dia_id { get; set; }
     
-        public virtual tbl_tipo_dia tbl_tipo_dia { get; set; }
         public virtual tbl_usuarios tbl_usuarios { get; set; }
+        public virtual tbl_tipo_dia tbl_tipo_dia { get; set; }
     }
 }
