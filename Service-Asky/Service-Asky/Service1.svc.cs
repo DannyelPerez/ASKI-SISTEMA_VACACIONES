@@ -555,6 +555,7 @@ namespace Service_Asky
                 Tipo_Dia t = new Tipo_Dia();
                 t.tipo_dia_id = item.tipo_dia_id;
                 t.descripcion = item.descripcion;
+                t.color = item.color;
                 tipoDia.Add(t);
             }
             return tipoDia;
@@ -696,7 +697,6 @@ namespace Service_Asky
             }
             return ids;
         }
-
 
 
     }

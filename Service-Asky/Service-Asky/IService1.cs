@@ -108,7 +108,6 @@ namespace Service_Asky
         [OperationContract]
         List<string> getIdDepartamentos_Usuario(int talentoHumano);
 
-
     }
 
 

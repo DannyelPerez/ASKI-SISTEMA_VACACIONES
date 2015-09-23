@@ -95,6 +95,31 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return View("Login");
         }
+
+
+
+        [HttpPost]
+        public ActionResult getEventos()
+        {
+            string json = "";
+            Service1Client client = new Service1Client();
+            var query = client.getTbl_tipo_dia();
+            if (query == null)
+            {
+                json += "{" + String.Format("\"descripcion\":\"{0}\",\"color\":\"{1}\"", "0", "Null") + "}";
+                json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+                return Content(json);
+            }
+
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (!json.Equals("")) { json += ","; }
+                json += "{" + String.Format("\"descripcion\":\"{0}\",\"color\":\"{1}\"", query.ElementAt(i).descripcion, query.ElementAt(i).color) + "}";
+            }
+
+            json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
+            return Content(json);
+        }
      
         [HttpPost]
         [ValidateAntiForgeryToken]
