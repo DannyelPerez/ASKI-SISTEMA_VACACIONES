@@ -28,6 +28,7 @@
                 <div class="box-body">
                     <!-- the events -->
                     <div id="external-events">
+                        <div class="external-event" style="color:gray">Contenido</div>
                       
                     </div>
                 </div><!-- /.box-body -->
@@ -163,11 +164,14 @@
             e.preventDefault();
             //Save color
             currColor = $(this).css("color");
+            $('#color').val("");
+            $('#color').val(currColor);
+            console.log(currColor);
             //Add color effect to button
             $('#add-new-event').css({ "background-color": currColor, "border-color": currColor });
         });
         //$("#add-new-event").click(function (e) {
-        //    function before(){
+        //   // function before(){
         //    e.preventDefault();
         //    //Get value and make sure it is not null
         //    var val = $("#new-event").val();
@@ -188,34 +192,34 @@
 
         //    //Remove event from text input
         //    $("#new-event").val("");
-        //}//);
+        //});
     });
 </script>
 
 <script type="text/javascript">
     function before() {
 
-        //e.preventDefault();
-        //Get value and make sure it is not null
-        currColor = $('#add-new-event').css("color");
-        var val = $("#new-event").val();
-        if (val.length == 0) {
-            return;
-        }
+    //    //e.preventDefault();
+    //    //Get value and make sure it is not null
+    //    currColor = $('#add-new-event').css("color");
+    //    var val = $("#new-event").val();
+    //    if (val.length == 0) {
+    //        return;
+    //    }
 
-        //Create events
-        var event = $("<div />");
-        event.css({ "background-color": currColor, "border-color": currColor, "color": "#fff" }).addClass("external-event");
-        $('#color').val(currColor);
-        console.log(currColor);
-        event.html(val);
-        $('#external-events').prepend(event);
+    //    //Create events
+    //    var event = $("<div />");
+    //    event.css({ "background-color": currColor, "border-color": currColor, "color": "#fff" }).addClass("external-event");
+    //    $('#color').val(currColor);
+    //    console.log(currColor);
+    //    event.html(val);
+    //    $('#external-events').prepend(event);
 
-        //Add draggable funtionality
-        ini_events(event);
+    //    //Add draggable funtionality
+    //    ini_events(event);
 
-        //Remove event from text input
-        $("#new-event").val("");
+    //    //Remove event from text input
+    //    $("#new-event").val("");
     }
 </script>
 
