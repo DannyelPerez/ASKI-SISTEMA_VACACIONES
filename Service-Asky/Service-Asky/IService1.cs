@@ -44,7 +44,9 @@ namespace Service_Asky
         [OperationContract]
         void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid);
         [OperationContract]
-        void addTipo_dia(string descripcion, string color);
+        void addTipo_dia(string descripcion);
+        [OperationContract]
+        void addCalendario(int talento_humano_jefe, DateTime fecha, int tipo_dia_id);
     
 
         //=================== Edit Element from database=============

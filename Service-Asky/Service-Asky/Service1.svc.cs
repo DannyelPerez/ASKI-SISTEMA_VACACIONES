@@ -225,6 +225,26 @@ namespace Service_Asky
             }
         }
 
+        public void addCalendario(int talento_humano_jefe, DateTime fecha, int tipo_dia_id)
+        {
+
+            try
+            {
+                string query = "INSERT INTO tbl_calendario (talento_humano_jefe, fecha,tipo_dia_id) VALUES('" + talento_humano_jefe + "', '" + fecha + "'  , '" + tipo_dia_id + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         //=================== Edit Element from database=============
 

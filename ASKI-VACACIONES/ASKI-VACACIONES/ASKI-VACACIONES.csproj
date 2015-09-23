@@ -2319,7 +2319,7 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Calendario\Calendario.cshtml" />
+    <Content Include="Views\Eventos\Eventos.cshtml" />
     <Content Include="Views\Shared\Partial\_Navbar.cshtml" />
     <Content Include="Views\Shared\Partial\Menu.cshtml" />
     <Content Include="Template\.gitignore" />
@@ -2470,7 +2470,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CalendarioController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JerarquiaController.cs" />
@@ -2484,7 +2484,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalendarioModel.cs" />
+    <Compile Include="Models\EventosModel.cs" />
     <Compile Include="Models\TipoDiaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\JerarquiaModel.cs" />
