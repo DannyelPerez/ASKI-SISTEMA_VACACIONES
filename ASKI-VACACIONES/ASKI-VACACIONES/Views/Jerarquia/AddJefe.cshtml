@@ -1,0 +1,229 @@
+﻿@model ASKI_VACACIONES.Models.JerarquiaModel
+@{
+    ViewBag.Title = "AddJefe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        Agregar Jefe de Departamento
+    </h1>
+
+</section>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                @using (Html.BeginForm())
+                {
+
+                    <div class="panel-body">
+                                                   
+                            <!-- form start -->
+                            @Html.ValidationSummary(true)
+                            <form class="form-horizontal">
+
+
+                                <div class="form-group">
+                                    <div class="box">
+                                                     <div class="box-body">
+                                            <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input name="select_all" type="checkbox">         Id</th>
+                                                        <th>Descripcion</th>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+
+                                </div>
+
+                            </form>
+                     </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable"></section><!-- right col -->
+
+
+</section><!-- /.content -->
+
+
+<script type="text/javascript">
+    function updateDataTableSelectAllCtrl(table) {
+        var $table = table.table().node();
+        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
+
+        // If none of the checkboxes are checked
+        if ($chkbox_checked.length === 0) {
+            chkbox_select_all.checked = false;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If all of the checkboxes are checked
+        } else if ($chkbox_checked.length === $chkbox_all.length) {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If some of the checkboxes are checked
+        } else {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = true;
+            }
+        }
+    }
+
+    function checkPermissonsHierarchy() {
+
+        var table = document.getElementById("permiso");
+
+        var isAdministracionActive = false;
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            if (row.cells[1].innerHTML === "Administracion") {
+                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
+                var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
+                isAdministracionActive = check.checked;
+            }
+        }
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            //iterate through rows
+
+            if (row.cells[1].innerHTML === "Usuarios" || row.cells[1].innerHTML === "Roles" || row.cells[1].innerHTML === "Permisos" || row.cells[1].innerHTML === "Departamentos") {
+
+                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
+                if (pattern !== null) {
+                    var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
+
+                    if (isAdministracionActive) {
+                        if (check != null)
+                            check.disabled = false;
+                    }
+                    else {
+                        if (check != null) {
+                            check.disabled = true;
+                            check.checked = false;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    $(document).ready(function () {
+        var rows_selected = [];
+        var table = $('#permiso').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonRoles", "Roles")",
+                "type": "POST"
+            },
+
+            "columns": [
+                    {
+                        "data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<input type="checkbox" id="' + "dynamicCheck" + id + '" onchange="checkPermissonsHierarchy()" class="call-checkbox" name="' + id + '" value="' + id + '">';
+                        }
+                    },
+                    { "data": "descripcion" }
+
+            ],
+            'order': [1, 'asc'],
+            'rowCallback': function (row, data, dataIndex) {
+                // Get row ID
+                var rowId = data[0];
+
+                // If row ID is in the list of selected row IDs
+                if ($.inArray(rowId, rows_selected) !== -1) {
+                    $(row).find('input[type="checkbox"]').prop('checked', true);
+                    $(row).addClass('selected');
+                }
+
+            }
+        });
+
+        setInterval(function () {
+            table.ajax.reload();
+        }, 60000);
+
+        // Handle click on checkbox
+        $('#permiso tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
+
+        // Handle click on table cells with checkboxes
+        $('#permiso').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
+
+        // Handle click on "Select all" control
+        $('#permiso thead input[name="select_all"]').on('click', function (e) {
+            if (this.checked) {
+                $('#permiso tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#permiso tbody input[type="checkbox"]:checked').trigger('click');
+            }
+
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
+
+        // Handle table draw event
+        table.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl(table);
+        });
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    function beforeSendInformation() {
+
+        //Permisos
+        var table = $('#permiso').DataTable();
+        table
+         .search('')
+         .columns().search('')
+         .draw();
+
+        var oTable = $('#permiso').DataTable();
+        var cadena = "";
+        var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
+        rowcollection.each(function (index, elem) {
+            var checkbox_value = $(elem).val();
+            cadena += checkbox_value + "/";
+        });
+        console.log("checbox_value: " + cadena);
+        $('#textPermiso').val(cadena)
+
+
+
+    }
+</script>
+

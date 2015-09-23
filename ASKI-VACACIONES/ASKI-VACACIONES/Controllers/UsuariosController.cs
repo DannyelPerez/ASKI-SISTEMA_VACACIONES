@@ -28,9 +28,9 @@ namespace ASKI_VACACIONES.Controllers
                     Service1Client client = new Service1Client();
                     List<int> idDepartamentos = splitCadenaID(model.departamentosID);
                     List<int> idRoles = splitCadenaID(model.rolesID);
-                    if(idDepartamentos==null)
+                    if (idDepartamentos == null)
                         return View();
-                    if(idRoles==null)
+                    if (idRoles == null)
                         return View();
                     client.addUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso, model.password);
                     foreach (var item in idDepartamentos)
@@ -117,7 +117,7 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login", "Home");
         }
 
         public ActionResult JSonDepartamentos()
@@ -125,7 +125,7 @@ namespace ASKI_VACACIONES.Controllers
             string json = "";
             Service1Client client = new Service1Client();
             var query = client.getTbl_departamentos();
-            if(query==null)
+            if (query == null)
             {
                 json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", "0", "Null") + "}";
                 json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";

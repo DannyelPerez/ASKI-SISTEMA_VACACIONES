@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "1234");
+        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -172,22 +172,58 @@ namespace Service_Asky
             }
         }
 
-        public void addTipo_dia(string descripcion, string color)
+        public void addDepartamento_Jefe(int talentoHumano, int idDepartamento)
         {
             try
             {
-                vsystem_askiEntities db = new vsystem_askiEntities();
-                tbl_tipo_dia tipo = new tbl_tipo_dia();
-                tipo.descripcion = descripcion;
-                tipo.color = color;
-                db.tbl_tipo_dia.Add(tipo);
-                db.SaveChanges();
+                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + idDepartamento + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
             }
             catch (Exception ex)
             {
 
             }
+        }
+      
+       public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
+       {
+           try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
 
+                tbl_jerarquia jerar = new tbl_jerarquia();
+                jerar.talento_humano = talento_humano;
+                jerar.jefe_talentohumano = talento_humano_Jefe;
+                jerar.departamentoid = departamentoid;
+                db.tbl_jerarquia.Add(jerar);
+                           }
+            catch (Exception ex)
+            {
+
+            }
+
+       }
+
+        public void addTipo_dia(string descripcion, string color)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+            tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tipo.descripcion = descripcion;
+                tipo.color = color;
+                db.tbl_tipo_dia.Add(tipo);
+               db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
@@ -322,6 +358,17 @@ namespace Service_Asky
             }
         }
 
+        public void deleteDepartamento_Jefe(int talentoHumano)
+        {
+            string query = "DELETE FROM tbl_departamento_JEFE WHERE talento_humano='" + talentoHumano + "'";
+
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
 
 
 

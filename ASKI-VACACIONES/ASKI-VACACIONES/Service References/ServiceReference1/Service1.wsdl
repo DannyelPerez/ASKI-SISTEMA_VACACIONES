@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:7100/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -63,6 +63,18 @@
   <wsdl:message name="IService1_addRoles_Permisos_OutputMessage">
     <wsdl:part name="parameters" element="tns:addRoles_PermisosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addDepartamento_Jefe_InputMessage">
+    <wsdl:part name="parameters" element="tns:addDepartamento_Jefe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addDepartamento_Jefe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addDepartamento_JefeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addJerarquia_InputMessage">
+    <wsdl:part name="parameters" element="tns:addJerarquia" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addJerarquia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addJerarquiaResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_addTipo_dia_InputMessage">
     <wsdl:part name="parameters" element="tns:addTipo_dia" />
   </wsdl:message>
@@ -116,6 +128,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_deleteDepartamento_Usuarios_OutputMessage">
     <wsdl:part name="parameters" element="tns:deleteDepartamento_UsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteDepartamento_Jefe_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteDepartamento_Jefe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteDepartamento_Jefe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteDepartamento_JefeResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_confirmarLogin_InputMessage">
     <wsdl:part name="parameters" element="tns:confirmarLogin" />
@@ -268,6 +286,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addRoles_Permisos" message="tns:IService1_addRoles_Permisos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addRoles_PermisosResponse" message="tns:IService1_addRoles_Permisos_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="addDepartamento_Jefe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addDepartamento_Jefe" message="tns:IService1_addDepartamento_Jefe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addDepartamento_JefeResponse" message="tns:IService1_addDepartamento_Jefe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addJerarquia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addJerarquia" message="tns:IService1_addJerarquia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addJerarquiaResponse" message="tns:IService1_addJerarquia_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="addTipo_dia">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addTipo_dia" message="tns:IService1_addTipo_dia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addTipo_diaResponse" message="tns:IService1_addTipo_dia_OutputMessage" />
@@ -303,6 +329,10 @@
     <wsdl:operation name="deleteDepartamento_Usuarios">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/deleteDepartamento_Usuarios" message="tns:IService1_deleteDepartamento_Usuarios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/deleteDepartamento_UsuariosResponse" message="tns:IService1_deleteDepartamento_Usuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteDepartamento_Jefe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/deleteDepartamento_Jefe" message="tns:IService1_deleteDepartamento_Jefe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/deleteDepartamento_JefeResponse" message="tns:IService1_deleteDepartamento_Jefe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="confirmarLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/confirmarLogin" message="tns:IService1_confirmarLogin_InputMessage" />
@@ -464,6 +494,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="addDepartamento_Jefe">
+      <soap:operation soapAction="http://tempuri.org/IService1/addDepartamento_Jefe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addJerarquia">
+      <soap:operation soapAction="http://tempuri.org/IService1/addJerarquia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addTipo_dia">
       <soap:operation soapAction="http://tempuri.org/IService1/addTipo_dia" style="document" />
       <wsdl:input>
@@ -538,6 +586,15 @@
     </wsdl:operation>
     <wsdl:operation name="deleteDepartamento_Usuarios">
       <soap:operation soapAction="http://tempuri.org/IService1/deleteDepartamento_Usuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDepartamento_Jefe">
+      <soap:operation soapAction="http://tempuri.org/IService1/deleteDepartamento_Jefe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

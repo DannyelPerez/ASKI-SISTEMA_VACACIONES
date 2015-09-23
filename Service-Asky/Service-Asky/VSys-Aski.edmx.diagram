@@ -21,7 +21,7 @@
         <AssociationConnector Association="vsystem_askiModel.tbl_roles_permisos" ManuallyRouted="false" />
         <AssociationConnector Association="vsystem_askiModel.tbl_usuarios_departamento" ManuallyRouted="false" />
         <AssociationConnector Association="vsystem_askiModel.tbl_usuarios_roles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="vsystem_askiModel.tbl_departamento_jefe" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vsystem_askiModel.tbl_departamento_jefe" Width="1.5" PointX="3.5" PointY="2.125" />
         <EntityTypeShape EntityType="vsystem_askiModel.tbl_vacaciones" Width="1.5" PointX="8.625" PointY="2.5" />
         <AssociationConnector Association="vsystem_askiModel.fk_v_e" />
         <AssociationConnector Association="vsystem_askiModel.fk_lv_v" />

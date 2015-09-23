@@ -39,7 +39,10 @@ namespace Service_Asky
         void addUsuario_Rol(int talentoHumano, int idRol);
         [OperationContract]
         void addRoles_Permisos(int idRol, int idPermiso);
-
+        [OperationContract]
+        void addDepartamento_Jefe(int talentoHumano, int idDepartamento);
+        [OperationContract]
+        void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid);
         [OperationContract]
         void addTipo_dia(string descripcion, string color);
     
@@ -63,6 +66,8 @@ namespace Service_Asky
         void deleteRoles_Usuarios(int talentoHumano);
         [OperationContract]
         void deleteDepartamento_Usuarios(int talentoHumano);
+        [OperationContract]
+        void deleteDepartamento_Jefe(int talentoHumano);
 
 
 
