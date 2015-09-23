@@ -172,6 +172,60 @@ namespace Service_Asky
             }
         }
 
+        public void addDepartamento_Jefe(int talentoHumano, int idDepartamento)
+        {
+            try
+            {
+                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + idDepartamento + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+      
+       public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
+       {
+           try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+
+                tbl_jerarquia jerar = new tbl_jerarquia();
+                jerar.talento_humano = talento_humano;
+                jerar.jefe_talentohumano = talento_humano_Jefe;
+                jerar.departamentoid = departamentoid;
+                db.tbl_jerarquia.Add(jerar);
+                           }
+            catch (Exception ex)
+            {
+
+            }
+
+       }
+
+        public void addTipo_dia(string descripcion, string color)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+            tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tipo.descripcion = descripcion;
+                tipo.color = color;
+                db.tbl_tipo_dia.Add(tipo);
+               db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         //=================== Edit Element from database=============
 
@@ -240,6 +294,27 @@ namespace Service_Asky
 
         }
 
+        public void perfil(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var dic = (from p in db.tbl_usuarios
+                       where p.talento_humano == talentohumano
+                       select p)
+                       .FirstOrDefault();
+
+            if (dic != null)
+            {
+                dic.primer_nombre = primer_nombre;
+                dic.segundo_nombre = segundo_nombre;
+                dic.primer_apellido = primer_apellido;
+                dic.segundo_apellido = segundo_apellido;
+                dic.email = correo;
+                db.SaveChanges();
+            
+            }
+
+        }
+
 
 
         //=================== Delete Element from database=============
@@ -283,6 +358,17 @@ namespace Service_Asky
             }
         }
 
+        public void deleteDepartamento_Jefe(int talentoHumano)
+        {
+            string query = "DELETE FROM tbl_departamento_JEFE WHERE talento_humano='" + talentoHumano + "'";
+
+            if (connect.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                cmd.ExecuteNonQuery();
+                connect.CloseConnection();
+            }
+        }
 
 
 
@@ -402,8 +488,7 @@ namespace Service_Asky
             {
                 Calendario c = new Calendario();
                 c.fecha = item.fecha;
-                c.talento_humano_empleado = item.talento_humano_empleado;
-                c.talento_humano_jefe = item.talento_humano_jefe;
+               c.talento_humano_jefe = item.talento_humano_jefe;
                 c.tipo_dia_id = item.tipo_dia_id;
                 calendario.Add(c);
 

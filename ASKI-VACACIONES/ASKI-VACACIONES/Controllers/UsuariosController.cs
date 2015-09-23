@@ -28,9 +28,9 @@ namespace ASKI_VACACIONES.Controllers
                     Service1Client client = new Service1Client();
                     List<int> idDepartamentos = splitCadenaID(model.departamentosID);
                     List<int> idRoles = splitCadenaID(model.rolesID);
-                    if(idDepartamentos==null)
+                    if (idDepartamentos == null)
                         return View();
-                    if(idRoles==null)
+                    if (idRoles == null)
                         return View();
                     client.addUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso, model.password);
                     foreach (var item in idDepartamentos)
@@ -62,34 +62,34 @@ namespace ASKI_VACACIONES.Controllers
         {
             if (Session["User"] != null)
             {
-                if (ModelState.IsValid)
+                Service1Client client = new Service1Client();
+                if (submitButton.Equals("Buscar"))
                 {
-                    Service1Client client = new Service1Client();
-                    switch (submitButton)
+                    var hola = client.getUsuario(model.talento_humano);
+                    UsuariosModel usuario = new UsuariosModel();
+                    if (hola == null)
                     {
-                        case "Buscar":
-                            var hola = client.getUsuario(model.talento_humano);
-                            UsuariosModel usuario = new UsuariosModel();
-                            if (hola == null)
-                            {
-                                client.Close();
-                                return View();
-                            }
-                            ViewBag.email = hola.email;
-                            ViewBag.talentoHumano = hola.talento_humano;
-                            ViewBag.primerNombre = hola.primer_nombre;
-                            ViewBag.segundoNombre = hola.segundo_nombre;
-                            ViewBag.primerApellido = hola.primer_apellido;
-                            ViewBag.segundoApellido = hola.segundo_apellido;
-                            ViewBag.fechaIngreso = hola.fecha_creacion;
-                            ViewBag.fecha_ingreso = hola.fecha_ingreso;
-                            break;
-                        case "Modificar":
-                            client.editUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso);
-                            client.deleteRoles_Usuarios(model.talento_humano);
+                        client.Close();
+                        return View();
+                    }
+                    ViewBag.email = hola.email;
+                    ViewBag.talentoHumano = hola.talento_humano;
+                    ViewBag.primerNombre = hola.primer_nombre;
+                    ViewBag.segundoNombre = hola.segundo_nombre;
+                    ViewBag.primerApellido = hola.primer_apellido;
+                    ViewBag.segundoApellido = hola.segundo_apellido;
+                    ViewBag.fechaIngreso = hola.fecha_creacion;
+                    ViewBag.fecha_ingreso = hola.fecha_ingreso;
+                }
+                else if (submitButton.Equals("Modificar"))
+                {
+                    if (ModelState.IsValid)
+                    {
+
+                        client.editUsuario(model.talento_humano, model.email, model.primer_nombre, model.segundo_nombre, model.primer_apellido, model.segundo_apellido, model.fecha_ingreso);
+                        client.deleteRoles_Usuarios(model.talento_humano);
                         client.deleteDepartamento_Usuarios(model.talento_humano);
-                        var seleccionados=client.getIdsRoles_Usuario(model.talento_humano);
-                        //Rebuild Table
+                        var seleccionados = client.getIdsRoles_Usuario(model.talento_humano);
                         List<int> idDepartamentos = splitCadenaID(model.departamentosID);
                         foreach (var item in idDepartamentos)
                         {
@@ -101,23 +101,23 @@ namespace ASKI_VACACIONES.Controllers
                         {
                             client.addUsuario_Rol(model.talento_humano, item);
                         }
-
-                            break;
                     }
-                    client.Close();
-                    return View();
+
                 }
+                client.Close();
                 return View();
+
             }
             else
                 return RedirectToAction("Login", "Home");
         }
+       
         public ActionResult Delete()
         {
             if (Session["User"] != null)
                 return View();
             else
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login", "Home");
         }
 
         public ActionResult JSonDepartamentos()
@@ -125,7 +125,7 @@ namespace ASKI_VACACIONES.Controllers
             string json = "";
             Service1Client client = new Service1Client();
             var query = client.getTbl_departamentos();
-            if(query==null)
+            if (query == null)
             {
                 json += "{" + String.Format("\"id\":\"{0}\",\"descripcion\":\"{1}\"", "0", "Null") + "}";
                 json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";

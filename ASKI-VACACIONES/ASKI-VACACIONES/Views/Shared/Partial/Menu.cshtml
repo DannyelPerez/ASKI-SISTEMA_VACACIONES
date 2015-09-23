@@ -1,5 +1,6 @@
 ﻿  <!-- sidebar: style can be found in sidebar.less -->
 
+
 <section class="sidebar">
     <!-- Sidebar user panel -->
     <div class="user-panel">
@@ -16,10 +17,12 @@
     <ul class="sidebar-menu">
         <li class="header">Menu</li>
         <li>
+
             <a href="~/Home/Calendario">
                 <i class="fa fa-calendar"></i> <span>Calendario</span>
                 <small class="label pull-right bg-red">0</small>
             </a>
+
         </li>
 
         <li class="treeview">
@@ -52,6 +55,16 @@
                 <li><a href="~/Roles/Index"><i class="fa fa-circle-o"></i> Roles</a></li>
                 <li><a href="~/Permisos/Index"><i class="fa fa-circle-o"></i> Permisos</a></li>
                 <li><a href="~/Departamentos/Index"><i class="fa fa-circle-o"></i> Departamentos</a></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>Jerarquía</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Jerarquia/AddJefe"><i class="fa fa-circle-o"></i> Agregar Jefe de Departamento</a></li>
+                        <li><a href="~/Jerarquia/AddJefe"><i class="fa fa-circle-o"></i> Editar Jefe de Empleado</a></li>
+                    </ul>
+                </li>
 
             </ul>
 
@@ -66,4 +79,3 @@
 </section>
 
 <!-- /.sidebar -->
-

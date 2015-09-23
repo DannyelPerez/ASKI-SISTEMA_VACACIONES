@@ -22,6 +22,9 @@
     <link href="~/DataTables-1.10.9/media/css/dataTables.foundation.min.css" rel="stylesheet" />
     <link href="~/DataTables-1.10.9/media/css/dataTables.jqueryui.min.css" rel="stylesheet" />
     <link href="~/DataTables-1.10.9/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="~/Template/plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="~/Template/plugins/fullcalendar/fullcalendar.print.css" media="print">
     
 
 
@@ -38,6 +41,13 @@
     <script src="~/DataTables-1.10.9/media/js/dataTables.jqueryui.min.js"></script>
     <script src="~/DataTables-1.10.9/media/js/jquery.dataTables.min.js"></script>
     <script src="~/Template/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="~/Template/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <!-- Page specific script -->
+   
+
+
     
 </head>
 
@@ -50,7 +60,8 @@
         @Html.Partial("Partial/_Navbar")
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-            @Html.Partial("Partial/Menu")
+            @Html.Action("_Menu","Menu")
+            @*@Html.Partial("Partial/Menu")*@
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

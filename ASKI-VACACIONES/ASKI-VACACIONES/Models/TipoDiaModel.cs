@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Service_Asky.Tables
+namespace ASKI_VACACIONES.Models
 {
-    public class Tipo_Dia
+    public class TipoDiaModel
     {
-        public int tipo_dia_id { get; set; }
+        public int id { get; set; }
         public string descripcion { get; set; }
         public string color { get; set; }
     }

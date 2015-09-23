@@ -2472,6 +2472,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JerarquiaController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -2481,8 +2483,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoDiaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
+    <Compile Include="Models\JerarquiaModel.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PermisosModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
@@ -2519,6 +2524,9 @@
     <None Include="Service References\ServiceReference1\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Menu\_Menu.cshtml" />
+    <Content Include="Views\Home\Bienvenida.cshtml" />
+    <Content Include="Views\Jerarquia\AddJefe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

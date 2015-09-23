@@ -125,6 +125,46 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="addDepartamento_Jefe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+        <xs:element minOccurs="0" name="idDepartamento" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addDepartamento_JefeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addJerarquia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talento_humano" type="xs:int" />
+        <xs:element minOccurs="0" name="talento_humano_Jefe" type="xs:int" />
+        <xs:element minOccurs="0" name="departamentoid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addJerarquiaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addTipo_dia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addTipo_diaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="editPermiso">
     <xs:complexType>
       <xs:sequence>
@@ -183,6 +223,23 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="perfil">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentohumano" type="xs:int" />
+        <xs:element minOccurs="0" name="primer_nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundo_nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="primer_apellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="segundo_apellido" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="perfilResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deletePermiso">
     <xs:complexType>
       <xs:sequence>
@@ -215,6 +272,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="deleteDepartamento_UsuariosResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteDepartamento_Jefe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteDepartamento_JefeResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
