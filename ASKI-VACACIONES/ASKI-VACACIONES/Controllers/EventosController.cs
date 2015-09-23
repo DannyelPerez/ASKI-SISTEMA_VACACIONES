@@ -27,7 +27,7 @@ namespace ASKI_VACACIONES.Controllers
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
-                    client.addTipo_dia(tipo.descripcion, tipo.color);
+                    client.addTipo_dia(tipo.descripcion);
                     client.Close();
                 }
                 return View();

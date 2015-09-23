@@ -125,7 +125,6 @@
   <xs:element name="ArrayOfTipo_Dia" nillable="true" type="tns:ArrayOfTipo_Dia" />
   <xs:complexType name="Tipo_Dia">
     <xs:sequence>
-      <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
     </xs:sequence>

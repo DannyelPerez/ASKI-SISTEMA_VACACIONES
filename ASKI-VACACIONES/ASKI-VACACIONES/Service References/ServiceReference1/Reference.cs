@@ -876,9 +876,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string colorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -891,19 +888,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string color {
-            get {
-                return this.colorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.colorField, value) != true)) {
-                    this.colorField = value;
-                    this.RaisePropertyChanged("color");
-                }
             }
         }
         
@@ -1187,10 +1171,10 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         System.Threading.Tasks.Task addJerarquiaAsync(int talento_humano, int talento_humano_Jefe, int departamentoid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
-        void addTipo_dia(string descripcion, string color);
+        void addTipo_dia(string descripcion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
-        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color);
+        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
         void addCalendario(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id);
@@ -1482,12 +1466,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.addJerarquiaAsync(talento_humano, talento_humano_Jefe, departamentoid);
         }
         
-        public void addTipo_dia(string descripcion, string color) {
-            base.Channel.addTipo_dia(descripcion, color);
+        public void addTipo_dia(string descripcion) {
+            base.Channel.addTipo_dia(descripcion);
         }
         
-        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color) {
-            return base.Channel.addTipo_diaAsync(descripcion, color);
+        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion) {
+            return base.Channel.addTipo_diaAsync(descripcion);
         }
         
         public void addCalendario(int talento_humano_jefe, System.DateTime fecha, int tipo_dia_id) {

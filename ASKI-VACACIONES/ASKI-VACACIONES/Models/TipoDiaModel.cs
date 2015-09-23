@@ -9,6 +9,5 @@ namespace ASKI_VACACIONES.Models
     {
         public int id { get; set; }
         public string descripcion { get; set; }
-        public string color { get; set; }
     }
 }

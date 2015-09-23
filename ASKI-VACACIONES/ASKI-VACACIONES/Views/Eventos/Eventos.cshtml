@@ -13,9 +13,6 @@
     </ol>
 </section>
 <!--Date-->
-@*<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">*@
-@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
 <script src="http://multidatespickr.sourceforge.net/jquery-ui.multidatespicker.js"></script>
 
 <section class="content">
@@ -38,7 +35,8 @@
                                     <div class="form-group">
                                         <label for="inputdescripcion" class="col-sm-2 control-label">Eventos</label>
                                         <div class="col-sm-10">
-                                            <input id="new-event" type="text" class="form-group">
+                                            <p>@Html.TextBoxFor(x => x.descripcion, new { @class = "form-control", type = "text" })</p>
+
                                             
                                         </div>
                                     </div>
