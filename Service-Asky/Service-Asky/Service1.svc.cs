@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
+        DBConnect connect = new DBConnect("localhost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -214,7 +214,7 @@ namespace Service_Asky
             try
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
-            tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tbl_tipo_dia tipo = new tbl_tipo_dia();
                 tipo.descripcion = descripcion;
                 tipo.color = color;
                 db.tbl_tipo_dia.Add(tipo);
@@ -602,6 +602,7 @@ namespace Service_Asky
                 Tipo_Dia t = new Tipo_Dia();
                 t.tipo_dia_id = item.tipo_dia_id;
                 t.descripcion = item.descripcion;
+                t.color = item.color;
                 tipoDia.Add(t);
             }
             return tipoDia;

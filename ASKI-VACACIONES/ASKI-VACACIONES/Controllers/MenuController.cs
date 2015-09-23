@@ -19,7 +19,7 @@ namespace ASKI_VACACIONES.Controllers
            
             var permisos = Session["Permisos"] as string[];
 
-            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Calendario = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud =  ViewBag.Eventos = ViewBag.Jerarquia = false;
+            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Calendario = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud = ViewBag.Eventos = ViewBag.Jerarquia = false;
             foreach (var permiso in permisos)
             {
                 switch (permiso)
