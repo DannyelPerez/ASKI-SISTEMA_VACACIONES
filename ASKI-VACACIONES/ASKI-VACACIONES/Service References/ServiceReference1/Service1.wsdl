@@ -75,6 +75,12 @@
   <wsdl:message name="IService1_addJerarquia_OutputMessage">
     <wsdl:part name="parameters" element="tns:addJerarquiaResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addTipo_dia_InputMessage">
+    <wsdl:part name="parameters" element="tns:addTipo_dia" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addTipo_dia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addTipo_diaResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_editPermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:editPermiso" />
   </wsdl:message>
@@ -98,6 +104,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_editUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:editUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_perfil_InputMessage">
+    <wsdl:part name="parameters" element="tns:perfil" />
+  </wsdl:message>
+  <wsdl:message name="IService1_perfil_OutputMessage">
+    <wsdl:part name="parameters" element="tns:perfilResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_deletePermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:deletePermiso" />
@@ -282,6 +294,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addJerarquia" message="tns:IService1_addJerarquia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addJerarquiaResponse" message="tns:IService1_addJerarquia_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="addTipo_dia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addTipo_dia" message="tns:IService1_addTipo_dia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addTipo_diaResponse" message="tns:IService1_addTipo_dia_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editPermiso" message="tns:IService1_editPermiso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/editPermisoResponse" message="tns:IService1_editPermiso_OutputMessage" />
@@ -297,6 +313,10 @@
     <wsdl:operation name="editUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editUsuario" message="tns:IService1_editUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/editUsuarioResponse" message="tns:IService1_editUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="perfil">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/perfil" message="tns:IService1_perfil_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/perfilResponse" message="tns:IService1_perfil_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="deletePermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/deletePermiso" message="tns:IService1_deletePermiso_InputMessage" />
@@ -492,6 +512,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="addTipo_dia">
+      <soap:operation soapAction="http://tempuri.org/IService1/addTipo_dia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <soap:operation soapAction="http://tempuri.org/IService1/editPermiso" style="document" />
       <wsdl:input>
@@ -521,6 +550,15 @@
     </wsdl:operation>
     <wsdl:operation name="editUsuario">
       <soap:operation soapAction="http://tempuri.org/IService1/editUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="perfil">
+      <soap:operation soapAction="http://tempuri.org/IService1/perfil" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

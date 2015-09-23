@@ -1,4 +1,5 @@
-﻿<header class="main-header">
+﻿@model  ASKI_VACACIONES.Models.UsuariosModel
+<header class="main-header">
     <!-- Logo -->
     <a class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -169,7 +170,9 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="~/Home/Perfil" class="btn btn-default btn-flat">Perfil</a>
+                                @using (Html.BeginForm("Perfil", "Home", FormMethod.Post))
+                                { 
+                                <button  name="submitButton" value="Perfil" class="btn btn-default btn-flat">Perfil</button>}
                             </div>
                             <div class="pull-right">
                                 @using (Html.BeginForm("Logout", "Home", FormMethod.Post))

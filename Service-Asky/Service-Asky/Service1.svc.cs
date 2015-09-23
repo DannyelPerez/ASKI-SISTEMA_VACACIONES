@@ -190,17 +190,35 @@ namespace Service_Asky
             }
         }
       
-        public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
-        {
-            try
+       public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
+       {
+           try
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
+
                 tbl_jerarquia jerar = new tbl_jerarquia();
                 jerar.talento_humano = talento_humano;
                 jerar.jefe_talentohumano = talento_humano_Jefe;
                 jerar.departamentoid = departamentoid;
                 db.tbl_jerarquia.Add(jerar);
-                db.SaveChanges();
+                           }
+            catch (Exception ex)
+            {
+
+            }
+
+       }
+
+        public void addTipo_dia(string descripcion, string color)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+            tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tipo.descripcion = descripcion;
+                tipo.color = color;
+                db.tbl_tipo_dia.Add(tipo);
+               db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -272,6 +290,27 @@ namespace Service_Asky
                 dic.segundo_apellido = segundoApellido;
                 dic.fecha_ingreso = fechaIngreso;
                 db.SaveChanges();
+            }
+
+        }
+
+        public void perfil(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var dic = (from p in db.tbl_usuarios
+                       where p.talento_humano == talentohumano
+                       select p)
+                       .FirstOrDefault();
+
+            if (dic != null)
+            {
+                dic.primer_nombre = primer_nombre;
+                dic.segundo_nombre = segundo_nombre;
+                dic.primer_apellido = primer_apellido;
+                dic.segundo_apellido = segundo_apellido;
+                dic.email = correo;
+                db.SaveChanges();
+            
             }
 
         }

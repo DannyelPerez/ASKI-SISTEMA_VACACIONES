@@ -43,10 +43,9 @@ namespace Service_Asky
         void addDepartamento_Jefe(int talentoHumano, int idDepartamento);
         [OperationContract]
         void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid);
+        [OperationContract]
+        void addTipo_dia(string descripcion, string color);
     
-
-
-
 
         //=================== Edit Element from database=============
 
@@ -58,8 +57,8 @@ namespace Service_Asky
         void editDepartamento(int id, string descripcion);
         [OperationContract]
         void editUsuario(int talentoHumano,string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, DateTime fechaIngreso);
-
-
+        [OperationContract]
+        void perfil(int talentohumano, string primer_nombre, string segundo_nombre,string primer_apellido, string segundo_apellido ,string correo);
         //=================== Delete Element from database=============
         [OperationContract]
         void deletePermiso(int id);

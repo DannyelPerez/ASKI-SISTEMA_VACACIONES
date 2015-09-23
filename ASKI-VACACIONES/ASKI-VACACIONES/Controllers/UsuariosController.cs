@@ -111,6 +111,7 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login", "Home");
         }
+       
         public ActionResult Delete()
         {
             if (Session["User"] != null)

@@ -1186,6 +1186,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addJerarquia", ReplyAction="http://tempuri.org/IService1/addJerarquiaResponse")]
         System.Threading.Tasks.Task addJerarquiaAsync(int talento_humano, int talento_humano_Jefe, int departamentoid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
+        void addTipo_dia(string descripcion, string color);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
+        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
         
@@ -1209,6 +1215,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editUsuario", ReplyAction="http://tempuri.org/IService1/editUsuarioResponse")]
         System.Threading.Tasks.Task editUsuarioAsync(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/perfil", ReplyAction="http://tempuri.org/IService1/perfilResponse")]
+        void perfil(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/perfil", ReplyAction="http://tempuri.org/IService1/perfilResponse")]
+        System.Threading.Tasks.Task perfilAsync(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deletePermiso", ReplyAction="http://tempuri.org/IService1/deletePermisoResponse")]
         void deletePermiso(int id);
@@ -1464,6 +1476,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.addJerarquiaAsync(talento_humano, talento_humano_Jefe, departamentoid);
         }
         
+        public void addTipo_dia(string descripcion, string color) {
+            base.Channel.addTipo_dia(descripcion, color);
+        }
+        
+        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color) {
+            return base.Channel.addTipo_diaAsync(descripcion, color);
+        }
+        
         public void editPermiso(int id, string descripcion, bool activo) {
             base.Channel.editPermiso(id, descripcion, activo);
         }
@@ -1494,6 +1514,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task editUsuarioAsync(int talentoHumano, string email, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, System.DateTime fechaIngreso) {
             return base.Channel.editUsuarioAsync(talentoHumano, email, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaIngreso);
+        }
+        
+        public void perfil(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo) {
+            base.Channel.perfil(talentohumano, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, correo);
+        }
+        
+        public System.Threading.Tasks.Task perfilAsync(int talentohumano, string primer_nombre, string segundo_nombre, string primer_apellido, string segundo_apellido, string correo) {
+            return base.Channel.perfilAsync(talentohumano, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, correo);
         }
         
         public void deletePermiso(int id) {
