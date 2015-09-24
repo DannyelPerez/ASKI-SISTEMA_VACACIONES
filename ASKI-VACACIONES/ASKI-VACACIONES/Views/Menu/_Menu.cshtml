@@ -11,7 +11,7 @@
             <img src="~/Template/dist/img/avatar5.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-            <p>Usuario</p>
+            <p>@ViewBag.username</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
     </div>
@@ -24,10 +24,10 @@
 
 
 
-            @if (@ViewBag.Calendario)
+            @if (@ViewBag.Eventos)
             {
-                <a href="~/Home/Calendario">
-                    <i class="fa fa-calendar"></i> <span>Calendario</span>
+                <a href="~/Eventos/Eventos">
+                    <i class="fa fa-calendar"></i> <span>Eventos</span>
                 </a>
             }
 

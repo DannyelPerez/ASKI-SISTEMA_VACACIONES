@@ -34,7 +34,7 @@ namespace Service_Asky
         public DbSet<tbl_usuarios> tbl_usuarios { get; set; }
         public DbSet<tbl_departamento_jefe> tbl_departamento_jefe { get; set; }
         public DbSet<tbl_vacaciones> tbl_vacaciones { get; set; }
-        public DbSet<tbl_tipo_dia> tbl_tipo_dia { get; set; }
         public DbSet<tbl_calendario> tbl_calendario { get; set; }
+        public DbSet<tbl_tipo_dia> tbl_tipo_dia { get; set; }
     }
 }

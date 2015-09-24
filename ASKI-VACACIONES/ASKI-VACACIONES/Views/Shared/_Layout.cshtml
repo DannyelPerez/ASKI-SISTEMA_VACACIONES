@@ -25,6 +25,7 @@
     <!-- fullCalendar 2.2.5-->
     <link rel="stylesheet" href="~/Template/plugins/fullcalendar/fullcalendar.min.css">
     <link rel="stylesheet" href="~/Template/plugins/fullcalendar/fullcalendar.print.css" media="print">
+
     
 
 
@@ -44,9 +45,10 @@
     <!-- fullCalendar 2.2.5 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="~/Template/plugins/fullcalendar/fullcalendar.min.js"></script>
+    
     <!-- Page specific script -->
-   
-
+    
+  
 
     
 </head>
@@ -57,7 +59,7 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        @Html.Partial("Partial/_Navbar")
+        @Html.Action("_Navbar","Menu")
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             @Html.Action("_Menu","Menu")
@@ -80,4 +82,3 @@
 
     </body>
     </html>
-

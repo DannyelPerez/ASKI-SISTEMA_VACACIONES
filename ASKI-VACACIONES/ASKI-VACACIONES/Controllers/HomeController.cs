@@ -62,32 +62,6 @@ namespace ASKI_VACACIONES.Controllers
           
         }
        
-        public ViewResult Calendario() 
-        { 
-            if(Session["User"]!=null)
-            return View(); 
-            else 
-           return View("Login");
-        }
-
-         [HttpPost]
-        public ActionResult Calendario(TipoDiaModel calendario)
-        {
-            if (Session["User"] != null)
-            {
-                if (ModelState.IsValid)
-                {
-                    Service1Client client = new Service1Client();
-                    client.addTipo_dia(calendario.descripcion, calendario.color);
-                    client.Close();
-                }
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
-        }
         public ViewResult Ayuda() 
         {
             if (Session["User"] != null)
@@ -110,7 +84,8 @@ namespace ASKI_VACACIONES.Controllers
                     Session["Permisos"]=client.getLista_Permisos(aceder.talento_humano);
                     if (aceder == null)
                         return View("Login");
-                    Session["User"] = aceder.email;
+                    Session["User"] = aceder.primer_nombre + " " + aceder.primer_apellido;
+                    ViewBag.user = Session["User"];
                     Session["Pass"] = aceder.password;
                     Session["Talento_Humano"] = aceder.talento_humano;
                     setSessionVar(aceder.email, aceder.primer_nombre, aceder.primer_apellido, aceder.segundo_nombre, aceder.segundo_apellido);
