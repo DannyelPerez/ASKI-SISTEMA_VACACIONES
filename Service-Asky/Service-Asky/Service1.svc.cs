@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "1234");
+        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -134,6 +134,25 @@ namespace Service_Asky
             }
         }
 
+        public void addDepartamentoJefe(int talentoHumano, int DepartamentoId)
+        {
+            try
+            {
+                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + DepartamentoId + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
         public void addUsuario_Rol(int talentoHumano, int idRol)
         {
             try
@@ -189,6 +208,9 @@ namespace Service_Asky
 
             }
         }
+
+
+            
       
        public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
        {
@@ -862,5 +884,40 @@ namespace Service_Asky
             return permisos;
         }
 
+
+
+
+        public List<string> [] getDepartamentoJefe()
+        {
+            List<string>[] permisos = new List<string>[2];
+            permisos[0] = new List<string>();
+            permisos[1] = new List<string>();
+            try
+            {
+
+                string query = "select d.descripcion, concat(u.primer_nombre,' ',u.primer_apellido) as nombre from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos[0].Add(dataReader["descripcion"] + "");
+                        permisos[1].Add(dataReader["nombre"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return permisos;
+
+        }
+
     }
+
 }
