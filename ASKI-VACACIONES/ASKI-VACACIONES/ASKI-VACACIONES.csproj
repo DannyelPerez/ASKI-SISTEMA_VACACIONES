@@ -2314,6 +2314,17 @@
     <Content Include="Template\Validacion\prueba\index.html" />
     <Content Include="Template\Validacion\prueba\styles.css" />
     <Content Include="Template\Validacion\style.css" />
+    <Content Include="validation\assets\css\bootstrap-responsive.min.css" />
+    <Content Include="validation\assets\css\bootstrap.min.css" />
+    <Content Include="validation\assets\img\checked.gif" />
+    <Content Include="validation\assets\img\error.png" />
+    <Content Include="validation\assets\img\valid.png" />
+    <Content Include="validation\assets\js\jquery-1.7.1.min.js" />
+    <Content Include="validation\assets\js\jquery.validate.js" />
+    <Content Include="validation\assets\js\jquery.validate.min.js" />
+    <Content Include="validation\index.html" />
+    <Content Include="validation\script.js" />
+    <Content Include="validation\style.css" />
     <Content Include="Views\Test\arrays.txt" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -2491,6 +2502,7 @@
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PermisosModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
+    <Compile Include="Models\SolicitudesModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
