@@ -1,4 +1,4 @@
-﻿@model ASKI_VACACIONES.Models.TipoDiaModel
+﻿@model ASKI_VACACIONES.Models.EventosModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -13,6 +13,9 @@
     </ol>
 </section>
 <!--Date-->
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
 <script src="http://multidatespickr.sourceforge.net/jquery-ui.multidatespicker.js"></script>
 
 <section class="content">
@@ -45,19 +48,46 @@
                                         <label for="inputfecha" class="col-sm-2 control-label">Fecha</label>
                                         <div class="col-sm-10">
                                             <div class="input-group">
-                                                <input id="datePick" type="text" />
+                                                <p>@Html.TextBoxFor(x => x.Fecha, new { @class = "form-control", type = "text", id = "datePick" })</p>
+
+                                                @*<input id="datePick" type="text" />*@
                                                 <div class="input-group-btn">
-                                                    <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Crear</button>
+                                                    <button id="add-new-event" type="submit" class="btn btn-primary btn-flat">Crear</button>
                                                 </div><!-- /btn-group -->
                                             </div>
                                         </div>
                                     </div>
-
-
+                                     
+                                
 
 
                                     </div>
+                                <div class="form-group">
+                                    <div class="box">
+                                        <div class="box-header">
+                                            <h3 class="box-title"></h3>
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
 
+
+                                            <table id="eventos" class="datatable table table-striped table-bordered" width="65%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Eventos</th>
+                                                        <th>Fecha</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Eventos</th>
+                                                        <th>Fecha</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
 
                             </form>
                         </div><!-- /.box -->
@@ -86,4 +116,21 @@
 
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var table = $('#eventos').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("JSonEvento", "Eventos")",
+            "type": "POST"
+        },
+
+             "columns": [
+    
+                    { "data": "descripcion" },
+                    { "data": "fecha" }
+    ],
+        });
+    });
+</script>
 

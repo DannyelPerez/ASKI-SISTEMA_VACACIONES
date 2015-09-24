@@ -168,7 +168,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="talento_humano_jefe" type="xs:int" />
-        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="fecha" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="tipo_dia_id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -543,6 +543,58 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getIdDepartamentos_UsuarioResult" nillable="true" type="q20:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_fecha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tipo_dia" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_fechaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="get_fechaResult" nillable="true" type="q21:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getultimoid_tipodia">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getultimoid_tipodiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getultimoid_tipodiaResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_eventos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_eventosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="get_eventosResult" nillable="true" type="q22:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_fecha_eventos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="evento" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_fecha_eventosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="get_fecha_eventosResult" nillable="true" type="q23:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

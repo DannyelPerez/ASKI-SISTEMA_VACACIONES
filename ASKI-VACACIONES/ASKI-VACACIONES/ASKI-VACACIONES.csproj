@@ -2485,7 +2485,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EventosModel.cs" />
-    <Compile Include="Models\TipoDiaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\JerarquiaModel.cs" />
     <Compile Include="Models\Login.cs" />

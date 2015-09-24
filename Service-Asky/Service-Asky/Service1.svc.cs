@@ -225,7 +225,7 @@ namespace Service_Asky
             }
         }
 
-        public void addCalendario(int talento_humano_jefe, DateTime fecha, int tipo_dia_id)
+        public void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id)
         {
 
             try
@@ -674,6 +674,34 @@ namespace Service_Asky
 
         }
 
+        public int getultimoid_tipodia()
+        {
+            try
+            {
+                string numero = "";
+                string query = "SELECT tipo_dia_id from tbl_tipo_dia order by tipo_dia_id desc limit 1";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        numero = dataReader["tipo_dia_id"] + "";
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+                return int.Parse(numero);
+
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
+        }
+
         public List<string> getLista_Permisos(int talento_humano)
         {
             List<string> permisos = new List<string>();
@@ -763,7 +791,76 @@ namespace Service_Asky
             return ids;
         }
 
+        public List<string> get_fecha(int tipo_dia)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var fecha = (from p in db.tbl_calendario
+                         where p.tipo_dia_id.Equals(tipo_dia)
+                         select p);
+            List<string> f = new List<string>();
+            foreach (var item in fecha)
+            {
+                f.Add(item.fecha.ToString()); 
+            }
 
+            return f;
+        }
+
+
+        public List<string> get_eventos()
+        {
+            List<string> permisos = new List<string>();
+            try
+            {
+                string query = "select t.descripcion from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id group by t.descripcion";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos.Add(dataReader["descripcion"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return permisos;
+
+        }
+
+        public List<string> get_fecha_eventos(string evento)
+        {
+            List<string> permisos = new List<string>();
+            try
+            {
+                string query = "select c.fecha from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id and t.descripcion = '"+ evento +"'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos.Add(dataReader["fecha"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return permisos;
+        }
 
     }
 }
