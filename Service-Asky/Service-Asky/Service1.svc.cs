@@ -918,6 +918,40 @@ namespace Service_Asky
 
         }
 
+
+
+
+        public List<string>[] getDepartamentoEmpleados()
+        {
+            List<string>[] empleados = new List<string>[2];
+            empleados[0] = new List<string>();
+            empleados[1] = new List<string>();
+            try
+            {
+
+                string query = "select d.descripcion, concat(u.primer_nombre,' ',u.primer_apellido) as nombre from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        empleados[0].Add(dataReader["descripcion"] + "");
+                        empleados[1].Add(dataReader["nombre"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return empleados;
+
+        }
+
     }
 
 }
