@@ -18,7 +18,7 @@
      <table id="example" class="display responsive display select" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th><input name="select_all" type="checkbox"></th>
+                        <th>uiilu</th>
                         <th>Descripcion</th>
 
 
@@ -80,7 +80,7 @@
                 var table = $('#example').DataTable({
 
                     'ajax': {
-                        "url": "@Url.Action("JSonRoles", "Roles")",
+                        "url": "@Url.Action("getDptJefe", "Solicitudes")",
                         "type": "POST"
                     },
 
@@ -88,28 +88,15 @@
                     "columns": [
                         {
 
-                            "data": "id",
-                            'className': 'dt-body-center',
-                            'render': function (id) {
-                                return '<input type="checkbox" class="call-checkbox"  id="D'+id+'" name="' + id + '" value="' + id + '">';
-                            }
+                            "data": "departamento"
+                            
                         },
 
-                        { "data": "descripcion" }
+                        { "data": "nombre" }
 
                     ],
-                    'order': [1, 'asc'],
-                    'rowCallback': function (row, data, dataIndex) {
-                        // Get row ID
-                        var rowId = data[0];
 
-                        // If row ID is in the list of selected row IDs
-                        if ($.inArray(rowId, rows_selected) !== -1) {
-                            $(row).find('input[type="checkbox"]').prop('checked', true);
-                            $(row).addClass('selected');
-                        }
-
-                    }
+                    
 
                 });
 

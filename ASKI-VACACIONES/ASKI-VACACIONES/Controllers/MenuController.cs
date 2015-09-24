@@ -18,8 +18,9 @@ namespace ASKI_VACACIONES.Controllers
         {
            
             var permisos = Session["Permisos"] as string[];
+            ViewBag.username = Session["User"];
 
-            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Calendario = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud =  ViewBag.Eventos = ViewBag.Jerarquia = false;
+            ViewBag.Usuarios = ViewBag.Administracion = ViewBag.Departamentos = ViewBag.Roles = ViewBag.Permisos = ViewBag.Reporte = ViewBag.Solicitud = ViewBag.Eventos = ViewBag.Jerarquia = false;
             foreach (var permiso in permisos)
             {
                 switch (permiso)
@@ -41,8 +42,8 @@ namespace ASKI_VACACIONES.Controllers
                         ViewBag.Roles = true;
                         break;
 
-                    case "Calendario":
-                        ViewBag.Calendario = true;
+                    case "Eventos":
+                        ViewBag.Eventos = true;
                         break;
 
                     case "Permisos":
@@ -57,9 +58,6 @@ namespace ASKI_VACACIONES.Controllers
                         ViewBag.Solicitud = true;
                         break;
 
-                    case "Eventos":
-                        ViewBag.Eventos = true;
-                        break;
 
                     case "Jerarquia":
                         ViewBag.Jerarquia = true;
@@ -71,6 +69,11 @@ namespace ASKI_VACACIONES.Controllers
 
             return PartialView();
             
+        }
+
+        public ActionResult _Navbar()
+        {
+            return PartialView();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("localhost", "root", "contrasena");
+        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -134,6 +134,25 @@ namespace Service_Asky
             }
         }
 
+        public void addDepartamentoJefe(int talentoHumano, int DepartamentoId)
+        {
+            try
+            {
+                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + DepartamentoId + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
         public void addUsuario_Rol(int talentoHumano, int idRol)
         {
             try
@@ -189,6 +208,9 @@ namespace Service_Asky
 
             }
         }
+
+
+            
       
        public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
        {
@@ -209,14 +231,13 @@ namespace Service_Asky
 
        }
 
-        public void addTipo_dia(string descripcion, string color)
+        public void addTipo_dia(string descripcion)
         {
             try
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
-            tbl_tipo_dia tipo = new tbl_tipo_dia();
+                tbl_tipo_dia tipo = new tbl_tipo_dia();
                 tipo.descripcion = descripcion;
-                tipo.color = color;
                 db.tbl_tipo_dia.Add(tipo);
                db.SaveChanges();
             }
@@ -224,6 +245,26 @@ namespace Service_Asky
             {
 
             }
+        }
+
+        public void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id)
+        {
+
+            try
+            {
+                string query = "INSERT INTO tbl_calendario (talento_humano_jefe, fecha,tipo_dia_id) VALUES('" + talento_humano_jefe + "', '" + fecha + "'  , '" + tipo_dia_id + "')";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    cmd.ExecuteNonQuery();
+                    connect.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
 
@@ -602,7 +643,7 @@ namespace Service_Asky
                 Tipo_Dia t = new Tipo_Dia();
                 t.tipo_dia_id = item.tipo_dia_id;
                 t.descripcion = item.descripcion;
-                tipoDia.Add(t);
+                     tipoDia.Add(t);
             }
             return tipoDia;
         }
@@ -640,6 +681,34 @@ namespace Service_Asky
                     while (dataReader.Read())
                     {
                         numero = dataReader["rolesid"] + "";
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+                return int.Parse(numero);
+
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
+        }
+
+        public int getultimoid_tipodia()
+        {
+            try
+            {
+                string numero = "";
+                string query = "SELECT tipo_dia_id from tbl_tipo_dia order by tipo_dia_id desc limit 1";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        numero = dataReader["tipo_dia_id"] + "";
                     }
                     dataReader.Close();
                     connect.CloseConnection();
@@ -744,7 +813,145 @@ namespace Service_Asky
             return ids;
         }
 
+        public List<string> get_fecha(int tipo_dia)
+        {
+            vsystem_askiEntities db = new vsystem_askiEntities();
+            var fecha = (from p in db.tbl_calendario
+                         where p.tipo_dia_id.Equals(tipo_dia)
+                         select p);
+            List<string> f = new List<string>();
+            foreach (var item in fecha)
+            {
+                f.Add(item.fecha.ToString()); 
+            }
 
+            return f;
+        }
+
+
+        public List<string> get_eventos()
+        {
+            List<string> permisos = new List<string>();
+            try
+            {
+                string query = "select t.descripcion from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id group by t.descripcion";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos.Add(dataReader["descripcion"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return permisos;
+
+        }
+
+        public List<string> get_fecha_eventos(string evento)
+        {
+            List<string> permisos = new List<string>();
+            try
+            {
+                string query = "select c.fecha from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id and t.descripcion = '"+ evento +"'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos.Add(dataReader["fecha"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return permisos;
+        }
+
+
+
+
+        public List<string> [] getDepartamentoJefe()
+        {
+            List<string>[] permisos = new List<string>[2];
+            permisos[0] = new List<string>();
+            permisos[1] = new List<string>();
+            try
+            {
+
+                string query = "select d.descripcion, concat(u.primer_nombre,' ',u.primer_apellido) as nombre from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos[0].Add(dataReader["descripcion"] + "");
+                        permisos[1].Add(dataReader["nombre"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return permisos;
+
+        }
+
+
+
+
+        public List<string>[] getDepartamentoEmpleados()
+        {
+            List<string>[] empleados = new List<string>[2];
+            empleados[0] = new List<string>();
+            empleados[1] = new List<string>();
+            try
+            {
+
+                string query = "select d.descripcion, concat(u.primer_nombre,' ',u.primer_apellido) as nombre from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        empleados[0].Add(dataReader["descripcion"] + "");
+                        empleados[1].Add(dataReader["nombre"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return empleados;
+
+        }
 
     }
+
 }

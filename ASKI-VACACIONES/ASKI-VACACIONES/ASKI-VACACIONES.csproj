@@ -2314,12 +2314,23 @@
     <Content Include="Template\Validacion\prueba\index.html" />
     <Content Include="Template\Validacion\prueba\styles.css" />
     <Content Include="Template\Validacion\style.css" />
+    <Content Include="validation\assets\css\bootstrap-responsive.min.css" />
+    <Content Include="validation\assets\css\bootstrap.min.css" />
+    <Content Include="validation\assets\img\checked.gif" />
+    <Content Include="validation\assets\img\error.png" />
+    <Content Include="validation\assets\img\valid.png" />
+    <Content Include="validation\assets\js\jquery-1.7.1.min.js" />
+    <Content Include="validation\assets\js\jquery.validate.js" />
+    <Content Include="validation\assets\js\jquery.validate.min.js" />
+    <Content Include="validation\index.html" />
+    <Content Include="validation\script.js" />
+    <Content Include="validation\style.css" />
     <Content Include="Views\Test\arrays.txt" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Calendario.cshtml" />
+    <Content Include="Views\Eventos\Eventos.cshtml" />
     <Content Include="Views\Shared\Partial\_Navbar.cshtml" />
     <Content Include="Views\Shared\Partial\Menu.cshtml" />
     <Content Include="Template\.gitignore" />
@@ -2470,6 +2481,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JerarquiaController.cs" />
@@ -2483,13 +2495,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\TipoDiaModel.cs" />
+    <Compile Include="Models\EventosModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\JerarquiaModel.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PermisosModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
+    <Compile Include="Models\SolicitudesModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
@@ -2527,6 +2540,7 @@
     <Content Include="Views\Menu\_Menu.cshtml" />
     <Content Include="Views\Home\Bienvenida.cshtml" />
     <Content Include="Views\Jerarquia\AddJefe.cshtml" />
+    <Content Include="Views\Menu\_Navbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

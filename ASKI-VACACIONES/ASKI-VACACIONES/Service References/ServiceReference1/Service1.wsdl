@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:7100/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -80,6 +80,18 @@
   </wsdl:message>
   <wsdl:message name="IService1_addTipo_dia_OutputMessage">
     <wsdl:part name="parameters" element="tns:addTipo_diaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addCalendario_InputMessage">
+    <wsdl:part name="parameters" element="tns:addCalendario" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addCalendario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addCalendarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addDepartamentoJefe_InputMessage">
+    <wsdl:part name="parameters" element="tns:addDepartamentoJefe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addDepartamentoJefe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addDepartamentoJefeResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_editPermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:editPermiso" />
@@ -249,6 +261,36 @@
   <wsdl:message name="IService1_getIdDepartamentos_Usuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:getIdDepartamentos_UsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_get_fecha_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_fecha" />
+  </wsdl:message>
+  <wsdl:message name="IService1_get_fecha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_fechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getultimoid_tipodia_InputMessage">
+    <wsdl:part name="parameters" element="tns:getultimoid_tipodia" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getultimoid_tipodia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getultimoid_tipodiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_get_eventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_eventos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_get_eventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_eventosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_get_fecha_eventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_fecha_eventos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_get_fecha_eventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_fecha_eventosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getDepartamentoJefe_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDepartamentoJefe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getDepartamentoJefe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDepartamentoJefeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -297,6 +339,14 @@
     <wsdl:operation name="addTipo_dia">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addTipo_dia" message="tns:IService1_addTipo_dia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addTipo_diaResponse" message="tns:IService1_addTipo_dia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addCalendario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addCalendario" message="tns:IService1_addCalendario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addCalendarioResponse" message="tns:IService1_addCalendario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addDepartamentoJefe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addDepartamentoJefe" message="tns:IService1_addDepartamentoJefe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addDepartamentoJefeResponse" message="tns:IService1_addDepartamentoJefe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editPermiso" message="tns:IService1_editPermiso_InputMessage" />
@@ -410,6 +460,26 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getIdDepartamentos_Usuario" message="tns:IService1_getIdDepartamentos_Usuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getIdDepartamentos_UsuarioResponse" message="tns:IService1_getIdDepartamentos_Usuario_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="get_fecha">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/get_fecha" message="tns:IService1_get_fecha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/get_fechaResponse" message="tns:IService1_get_fecha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getultimoid_tipodia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getultimoid_tipodia" message="tns:IService1_getultimoid_tipodia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getultimoid_tipodiaResponse" message="tns:IService1_getultimoid_tipodia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_eventos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/get_eventos" message="tns:IService1_get_eventos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/get_eventosResponse" message="tns:IService1_get_eventos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_fecha_eventos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/get_fecha_eventos" message="tns:IService1_get_fecha_eventos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/get_fecha_eventosResponse" message="tns:IService1_get_fecha_eventos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDepartamentoJefe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getDepartamentoJefe" message="tns:IService1_getDepartamentoJefe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getDepartamentoJefeResponse" message="tns:IService1_getDepartamentoJefe_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -514,6 +584,24 @@
     </wsdl:operation>
     <wsdl:operation name="addTipo_dia">
       <soap:operation soapAction="http://tempuri.org/IService1/addTipo_dia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCalendario">
+      <soap:operation soapAction="http://tempuri.org/IService1/addCalendario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDepartamentoJefe">
+      <soap:operation soapAction="http://tempuri.org/IService1/addDepartamentoJefe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -766,6 +854,51 @@
     </wsdl:operation>
     <wsdl:operation name="getIdDepartamentos_Usuario">
       <soap:operation soapAction="http://tempuri.org/IService1/getIdDepartamentos_Usuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_fecha">
+      <soap:operation soapAction="http://tempuri.org/IService1/get_fecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getultimoid_tipodia">
+      <soap:operation soapAction="http://tempuri.org/IService1/getultimoid_tipodia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_eventos">
+      <soap:operation soapAction="http://tempuri.org/IService1/get_eventos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_fecha_eventos">
+      <soap:operation soapAction="http://tempuri.org/IService1/get_fecha_eventos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDepartamentoJefe">
+      <soap:operation soapAction="http://tempuri.org/IService1/getDepartamentoJefe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
