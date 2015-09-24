@@ -876,9 +876,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string colorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -891,19 +888,6 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string color {
-            get {
-                return this.colorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.colorField, value) != true)) {
-                    this.colorField = value;
-                    this.RaisePropertyChanged("color");
-                }
             }
         }
         
@@ -1187,10 +1171,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         System.Threading.Tasks.Task addJerarquiaAsync(int talento_humano, int talento_humano_Jefe, int departamentoid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
-        void addTipo_dia(string descripcion, string color);
+        void addTipo_dia(string descripcion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addTipo_dia", ReplyAction="http://tempuri.org/IService1/addTipo_diaResponse")]
-        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color);
+        System.Threading.Tasks.Task addTipo_diaAsync(string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
+        void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
+        System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, string fecha, int tipo_dia_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/addDepartamentoJefeResponse")]
+        void addDepartamentoJefe(int talentoHumano, int DepartamentoId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/addDepartamentoJefeResponse")]
+        System.Threading.Tasks.Task addDepartamentoJefeAsync(int talentoHumano, int DepartamentoId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
@@ -1359,6 +1355,36 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getIdDepartamentos_Usuario", ReplyAction="http://tempuri.org/IService1/getIdDepartamentos_UsuarioResponse")]
         System.Threading.Tasks.Task<string[]> getIdDepartamentos_UsuarioAsync(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha", ReplyAction="http://tempuri.org/IService1/get_fechaResponse")]
+        string[] get_fecha(int tipo_dia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha", ReplyAction="http://tempuri.org/IService1/get_fechaResponse")]
+        System.Threading.Tasks.Task<string[]> get_fechaAsync(int tipo_dia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getultimoid_tipodia", ReplyAction="http://tempuri.org/IService1/getultimoid_tipodiaResponse")]
+        int getultimoid_tipodia();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getultimoid_tipodia", ReplyAction="http://tempuri.org/IService1/getultimoid_tipodiaResponse")]
+        System.Threading.Tasks.Task<int> getultimoid_tipodiaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_eventos", ReplyAction="http://tempuri.org/IService1/get_eventosResponse")]
+        string[] get_eventos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_eventos", ReplyAction="http://tempuri.org/IService1/get_eventosResponse")]
+        System.Threading.Tasks.Task<string[]> get_eventosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha_eventos", ReplyAction="http://tempuri.org/IService1/get_fecha_eventosResponse")]
+        string[] get_fecha_eventos(string evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha_eventos", ReplyAction="http://tempuri.org/IService1/get_fecha_eventosResponse")]
+        System.Threading.Tasks.Task<string[]> get_fecha_eventosAsync(string evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
+        string[][] getDepartamentoJefe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
+        System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1476,12 +1502,28 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.addJerarquiaAsync(talento_humano, talento_humano_Jefe, departamentoid);
         }
         
-        public void addTipo_dia(string descripcion, string color) {
-            base.Channel.addTipo_dia(descripcion, color);
+        public void addTipo_dia(string descripcion) {
+            base.Channel.addTipo_dia(descripcion);
         }
         
-        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion, string color) {
-            return base.Channel.addTipo_diaAsync(descripcion, color);
+        public System.Threading.Tasks.Task addTipo_diaAsync(string descripcion) {
+            return base.Channel.addTipo_diaAsync(descripcion);
+        }
+        
+        public void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id) {
+            base.Channel.addCalendario(talento_humano_jefe, fecha, tipo_dia_id);
+        }
+        
+        public System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, string fecha, int tipo_dia_id) {
+            return base.Channel.addCalendarioAsync(talento_humano_jefe, fecha, tipo_dia_id);
+        }
+        
+        public void addDepartamentoJefe(int talentoHumano, int DepartamentoId) {
+            base.Channel.addDepartamentoJefe(talentoHumano, DepartamentoId);
+        }
+        
+        public System.Threading.Tasks.Task addDepartamentoJefeAsync(int talentoHumano, int DepartamentoId) {
+            return base.Channel.addDepartamentoJefeAsync(talentoHumano, DepartamentoId);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {
@@ -1706,6 +1748,46 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> getIdDepartamentos_UsuarioAsync(int talentoHumano) {
             return base.Channel.getIdDepartamentos_UsuarioAsync(talentoHumano);
+        }
+        
+        public string[] get_fecha(int tipo_dia) {
+            return base.Channel.get_fecha(tipo_dia);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> get_fechaAsync(int tipo_dia) {
+            return base.Channel.get_fechaAsync(tipo_dia);
+        }
+        
+        public int getultimoid_tipodia() {
+            return base.Channel.getultimoid_tipodia();
+        }
+        
+        public System.Threading.Tasks.Task<int> getultimoid_tipodiaAsync() {
+            return base.Channel.getultimoid_tipodiaAsync();
+        }
+        
+        public string[] get_eventos() {
+            return base.Channel.get_eventos();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> get_eventosAsync() {
+            return base.Channel.get_eventosAsync();
+        }
+        
+        public string[] get_fecha_eventos(string evento) {
+            return base.Channel.get_fecha_eventos(evento);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> get_fecha_eventosAsync(string evento) {
+            return base.Channel.get_fecha_eventosAsync(evento);
+        }
+        
+        public string[][] getDepartamentoJefe() {
+            return base.Channel.getDepartamentoJefe();
+        }
+        
+        public System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync() {
+            return base.Channel.getDepartamentoJefeAsync();
         }
     }
 }

@@ -44,7 +44,11 @@ namespace Service_Asky
         [OperationContract]
         void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid);
         [OperationContract]
-        void addTipo_dia(string descripcion, string color);
+        void addTipo_dia(string descripcion);
+        [OperationContract]
+        void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id);
+        [OperationContract]
+        void addDepartamentoJefe(int talentoHumano, int DepartamentoId);
     
 
         //=================== Edit Element from database=============
@@ -112,6 +116,19 @@ namespace Service_Asky
         List<string> getIdsRoles_Usuario(int talentoHumano);
         [OperationContract]
         List<string> getIdDepartamentos_Usuario(int talentoHumano);
+        [OperationContract]
+        List<string> get_fecha(int tipo_dia);
+
+        [OperationContract]
+        int getultimoid_tipodia();
+
+        [OperationContract]
+        List<string> get_eventos();
+        [OperationContract]
+        List<string> get_fecha_eventos(string evento);
+        [OperationContract]
+        List<string>[] getDepartamentoJefe();
+
 
 
     }

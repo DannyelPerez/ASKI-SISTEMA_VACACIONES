@@ -26,10 +26,10 @@
         <AssociationConnector Association="vsystem_askiModel.fk_v_e" />
         <AssociationConnector Association="vsystem_askiModel.fk_lv_v" />
         <AssociationConnector Association="vsystem_askiModel.fk_v_th" />
-        <EntityTypeShape EntityType="vsystem_askiModel.tbl_tipo_dia" Width="1.5" PointX="6" PointY="11.25" />
         <EntityTypeShape EntityType="vsystem_askiModel.tbl_calendario" Width="1.5" PointX="8.25" PointY="8.5" />
-        <AssociationConnector Association="vsystem_askiModel.fk_c_td" />
         <AssociationConnector Association="vsystem_askiModel.fk_c_th_j" />
+        <EntityTypeShape EntityType="vsystem_askiModel.tbl_tipo_dia" Width="1.5" PointX="13.875" PointY="3.75" />
+        <AssociationConnector Association="vsystem_askiModel.fk_c_td" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
