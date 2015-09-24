@@ -14,10 +14,37 @@ namespace ASKI_VACACIONES.Controllers
         public ViewResult Eventos()
         {
             if (Session["User"] != null)
+            {
+                var permisos = Session["Permisos"] as string[];
+                ViewBag.crear_evento = ViewBag.visualizar_evento = false;
+                foreach (var permiso in permisos)
+                {
+                    switch (permiso)
+                    {
+
+                        case "Crear evento":
+                            ViewBag.crear_evento = true;
+                            break;
+
+                        case "Visualizar evento":
+                            ViewBag.visualizar_evento = true;
+                            break;
+
+
+                        default:
+                            break;
+                    }
+                }
+
                 return View();
+            }
             else
+            {
                 return View("Login");
+            }
         }
+
+        
 
     
 
@@ -143,7 +170,7 @@ namespace ASKI_VACACIONES.Controllers
             string fecha = "";
             foreach (var item in fechas)
             {
-                fecha += item + " ";
+                fecha += getFecha(item) + " ";
             }
             return fecha;
         }

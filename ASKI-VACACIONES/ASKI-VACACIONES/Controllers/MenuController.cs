@@ -70,6 +70,11 @@ namespace ASKI_VACACIONES.Controllers
             return PartialView();
             
         }
+
+        public ActionResult _Navbar()
+        {
+            return PartialView();
+        }
     }
 }
 

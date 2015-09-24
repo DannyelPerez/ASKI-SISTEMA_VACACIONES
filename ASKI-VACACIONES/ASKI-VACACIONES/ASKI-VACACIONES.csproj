@@ -2528,6 +2528,7 @@
     <Content Include="Views\Menu\_Menu.cshtml" />
     <Content Include="Views\Home\Bienvenida.cshtml" />
     <Content Include="Views\Jerarquia\AddJefe.cshtml" />
+    <Content Include="Views\Menu\_Navbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
