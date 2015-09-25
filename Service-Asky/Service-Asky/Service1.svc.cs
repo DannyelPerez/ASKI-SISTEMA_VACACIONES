@@ -863,7 +863,7 @@ namespace Service_Asky
             return permisos;
         }
 
-        public List<string>[] getDepartamentoJefe()
+        public List<string>[] getDepartamento_Usuario()
         {
             List<string>[] permisos = new List<string>[4];
             permisos[0] = new List<string>();
@@ -873,7 +873,7 @@ namespace Service_Asky
             try
             {
 
-                string query = "select d.descripcion, d.departamentoid, concat(u.primer_nombre,' ',u.primer_apellido) as nombre, u.talento_humano from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano and d.activo=true and u.activo = true";
+                string query = "select d.descripcion, d.departamentoid, concat(u.primer_nombre,' ',u.primer_apellido) as nombre, u.talento_humano from tbl_departamento as d, tbl_usuarios as u, tbl_usuarios_departamento  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano and d.activo=true and u.activo = true";
                 if (connect.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
@@ -882,8 +882,8 @@ namespace Service_Asky
                     {
                         permisos[0].Add(dataReader["descripcion"] + "");
                         permisos[1].Add(dataReader["departamentoid"] + "");
-                        permisos[0].Add(dataReader["nombre"] + "");
-                        permisos[1].Add(dataReader["talento_humano"] + "");
+                        permisos[2].Add(dataReader["nombre"] + "");
+                        permisos[3].Add(dataReader["talento_humano"] + "");
                     }
                     dataReader.Close();
                     connect.CloseConnection();

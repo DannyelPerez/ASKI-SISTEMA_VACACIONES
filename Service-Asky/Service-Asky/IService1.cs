@@ -126,7 +126,7 @@ namespace Service_Asky
         [OperationContract]
         List<string> get_fecha_eventos(string evento);
         [OperationContract]
-        List<string>[] getDepartamentoJefe();
+        List<string>[] getDepartamento_Usuario();
 
         [OperationContract]
         List<string> getDepartamentoUsuario(int id);

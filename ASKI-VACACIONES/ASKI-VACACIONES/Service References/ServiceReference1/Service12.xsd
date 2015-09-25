@@ -598,15 +598,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="getDepartamentoJefe">
+  <xs:element name="getDepartamento_Usuario">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="getDepartamentoJefeResponse">
+  <xs:element name="getDepartamento_UsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getDepartamentoJefeResult" nillable="true" type="q24:ArrayOfArrayOfstring" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getDepartamento_UsuarioResult" nillable="true" type="q24:ArrayOfArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

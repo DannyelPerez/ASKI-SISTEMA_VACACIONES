@@ -1374,11 +1374,11 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha_eventos", ReplyAction="http://tempuri.org/IService1/get_fecha_eventosResponse")]
         System.Threading.Tasks.Task<string[]> get_fecha_eventosAsync(string evento);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
-        string[][] getDepartamentoJefe();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamento_Usuario", ReplyAction="http://tempuri.org/IService1/getDepartamento_UsuarioResponse")]
+        string[][] getDepartamento_Usuario();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
-        System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamento_Usuario", ReplyAction="http://tempuri.org/IService1/getDepartamento_UsuarioResponse")]
+        System.Threading.Tasks.Task<string[][]> getDepartamento_UsuarioAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoUsuario", ReplyAction="http://tempuri.org/IService1/getDepartamentoUsuarioResponse")]
         string[] getDepartamentoUsuario(int id);
@@ -1774,12 +1774,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.get_fecha_eventosAsync(evento);
         }
         
-        public string[][] getDepartamentoJefe() {
-            return base.Channel.getDepartamentoJefe();
+        public string[][] getDepartamento_Usuario() {
+            return base.Channel.getDepartamento_Usuario();
         }
         
-        public System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync() {
-            return base.Channel.getDepartamentoJefeAsync();
+        public System.Threading.Tasks.Task<string[][]> getDepartamento_UsuarioAsync() {
+            return base.Channel.getDepartamento_UsuarioAsync();
         }
         
         public string[] getDepartamentoUsuario(int id) {

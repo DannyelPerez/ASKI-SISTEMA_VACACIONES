@@ -41,7 +41,7 @@ namespace ASKI_VACACIONES.Controllers
 
             string json = "";
             Service1Client client = new Service1Client();
-            var query = client.getDepartamentoJefe();
+            var query = client.getDepartamento_Usuario();
             for (int i = 0; i < query.ElementAt(0).Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }

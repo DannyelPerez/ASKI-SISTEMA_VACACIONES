@@ -279,11 +279,11 @@
   <wsdl:message name="IService1_get_fecha_eventos_OutputMessage">
     <wsdl:part name="parameters" element="tns:get_fecha_eventosResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_getDepartamentoJefe_InputMessage">
-    <wsdl:part name="parameters" element="tns:getDepartamentoJefe" />
+  <wsdl:message name="IService1_getDepartamento_Usuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDepartamento_Usuario" />
   </wsdl:message>
-  <wsdl:message name="IService1_getDepartamentoJefe_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getDepartamentoJefeResponse" />
+  <wsdl:message name="IService1_getDepartamento_Usuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDepartamento_UsuarioResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_getDepartamentoUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:getDepartamentoUsuario" />
@@ -472,9 +472,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/get_fecha_eventos" message="tns:IService1_get_fecha_eventos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/get_fecha_eventosResponse" message="tns:IService1_get_fecha_eventos_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="getDepartamentoJefe">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getDepartamentoJefe" message="tns:IService1_getDepartamentoJefe_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getDepartamentoJefeResponse" message="tns:IService1_getDepartamentoJefe_OutputMessage" />
+    <wsdl:operation name="getDepartamento_Usuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getDepartamento_Usuario" message="tns:IService1_getDepartamento_Usuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getDepartamento_UsuarioResponse" message="tns:IService1_getDepartamento_Usuario_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getDepartamentoUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getDepartamentoUsuario" message="tns:IService1_getDepartamentoUsuario_InputMessage" />
@@ -888,8 +888,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getDepartamentoJefe">
-      <soap:operation soapAction="http://tempuri.org/IService1/getDepartamentoJefe" style="document" />
+    <wsdl:operation name="getDepartamento_Usuario">
+      <soap:operation soapAction="http://tempuri.org/IService1/getDepartamento_Usuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
