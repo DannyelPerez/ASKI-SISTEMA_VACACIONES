@@ -1,4 +1,4 @@
-﻿
+﻿@model ASKI_VACACIONES.Models.JerarquiaModel
 @{
     
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -52,13 +52,15 @@
                                     <div class="box-body">
                                    
                                         <div class="form-group">
-                                            <table id="empleado_jefe" class="datatable table table-striped table-bordered" width="55%">
+                                            <table id="empleado_jefe" class="datatable table table-striped table-bordered" width="85%">
 
                                                 <thead>
                                                     <tr>
                                                         <th>Descripcion</th>
                                                         <th>id</th>
-                                                        <th>Nombre</th>
+                                                        <th>Nombre Empleado</th>
+                                                        <th>id</th>
+                                                        <th>Nombre Jefe</th>
                                                         <th>id</th>
                                                         <th>Editar</th>
                                                     </tr>
@@ -72,20 +74,29 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="recargar();"></span></button>
                                             <h4 class="modal-title custom_align" id="Heading">Cambiar jefe del empleado</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input class="form-control " type="text" placeholder="Departamento">
+                                                <input class="form-control " type="text" value="@ViewBag.nombre" disabled>
+
                                             </div>
                                             <div class="form-group">
+                                                <div class="ui-widget">
+                                                    <select id="combobox" class="form-control">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.Emple)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                                                <input class="form-control " type="text" placeholder="Jefe">
-                                            </div>
+                                                    </select>
+                                                </div>
 
                                         </div>
                                         <div class="modal-footer ">
+                                            
                                             <button type="button" class="btn btn-primary btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
                                         </div>
                                     </div>
@@ -129,58 +140,30 @@
             "columns": [
                 { "data": "descripcion",},
                 { "data": "departamentoid" },
-                { "data": "nombre", },
+                { "data": "nombre"},
                 { "data": "talento_humano" },
-                    {
-                        "data": "id",
+                { "data": "nombreJefe" },
+                { "data": "talentoJefe" },
+                {
+                        //"data": "id",
                         'className': 'dt-body-center',
                         'render': function (id) {
-                            return '<p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p>';
+                            return '<p data-placement="top" data-toggle="tooltip" title="Editar jefe"><input type="button" name="submitButton" value="Editar" class="btn btn-primary pull-right"  data-title="Edit" onclick="openModal()"/></p>';
 
-                        }
-                    }
-
-            ],
-            'order': [1, 'asc'],
-            'rowCallback': function (row, data, dataIndex) {
-                // Get row ID
-                var rowId = data[0];
-
-                // If row ID is in the list of selected row IDs
-                if ($.inArray(rowId, rows_selected) !== -1) {
-                    $(row).find('input[type="checkbox"]').prop('checked', true);
-                    $(row).addClass('selected');
+                 }
                 }
 
-            }
+            ],
+            'order': [1, 'asc']
+        
         });
 
-        // Handle click on checkbox
-        $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
-            e.stopPropagation();
-        });
-
-        // Handle click on table cells with checkboxes
-        $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
-            $(this).parent().find('input[type="checkbox"]').trigger('click');
-        });
-
-        // Handle click on "Select all" control
-        $('#departamento thead input[name="select_all"]').on('click', function (e) {
-            if (this.checked) {
-                $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
-            } else {
-                $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
-            }
-
-            // Prevent click event from propagating to parent
-            e.stopPropagation();
-        });
-
-        // Handle table draw event
-        table.on('draw', function () {
-            // Update state of "Select all" control
-            updateDataTableSelectAllCtrl(table);
-        });
     });
+
+    function openModal()
+    {
+        $("#edit").modal('show');
+    }
+
 </script>
+

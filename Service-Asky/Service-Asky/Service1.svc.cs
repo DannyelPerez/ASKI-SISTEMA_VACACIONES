@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("LocalHost", "root", "contrasena");
+        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -204,6 +204,7 @@ namespace Service_Asky
                 jerar.jefe_talentohumano = talento_humano_Jefe;
                 jerar.departamentoid = departamentoid;
                 db.tbl_jerarquia.Add(jerar);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -246,6 +247,49 @@ namespace Service_Asky
 
             }
 
+        }
+
+        public void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada, int diasSolicitados, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_vacaciones tipo = new tbl_vacaciones();
+                tipo.dias_solicitados = diasSolicitados;
+                tipo.estatusid = statusid;
+                tipo.fecha_de_aprobacion = fechaAprobacion;
+                tipo.fecha_entrada = fechaEntrada;
+                tipo.fecha_salida = fechaSalida;
+                tipo.fecha_solicitud = fechaSolicitud;
+                tipo.talento_humano = talentoHumano;
+                tipo.year = year;
+                db.tbl_vacaciones.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_log_vacaciones tipo = new tbl_log_vacaciones();
+                tipo.estatus_actual = estatusActual;
+                tipo.estatus_anterior = estatusAnterior;
+                tipo.fecha_modificacion = DateTime.Today;
+                tipo.th_modifico = talentoHumano_Modifico;
+                tipo.vacacionesid = vacacionesid;
+                db.tbl_log_vacaciones.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
@@ -962,6 +1006,66 @@ namespace Service_Asky
             return jefe;
 
         }
+
+        public int getTalentoHumano_Jefe_Departamento(int departamentoid)
+        {
+            int jefe = 0;
+            try
+            {
+                string query = "select u.talento_humano from tbl_usuarios as u, tbl_departamento as d, tbl_departamento_jefe  as ud where u.talento_humano=ud.talento_humano and d.departamentoid=ud.departamentoid and d.departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["talento_humano"] + "";
+                        if (!j.Equals(""))
+                            jefe = int.Parse(j);
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
+
+        }
+
+        public int getTalentoHumano_Jefe(int talentoHumano_empleado, int departamentoid)
+        {
+            int jefe = 0;
+            try
+            {
+                string query = "select jefe_talentohumano from tbl_jerarquia where talento_humano='"+talentoHumano_empleado+"' and departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["jefe_talentohumano"] + "";
+                        if (!j.Equals(""))
+                            jefe = int.Parse(j);
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
+        }
+
 
     }
 

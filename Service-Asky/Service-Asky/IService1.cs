@@ -47,7 +47,10 @@ namespace Service_Asky
         void addTipo_dia(string descripcion);
         [OperationContract]
         void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id);
-
+        [OperationContract]
+        void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada, int diasSolicitados, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid);
+        [OperationContract]
+        void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual);
 
         //=================== Edit Element from database=============
 
@@ -128,6 +131,11 @@ namespace Service_Asky
         List<string>[] getDepartamento_Usuario();
         [OperationContract]
         string getJefe_Departamento(int departamentoid);
+        [OperationContract]
+        int getTalentoHumano_Jefe_Departamento(int departamentoid);
+        [OperationContract]
+        int getTalentoHumano_Jefe(int talentoHumano_empleado, int departamentoid);
+        
 
 
     }
