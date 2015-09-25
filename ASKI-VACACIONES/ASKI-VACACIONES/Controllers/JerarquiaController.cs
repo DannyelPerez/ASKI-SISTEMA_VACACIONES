@@ -1,4 +1,5 @@
-﻿using ASKI_VACACIONES.ServiceReference1;
+﻿using ASKI_VACACIONES.Models;
+using ASKI_VACACIONES.ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,55 @@ namespace ASKI_VACACIONES.Controllers
 	            }
                 ViewBag.Empleados = emple;
 
+                var quer = client.getTbl_departamentos();
+                List<string> depto = new List<string>();
+                foreach (var item in quer)
+                {
+                    depto.Add(item.descripcion+ "|" + item.departamentoid);
+                }
+                ViewBag.Empleados = emple;
+                ViewBag.Departamentos = depto;
+
+
                 return View();
             }
                 
+            else
+                return RedirectToAction("Login", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult AddJefe(JerarquiaModel model)
+        {
+            if (Session["User"] != null)
+            {
+                Service1Client client = new Service1Client();
+                int deptoId = int.Parse(splitID(model.departamentoid.ToString()));
+                int talentoH = int.Parse(splitID(model.talento_humano_jefe.ToString()));
+                if(deptoId!=0&&talentoH!=00)
+                {
+                    client.addDepartamento_Jefe(talentoH, deptoId);
+                }
+
+                var query = client.getTbl_usuarios();
+                List<string> emple = new List<string>();
+                foreach (var item in query)
+                {
+                    emple.Add(item.primer_nombre + " " + item.primer_apellido + "|" + item.talento_humano);
+                }
+                ViewBag.Empleados = emple;
+
+                var quer = client.getTbl_departamentos();
+                List<string> depto = new List<string>();
+                foreach (var item in quer)
+                {
+                    depto.Add(item.descripcion + "|" + item.departamentoid);
+                }
+                ViewBag.Empleados = emple;
+                ViewBag.Departamentos = depto;
+                return View();
+            }
+
             else
                 return RedirectToAction("Login", "Home");
         }
@@ -36,13 +83,11 @@ namespace ASKI_VACACIONES.Controllers
 
             string json = "";
             Service1Client client = new Service1Client();
-            var query = client.getDepartamentoJefe();
-            for (int i = 0; i < query.ElementAt(0).Count(); i++)
+            var depto = client.getTbl_departamentos();
+            for (int i = 0; i < depto.Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
-                json += "{" + String.Format("\"departamento\":\"{0}\",\"nombre\":\"{1}\"", query.ElementAt(0).ElementAt(i), query.ElementAt(1).ElementAt(i)) + "}";
-
-
+                json += "{" + String.Format("\"departamento\":\"{0}\",\"nombre\":\"{1}\"", depto.ElementAt(i).descripcion, client.getJefe_Departamento(depto.ElementAt(i).departamentoid)) + "}";
             }
 
             json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";
@@ -72,6 +117,28 @@ namespace ASKI_VACACIONES.Controllers
 
            json = "[" + json + "]";
             return Content(json);
+        }
+
+        private string splitID(string cadena)
+        {
+            string valor = "0";
+            bool id = false;
+            if (cadena == null)
+                return valor;
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                if (cadena[i] == '|')
+                {
+                    id = true;
+                    valor = "";
+                }
+                else if(id)
+                {
+                    valor += cadena[i];
+                }
+
+            }
+            return valor;
         }
     }
 }

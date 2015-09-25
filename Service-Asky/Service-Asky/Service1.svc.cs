@@ -933,6 +933,36 @@ namespace Service_Asky
 
         }
 
+        public string getJefe_Departamento(int departamentoid)
+        {
+            string jefe = "Sin Asignar";
+            try
+            {
+                string query = "select concat(u.primer_nombre,' ',u.primer_apellido) as NombreCompleto from tbl_usuarios as u, tbl_departamento as d, tbl_departamento_jefe as ud where u.talento_humano=ud.talento_humano and d.departamentoid=ud.departamentoid and d.departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["fecha"] + "";
+                        if (!j.Equals(""))
+                            jefe = j;
+                        
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
+        }
+
     }
 
 }

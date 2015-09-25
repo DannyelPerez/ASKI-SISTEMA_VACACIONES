@@ -16,7 +16,7 @@
 <style>
     .custom-combobox {
         position: relative;
-        display: inline-block;
+        display: block;
     }
 
     .custom-combobox-toggle {
@@ -54,7 +54,7 @@
                   .appendTo(this.wrapper)
                   .val(value)
                   .attr("title", "")
-                  .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                  .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control")
                   .autocomplete({
                       delay: 0,
                       minLength: 0,
@@ -183,56 +183,72 @@
                 {
 
                     <div class="panel-body">
-                                                   
-                            <!-- form start -->
-                            @Html.ValidationSummary(true)
-                            <form class="form-horizontal">
+
+                        <!-- form start -->
+                        @Html.ValidationSummary(true)
+                        <form class="form-horizontal">
 
 
-                                <div class="form-group">
-                                    <div class="box">
-                                           <div class="box-body">
-                                               <div class="form-group">
-                                                   <div class="ui-widget">
-                                                       <label class="form-control-label">Seleccione el Departamento</label>
-                                                       <select id="depto" class="form-control">
-                                                           @foreach (var item in @ViewBag.Empleados)
-                                                           {
-                                                               <option value="@item">@item</option>
-                                                           }
+                            <div class="form-group">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <div class="ui-widget">
+                                                <p><label class="form-control-label">Seleccione el Departamento</label></p>
+                                                <p>
+                                                    <select id="depto" class="form-control">
+                                                        @foreach (var item in @ViewBag.Departamentos)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                                                       </select>
+                                                    </select>
+                                                </p>
 
-                                                   </div>
-                                                   <div class="ui-widget">
-                                                       <label class="form-control-label">Escriba el nombre o talento humano del Empleado</label>
-                                                       <select id="combobox">
-                                                           @foreach (var item in @ViewBag.Empleados)
-                                                           {
-                                                               <option value="@item">@item</option>
-                                                           }
+                                            </div>
+                                            <div class="ui-widget">
+                                                <br />
+                                                <p><label class="form-control-label">Escriba el nombre o talento humano del Empleado</label></p>
+                                                <p>
+                                                    <select id="combobox">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.Empleados)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                                                       </select>
+                                                    </select>
+                                                </p>
 
-                                                   </div>
-                                               <input type="button" onclick="print()" value="Print" class="btn-flat"/>
-                                              </div>
-                                            <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Departamento</th>
-                                                        <th>Jefe Departamento</th>
-                                                    </tr>
-                                                </thead>
+                                            </div>
+                                            <div align="right">
+                                                @Html.TextBoxFor(x => x.departamentoid, new { @class = "hidden", type = "text", id="depa" })
+                                                @Html.TextBoxFor(x => x.talento_humano_jefe, new { @class = "hidden", type = "text", id="empl" })
+                                                <input type="submit" onclick="print()" value="Agregar Jefe" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Departamento</th>
+                                                    <th>Jefe Departamento</th>
+                                                </tr>
+                                            </thead>
 
-                                            </table>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
 
-                                </div>
+                            </div>
 
-                            </form>
-                     </div>
+                        </form>
+                    </div>
 
                 }
             </div>
@@ -275,22 +291,24 @@
 
         setInterval(function () {
             table.ajax.reload();
-        }, 60000);
-          
- });
+        }, 20000);
+
+    });
 </script>
 
-
+@*<input title="" class="custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left ui-autocomplete-input" autocomplete="off" data-original-title="">*@
 
 
 <script type="text/javascript">
     function print() {
 
         //Permisos
-        var table = document.getElementById("combobox").value;
-        console.log("checbox_value: " + table);
-     
-
+        var empleado = document.getElementById("combobox").value;
+        var depto = document.getElementById("depto").value;
+        console.log(empleado);
+        console.log(depto);
+        $('#depa').val(depto);
+        $('#empl').val(empleado);
     }
 </script>
 

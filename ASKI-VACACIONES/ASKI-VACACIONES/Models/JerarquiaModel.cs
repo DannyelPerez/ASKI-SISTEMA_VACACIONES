@@ -9,7 +9,7 @@ namespace ASKI_VACACIONES.Models
     {
         public UsuariosModel usuarios { get; set; }
         public int talento_humano { get; set; }
-        public int talento_humano_jefe { get; set; }
-        public int departamentoid { get; set; }
+        public string talento_humano_jefe { get; set; }
+        public string departamentoid { get; set; }
     }
 }

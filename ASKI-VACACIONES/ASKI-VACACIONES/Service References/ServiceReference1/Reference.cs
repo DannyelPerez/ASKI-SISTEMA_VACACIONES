@@ -1379,6 +1379,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
         System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getJefe_Departamento", ReplyAction="http://tempuri.org/IService1/getJefe_DepartamentoResponse")]
+        string getJefe_Departamento(int departamentoid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getJefe_Departamento", ReplyAction="http://tempuri.org/IService1/getJefe_DepartamentoResponse")]
+        System.Threading.Tasks.Task<string> getJefe_DepartamentoAsync(int departamentoid);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1774,6 +1780,14 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync() {
             return base.Channel.getDepartamentoJefeAsync();
+        }
+        
+        public string getJefe_Departamento(int departamentoid) {
+            return base.Channel.getJefe_Departamento(departamentoid);
+        }
+        
+        public System.Threading.Tasks.Task<string> getJefe_DepartamentoAsync(int departamentoid) {
+            return base.Channel.getJefe_DepartamentoAsync(departamentoid);
         }
     }
 }

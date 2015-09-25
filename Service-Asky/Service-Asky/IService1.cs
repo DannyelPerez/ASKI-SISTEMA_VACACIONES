@@ -126,6 +126,8 @@ namespace Service_Asky
         List<string> get_fecha_eventos(string evento);
         [OperationContract]
         List<string>[] getDepartamentoJefe();
+        [OperationContract]
+        string getJefe_Departamento(int departamentoid);
 
 
 
