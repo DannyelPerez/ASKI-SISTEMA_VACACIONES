@@ -30,6 +30,7 @@ namespace ASKI_VACACIONES.Controllers
                 {
                     depto.Add(item.descripcion+ "|" + item.departamentoid);
                 }
+                client.Close();
                 ViewBag.Empleados = emple;
                 ViewBag.Departamentos = depto;
 
@@ -51,10 +52,13 @@ namespace ASKI_VACACIONES.Controllers
                 int talentoH = int.Parse(splitID(model.talento_humano_jefe.ToString()));
                 if(deptoId!=0&&talentoH!=00)
                 {
+                    client.deleteDepartamento_Jefe(deptoId);
                     client.addDepartamento_Jefe(talentoH, deptoId);
                 }
 
                 var query = client.getTbl_usuarios();
+                var quer = client.getTbl_departamentos();
+                client.Close();
                 List<string> emple = new List<string>();
                 foreach (var item in query)
                 {
@@ -62,7 +66,6 @@ namespace ASKI_VACACIONES.Controllers
                 }
                 ViewBag.Empleados = emple;
 
-                var quer = client.getTbl_departamentos();
                 List<string> depto = new List<string>();
                 foreach (var item in quer)
                 {
@@ -87,7 +90,9 @@ namespace ASKI_VACACIONES.Controllers
             for (int i = 0; i < depto.Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
-                json += "{" + String.Format("\"departamento\":\"{0}\",\"nombre\":\"{1}\"", depto.ElementAt(i).descripcion, client.getJefe_Departamento(depto.ElementAt(i).departamentoid)) + "}";
+                int deptoid = depto.ElementAt(i).departamentoid;
+                string jefe = client.getJefe_Departamento(deptoid);
+                json += "{" + String.Format("\"departamento\":\"{0}\",\"nombre\":\"{1}\"", depto.ElementAt(i).descripcion, jefe) + "}";
             }
 
             json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": [" + json + "]}";

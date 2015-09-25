@@ -380,9 +380,9 @@ namespace Service_Asky
             }
         }
 
-        public void deleteDepartamento_Jefe(int talentoHumano)
+        public void deleteDepartamento_Jefe(int depatamentoid)
         {
-            string query = "DELETE FROM tbl_departamento_JEFE WHERE talento_humano='" + talentoHumano + "'";
+            string query = "DELETE FROM tbl_departamento_jefe WHERE departamentoid='" + depatamentoid + "'";
 
             if (connect.OpenConnection() == true)
             {
@@ -945,7 +945,7 @@ namespace Service_Asky
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        string j = dataReader["fecha"] + "";
+                        string j = dataReader["NombreCompleto"] + "";
                         if (!j.Equals(""))
                             jefe = j;
                         
