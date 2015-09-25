@@ -14,52 +14,52 @@
     }
 </script>
 
-    <form id="frm-example" action="#">
-        <table id="departamento" class="datatable table table-striped table-bordered" width="65%">
+<form id="frm-example" action="#">
+    <table id="departamento" class="datatable table table-striped table-bordered" width="65%">
 
-            <thead>
-                <tr>
-                    <th><input name="select_all" type="checkbox"></th>
-                    <th>Descripcion</th>
-                    <th>Editar</th>
-                    <th></th>
+        <thead>
+            <tr>
+                <th><input name="select_all" type="checkbox"></th>
+                <th>Descripcion</th>
+                <th>Editar</th>
+                <th></th>
 
-                </tr>
-            </thead>
-            
-
-        </table>
-        
-
-       
+            </tr>
+        </thead>
 
 
-        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                        <h4 class="modal-title custom_align" id="Heading">Cambiar jefe del empleado</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input class="form-control " type="text" placeholder="Departamento">
-                        </div>
-                        <div class="form-group">
+    </table>
 
-                            <input class="form-control " type="text" placeholder="Jefe">
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="button" class="btn btn-primary btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
-                    </div>
+
+
+
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Cambiar jefe del empleado</h4>
                 </div>
-                <!-- /.modal-content -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control " type="text" placeholder="Departamento">
+                    </div>
+                    <div class="form-group">
+
+                        <input class="form-control " type="text" placeholder="Jefe">
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-primary btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                </div>
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
-        </form>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
 
 
 <script type="text/javascript">
@@ -98,17 +98,17 @@
             responsive: true,
             "ajax": {
                 "url": "@Url.Action("JSonRoles", "Roles")",
-            "type": "POST"
-        },
+                "type": "POST"
+            },
 
             "columns": [
         {
-                        "data": "id",
-        'className': 'dt-body-center',
-        'render': function (id) {
-            return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
-        }
-    },
+            "data": "id",
+            'className': 'dt-body-center',
+            'render': function (id) {
+                return '<input type="checkbox" class="call-checkbox" name="' + id + '" value="' + id + '">';
+            }
+        },
                     { "data": "descripcion" },
                     {
                         "data": "id",
@@ -119,7 +119,7 @@
                         }
                     }
 
-    ],
+            ],
             'order': [1, 'asc'],
             'rowCallback': function (row, data, dataIndex) {
                 // Get row ID
@@ -132,38 +132,34 @@
                 }
 
             }
-    });
+        });
 
-    // Handle click on checkbox
-    $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
-        e.stopPropagation();
-    });
+        // Handle click on checkbox
+        $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
 
-    // Handle click on table cells with checkboxes
-    $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
-        $(this).parent().find('input[type="checkbox"]').trigger('click');
-    });
+        // Handle click on table cells with checkboxes
+        $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
 
-    // Handle click on "Select all" control
-    $('#departamento thead input[name="select_all"]').on('click', function (e) {
-        if (this.checked) {
-            $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
-        } else {
-            $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
-        }
+        // Handle click on "Select all" control
+        $('#departamento thead input[name="select_all"]').on('click', function (e) {
+            if (this.checked) {
+                $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
+            }
 
-        // Prevent click event from propagating to parent
-        e.stopPropagation();
-    });
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
 
-    // Handle table draw event
-    table.on('draw', function () {
-        // Update state of "Select all" control
-        updateDataTableSelectAllCtrl(table);
-    });
+        // Handle table draw event
+        table.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl(table);
+        });
     });
 </script>
-
-
-
-

@@ -553,6 +553,7 @@
     <Content Include="Content\js\flot-data.js" />
     <Content Include="Content\js\morris-data.js" />
     <Content Include="Content\js\npm.js" />
+    <Content Include="Content\js\typeahead.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="DataTables-1.10.9\examples\advanced_init\column_render.html" />
     <Content Include="DataTables-1.10.9\examples\advanced_init\complex_header.html" />
