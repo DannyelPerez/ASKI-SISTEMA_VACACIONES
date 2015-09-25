@@ -5,7 +5,7 @@
 <!--Check-->
 <script type="text/javascript">
     function showContent(content, check, tableID) {
-        var table = $('#'+tableID+'').DataTable();
+        var table = $('#'+tableID+'').DataTable(); 
         table.ajax.reload();
         element = document.getElementById(content);
             check = document.getElementById(check);

@@ -46,8 +46,7 @@
                         @Html.ValidationSummary(true)
                         <form class="form-horizontal">
 
-
-                            
+                                                       
                                 <div class="box">
                                     <div class="box-body">
                                    
@@ -56,11 +55,11 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th>Descripcion</th>
+                                                        <th>Departamento de Trabajo</th>
                                                         <th>id</th>
                                                         <th>Nombre Empleado</th>
                                                         <th>id</th>
-                                                        <th>Nombre Jefe</th>
+                                                        <th>Nombre del Jefe Inmediato</th>
                                                         <th>id</th>
                                                         <th>Editar</th>
                                                     </tr>
@@ -69,6 +68,7 @@
                                                 
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
+                                    </div>
                             <!--Modal-->
                             <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -104,7 +104,7 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
-                            
+                            </div>
 
                         </form>
                     </div>
@@ -145,8 +145,8 @@
                 { "data": "nombreJefe" },
                 { "data": "talentoJefe" },
                 {
-                        //"data": "id",
-                        'className': 'dt-body-center',
+                        //"data": null,
+                        'className': 'dt-body-left',
                         'render': function (id) {
                             return '<p data-placement="top" data-toggle="tooltip" title="Editar jefe"><input type="button" name="submitButton" value="Editar" class="btn btn-primary pull-right"  data-title="Edit" onclick="openModal()"/></p>';
 
@@ -160,9 +160,10 @@
 
     });
 
-    function openModal()
+    function openModal(print)
     {
         $("#edit").modal('show');
+        console.log(print);
     }
 
 </script>
