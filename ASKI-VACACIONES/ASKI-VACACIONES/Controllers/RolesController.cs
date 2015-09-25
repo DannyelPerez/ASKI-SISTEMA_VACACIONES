@@ -88,8 +88,7 @@ namespace ASKI_VACACIONES.Controllers
                 {
                     Service1Client client = new Service1Client();
                     List<int> idpermisos = splitCadenaID(model.permisosID);
-                    Session["Roles"] = model.descripcion;
-                    ViewBag.rol = Session["Roles"];
+                   
                     if(idpermisos==null)
                         return View();
                     client.addRole(model.descripcion);
