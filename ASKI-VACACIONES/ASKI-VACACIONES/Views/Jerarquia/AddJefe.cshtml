@@ -1,13 +1,17 @@
 ﻿@model ASKI_VACACIONES.Models.JerarquiaModel
 @{
-    ViewBag.Title = "AddJefe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="content-header">
     <h1>
-        Agregar Jefe de Departamento
-    </h1>
+       Asignar jefe de departamento
 
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Asignar jefes</li>
+    </ol>
 </section>
 
 <!--Trying-->
@@ -183,7 +187,6 @@
                 {
 
                     <div class="panel-body">
-
                         <!-- form start -->
                         @Html.ValidationSummary(true)
                         <form class="form-horizontal">
@@ -249,13 +252,14 @@
 
                         </form>
                     </div>
-
                 }
             </div>
 
         </div>
     </div>
 
+
+ 
     <!-- Left col -->
     <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -263,7 +267,6 @@
 
 
 </section><!-- /.content -->
-
 
 <script type="text/javascript">
     $(document).ready(function () {
