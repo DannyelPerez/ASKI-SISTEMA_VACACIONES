@@ -86,6 +86,7 @@ namespace ASKI_VACACIONES.Controllers
                         return View("Login");
                     Session["User"] = aceder.primer_nombre + " " + aceder.primer_apellido;
                     ViewBag.user = Session["User"];
+                   
                     Session["Pass"] = aceder.password;
                     Session["Talento_Humano"] = aceder.talento_humano;
                     setSessionVar(aceder.email, aceder.primer_nombre, aceder.primer_apellido, aceder.segundo_nombre, aceder.segundo_apellido);

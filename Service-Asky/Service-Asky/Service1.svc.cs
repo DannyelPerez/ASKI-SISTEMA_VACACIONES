@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
+        DBConnect connect = new DBConnect("LocalHost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -134,25 +134,6 @@ namespace Service_Asky
             }
         }
 
-        public void addDepartamentoJefe(int talentoHumano, int DepartamentoId)
-        {
-            try
-            {
-                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + DepartamentoId + "')";
-                if (connect.OpenConnection() == true)
-                {
-                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
-                    cmd.ExecuteNonQuery();
-                    connect.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-
         public void addUsuario_Rol(int talentoHumano, int idRol)
         {
             try
@@ -210,11 +191,11 @@ namespace Service_Asky
         }
 
 
-            
-      
-       public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
-       {
-           try
+
+
+        public void addJerarquia(int talento_humano, int talento_humano_Jefe, int departamentoid)
+        {
+            try
             {
                 vsystem_askiEntities db = new vsystem_askiEntities();
 
@@ -223,13 +204,13 @@ namespace Service_Asky
                 jerar.jefe_talentohumano = talento_humano_Jefe;
                 jerar.departamentoid = departamentoid;
                 db.tbl_jerarquia.Add(jerar);
-                           }
+            }
             catch (Exception ex)
             {
 
             }
 
-       }
+        }
 
         public void addTipo_dia(string descripcion)
         {
@@ -239,7 +220,7 @@ namespace Service_Asky
                 tbl_tipo_dia tipo = new tbl_tipo_dia();
                 tipo.descripcion = descripcion;
                 db.tbl_tipo_dia.Add(tipo);
-               db.SaveChanges();
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -266,6 +247,7 @@ namespace Service_Asky
             }
 
         }
+
 
 
         //=================== Edit Element from database=============
@@ -351,7 +333,7 @@ namespace Service_Asky
                 dic.segundo_apellido = segundo_apellido;
                 dic.email = correo;
                 db.SaveChanges();
-            
+
             }
 
         }
@@ -399,9 +381,9 @@ namespace Service_Asky
             }
         }
 
-        public void deleteDepartamento_Jefe(int talentoHumano)
+        public void deleteDepartamento_Jefe(int depatamentoid)
         {
-            string query = "DELETE FROM tbl_departamento_JEFE WHERE talento_humano='" + talentoHumano + "'";
+            string query = "DELETE FROM tbl_departamento_jefe WHERE departamentoid='" + depatamentoid + "'";
 
             if (connect.OpenConnection() == true)
             {
@@ -529,7 +511,7 @@ namespace Service_Asky
             {
                 Calendario c = new Calendario();
                 c.fecha = item.fecha;
-               c.talento_humano_jefe = item.talento_humano_jefe;
+                c.talento_humano_jefe = item.talento_humano_jefe;
                 c.tipo_dia_id = item.tipo_dia_id;
                 calendario.Add(c);
 
@@ -643,7 +625,7 @@ namespace Service_Asky
                 Tipo_Dia t = new Tipo_Dia();
                 t.tipo_dia_id = item.tipo_dia_id;
                 t.descripcion = item.descripcion;
-                     tipoDia.Add(t);
+                tipoDia.Add(t);
             }
             return tipoDia;
         }
@@ -822,7 +804,7 @@ namespace Service_Asky
             List<string> f = new List<string>();
             foreach (var item in fecha)
             {
-                f.Add(item.fecha.ToString()); 
+                f.Add(item.fecha.ToString());
             }
 
             return f;
@@ -862,7 +844,7 @@ namespace Service_Asky
             List<string> permisos = new List<string>();
             try
             {
-                string query = "select c.fecha from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id and t.descripcion = '"+ evento +"'";
+                string query = "select c.fecha from tbl_tipo_dia as t,tbl_calendario as c  where c.tipo_dia_id = t.tipo_dia_id and t.descripcion = '" + evento + "'";
                 if (connect.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
@@ -885,17 +867,18 @@ namespace Service_Asky
         }
 
 
-
-
-        public List<string> [] getDepartamentoJefe()
+        public List<string>[] getDepartamento_Usuario()
         {
-            List<string>[] permisos = new List<string>[2];
+            List<string>[] permisos = new List<string>[4];
             permisos[0] = new List<string>();
             permisos[1] = new List<string>();
+            permisos[2] = new List<string>();
+            permisos[3] = new List<string>();
             try
             {
 
-                string query = "select d.descripcion, concat(u.primer_nombre,' ',u.primer_apellido) as nombre from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano";
+                string query = "select d.descripcion, d.departamentoid, concat(u.primer_nombre,' ',u.primer_apellido) as nombre, u.talento_humano from tbl_departamento as d, tbl_usuarios as u, tbl_usuarios_departamento  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano and d.activo=true and u.activo = true";
+
                 if (connect.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
@@ -903,11 +886,12 @@ namespace Service_Asky
                     while (dataReader.Read())
                     {
                         permisos[0].Add(dataReader["descripcion"] + "");
-                        permisos[1].Add(dataReader["nombre"] + "");
+                        permisos[1].Add(dataReader["departamentoid"] + "");
+                        permisos[2].Add(dataReader["nombre"] + "");
+                        permisos[3].Add(dataReader["talento_humano"] + "");
                     }
                     dataReader.Close();
                     connect.CloseConnection();
-                    
                 }
 
             }
@@ -917,9 +901,6 @@ namespace Service_Asky
             return permisos;
 
         }
-
-
-
 
         public List<string>[] getDepartamentoEmpleados()
         {
@@ -949,6 +930,36 @@ namespace Service_Asky
             {
             }
             return empleados;
+
+        }
+
+        public string getJefe_Departamento(int departamentoid)
+        {
+            string jefe = "Sin Asignar";
+            try
+            {
+                string query = "select concat(u.primer_nombre,' ',u.primer_apellido) as NombreCompleto from tbl_usuarios as u, tbl_departamento as d, tbl_departamento_jefe as ud where u.talento_humano=ud.talento_humano and d.departamentoid=ud.departamentoid and d.departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["NombreCompleto"] + "";
+                        if (!j.Equals(""))
+                            jefe = j;
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
 
         }
 

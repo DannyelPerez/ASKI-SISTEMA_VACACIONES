@@ -1,14 +1,181 @@
 ﻿@model ASKI_VACACIONES.Models.JerarquiaModel
 @{
-    ViewBag.Title = "AddJefe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="content-header">
     <h1>
-        Agregar Jefe de Departamento
-    </h1>
+       Asignar jefe de departamento
 
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Asignar jefes</li>
+    </ol>
 </section>
+
+<!--Trying-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<style>
+    .custom-combobox {
+        position: relative;
+        display: block;
+    }
+
+    .custom-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+    }
+
+    .custom-combobox-input {
+        margin: 0;
+        padding: 5px 10px;
+    }
+</style>
+
+<script>
+    (function ($) {
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                  .addClass("custom-combobox")
+                  .insertAfter(this.element);
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                  value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                  .appendTo(this.wrapper)
+                  .val(value)
+                  .attr("title", "")
+                  .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control")
+                  .autocomplete({
+                      delay: 0,
+                      minLength: 0,
+                      source: $.proxy(this, "_source")
+                  })
+                  .tooltip({
+                      tooltipClass: "ui-state-highlight"
+                  });
+
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+
+            _createShowAllButton: function () {
+                var input = this.input,
+                  wasOpen = false;
+
+                $("<a>")
+                  .attr("tabIndex", -1)
+                  .attr("title", "Show All Items")
+                  .tooltip()
+                  .appendTo(this.wrapper)
+                  .button({
+                      icons: {
+                          primary: "ui-icon-triangle-1-s"
+                      },
+                      text: false
+                  })
+                  .removeClass("ui-corner-all")
+                  .addClass("custom-combobox-toggle ui-corner-right")
+                  .mousedown(function () {
+                      wasOpen = input.autocomplete("widget").is(":visible");
+                  })
+                  .click(function () {
+                      input.focus();
+
+                      // Close if already visible
+                      if (wasOpen) {
+                          return;
+                      }
+
+                      // Pass empty string as value to search for, displaying all results
+                      input.autocomplete("search", "");
+                  });
+            },
+
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+
+            _removeIfInvalid: function (event, ui) {
+
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                  valueLowerCase = value.toLowerCase(),
+                  valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+
+                // Remove invalid value
+                this.input
+                  .val("")
+                  .attr("title", value + " didn't match any item")
+                  .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            }
+        });
+    })(jQuery);
+
+    $(function () {
+        $("#combobox").combobox();
+        $("#toggle").click(function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
+
 
 <!-- Content Wrapper. Contains page content -->
 <!-- Main content -->
@@ -20,38 +187,79 @@
                 {
 
                     <div class="panel-body">
-                                                   
-                            <!-- form start -->
-                            @Html.ValidationSummary(true)
-                            <form class="form-horizontal">
+                        <!-- form start -->
+                        @Html.ValidationSummary(true)
+                        <form class="form-horizontal">
 
 
-                                <div class="form-group">
-                                    <div class="box">
-                                                     <div class="box-body">
-                                            <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
-                                                <thead>
-                                                    <tr>
-                                                        <th><input name="select_all" type="checkbox">         Id</th>
-                                                        <th>Descripcion</th>
-                                                    </tr>
-                                                </thead>
+                            <div class="form-group">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <div class="ui-widget">
+                                                <p><label class="form-control-label">Seleccione el Departamento</label></p>
+                                                <p>
+                                                    <select id="depto" class="form-control">
+                                                        @foreach (var item in @ViewBag.Departamentos)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                                            </table>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
+                                                    </select>
+                                                </p>
 
-                                </div>
+                                            </div>
+                                            <div class="ui-widget">
+                                                <br />
+                                                <p><label class="form-control-label">Escriba el nombre o talento humano del Empleado</label></p>
+                                                <p>
+                                                    <select id="combobox">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.Empleados)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                            </form>
-                     </div>
+                                                    </select>
+                                                </p>
 
+                                            </div>
+                                            <div align="right">
+                                                @Html.TextBoxFor(x => x.departamentoid, new { @class = "hidden", type = "text", id="depa" })
+                                                @Html.TextBoxFor(x => x.talento_humano_jefe, new { @class = "hidden", type = "text", id="empl" })
+                                                <input type="submit" onclick="print()" value="Agregar Jefe" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Departamento</th>
+                                                    <th>Jefe Departamento</th>
+                                                </tr>
+                                            </thead>
+
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+
+                            </div>
+
+                        </form>
+                    </div>
                 }
             </div>
 
         </div>
     </div>
 
+
+ 
     <!-- Left col -->
     <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -60,170 +268,50 @@
 
 </section><!-- /.content -->
 
-
 <script type="text/javascript">
-    function updateDataTableSelectAllCtrl(table) {
-        var $table = table.table().node();
-        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
-        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
-        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
-
-        // If none of the checkboxes are checked
-        if ($chkbox_checked.length === 0) {
-            chkbox_select_all.checked = false;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = false;
-            }
-
-            // If all of the checkboxes are checked
-        } else if ($chkbox_checked.length === $chkbox_all.length) {
-            chkbox_select_all.checked = true;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = false;
-            }
-
-            // If some of the checkboxes are checked
-        } else {
-            chkbox_select_all.checked = true;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = true;
-            }
-        }
-    }
-
-    function checkPermissonsHierarchy() {
-
-        var table = document.getElementById("permiso");
-
-        var isAdministracionActive = false;
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            if (row.cells[1].innerHTML === "Administracion") {
-                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
-                var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
-                isAdministracionActive = check.checked;
-            }
-        }
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            //iterate through rows
-
-            if (row.cells[1].innerHTML === "Usuarios" || row.cells[1].innerHTML === "Roles" || row.cells[1].innerHTML === "Permisos" || row.cells[1].innerHTML === "Departamentos") {
-
-                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
-                if (pattern !== null) {
-                    var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
-
-                    if (isAdministracionActive) {
-                        if (check != null)
-                            check.disabled = false;
-                    }
-                    else {
-                        if (check != null) {
-                            check.disabled = true;
-                            check.checked = false;
-                        }
-
-                    }
-                }
-            }
-
-        }
-
-
-    }
-
     $(document).ready(function () {
         var rows_selected = [];
         var table = $('#permiso').DataTable({
             responsive: true,
             "ajax": {
-                "url": "@Url.Action("JSonRoles", "Roles")",
+                "url": "@Url.Action("getJefe_Departamanto", "Jerarquia")",
                 "type": "POST"
             },
 
             "columns": [
                     {
-                        "data": "id",
-                        'className': 'dt-body-center',
-                        'render': function (id) {
-                            return '<input type="checkbox" id="' + "dynamicCheck" + id + '" onchange="checkPermissonsHierarchy()" class="call-checkbox" name="' + id + '" value="' + id + '">';
-                        }
+                        "data": "departamento",
+                        'className': 'dt-body-left'
+
                     },
-                    { "data": "descripcion" }
+                    {
+                        "data": "nombre",
+                        'className': 'dt-body-left'
+                    }
 
-            ],
-            'order': [1, 'asc'],
-            'rowCallback': function (row, data, dataIndex) {
-                // Get row ID
-                var rowId = data[0];
-
-                // If row ID is in the list of selected row IDs
-                if ($.inArray(rowId, rows_selected) !== -1) {
-                    $(row).find('input[type="checkbox"]').prop('checked', true);
-                    $(row).addClass('selected');
-                }
-
-            }
+            ]
         });
 
         setInterval(function () {
             table.ajax.reload();
-        }, 60000);
+        }, 20000);
 
-        // Handle click on checkbox
-        $('#permiso tbody').on('click', 'input[type="checkbox"]', function (e) {
-            e.stopPropagation();
-        });
-
-        // Handle click on table cells with checkboxes
-        $('#permiso').on('click', 'tbody td, thead th:first-child', function (e) {
-            $(this).parent().find('input[type="checkbox"]').trigger('click');
-        });
-
-        // Handle click on "Select all" control
-        $('#permiso thead input[name="select_all"]').on('click', function (e) {
-            if (this.checked) {
-                $('#permiso tbody input[type="checkbox"]:not(:checked)').trigger('click');
-            } else {
-                $('#permiso tbody input[type="checkbox"]:checked').trigger('click');
-            }
-
-            // Prevent click event from propagating to parent
-            e.stopPropagation();
-        });
-
-        // Handle table draw event
-        table.on('draw', function () {
-            // Update state of "Select all" control
-            updateDataTableSelectAllCtrl(table);
-        });
     });
 </script>
 
-
+@*<input title="" class="custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left ui-autocomplete-input" autocomplete="off" data-original-title="">*@
 
 
 <script type="text/javascript">
-    function beforeSendInformation() {
+    function print() {
 
         //Permisos
-        var table = $('#permiso').DataTable();
-        table
-         .search('')
-         .columns().search('')
-         .draw();
-
-        var oTable = $('#permiso').DataTable();
-        var cadena = "";
-        var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
-        rowcollection.each(function (index, elem) {
-            var checkbox_value = $(elem).val();
-            cadena += checkbox_value + "/";
-        });
-        console.log("checbox_value: " + cadena);
-        $('#textPermiso').val(cadena)
-
-
-
+        var empleado = document.getElementById("combobox").value;
+        var depto = document.getElementById("depto").value;
+        console.log(empleado);
+        console.log(depto);
+        $('#depa').val(depto);
+        $('#empl').val(empleado);
     }
 </script>
 
