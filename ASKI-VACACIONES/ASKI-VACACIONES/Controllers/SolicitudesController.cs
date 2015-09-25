@@ -41,18 +41,12 @@ namespace ASKI_VACACIONES.Controllers
                 if (ModelState.IsValid)
                 {
                     Service1Client client = new Service1Client();
-                    List<int> idvacaciones  = splitCadenaID(solicitudes.idvacaciones);
                     int talento = int.Parse(Session["Talento_Humano"].ToString());
-                   // Year = (int)((DateTime.Now - ));
-                    if (idvacaciones == null)
-                        return View();
-                    client.addVacacion(talento,solicitudes.year,solicitudes.Fechainicio,solicitudes.Fechainicio,,solicitudes.fecha_solicitud,fechaAprobacion,)
 
-                    foreach (var item in idvacaciones)
+                    if (client.approveRequest(solicitudes.Fechainicio, solicitudes.Fechafin) == true)
                     {
-                        client.addRoles_Permisos(client.getUltimoId_Roles(), item);
+                        client.addVacacion(talento,,solicitudes.Fechainicio,solicitudes.Fechafin,DateTime.Now.Date,null,1);
                     }
-                    client.Close();
                 }
                 return View();
             }

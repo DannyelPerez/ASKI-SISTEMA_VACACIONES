@@ -249,10 +249,17 @@ namespace Service_Asky
 
         }
 
-        public void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada, int diasSolicitados, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
+        public void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada,  DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
         {
             try
             {
+                int diasSolicitados = 0;
+                for (DateTime counter = fechaSalida; counter < fechaEntrada; counter.AddDays(1))
+                {
+                    if (counter.DayOfWeek != DayOfWeek.Saturday || counter.DayOfWeek != DayOfWeek.Sunday)
+                        diasSolicitados++;
+                    fechaSalida.AddDays(1);
+                }
                 vsystem_askiEntities db = new vsystem_askiEntities();
                 tbl_vacaciones tipo = new tbl_vacaciones();
                 tipo.dias_solicitados = diasSolicitados;
@@ -292,6 +299,23 @@ namespace Service_Asky
             }
         }
 
+
+        public bool approveRequest(DateTime fechaSalida, DateTime fechaEntrada)
+        {
+            List<string> events = get_eventos();
+            for (DateTime counter = fechaSalida; counter < fechaEntrada; counter.AddDays(1))
+            {
+                for (int x = 0; x < events.Count; x++)
+                {
+                    string dateTime = events.ElementAt(x);
+                    DateTime dt = Convert.ToDateTime(dateTime);
+                    if (dt.Equals(counter))
+                        return false;
+                }
+                fechaSalida.AddDays(1);
+            }
+            return true;
+        }
 
 
         //=================== Edit Element from database=============

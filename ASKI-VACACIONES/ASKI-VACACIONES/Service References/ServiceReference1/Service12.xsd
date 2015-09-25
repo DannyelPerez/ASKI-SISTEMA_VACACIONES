@@ -185,7 +185,6 @@
         <xs:element minOccurs="0" name="year" type="xs:int" />
         <xs:element minOccurs="0" name="fechaSalida" type="xs:dateTime" />
         <xs:element minOccurs="0" name="fechaEntrada" type="xs:dateTime" />
-        <xs:element minOccurs="0" name="diasSolicitados" type="xs:int" />
         <xs:element minOccurs="0" name="fechaSolicitud" type="xs:dateTime" />
         <xs:element minOccurs="0" name="fechaAprobacion" type="xs:dateTime" />
         <xs:element minOccurs="0" name="statusid" type="xs:int" />
@@ -210,6 +209,21 @@
   <xs:element name="addLogVacacionesResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approveRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fechaSalida" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="fechaEntrada" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approveRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="approveRequestResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="editPermiso">
