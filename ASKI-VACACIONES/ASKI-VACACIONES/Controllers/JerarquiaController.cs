@@ -151,13 +151,13 @@ namespace ASKI_VACACIONES.Controllers
             if (Session["User"] != null)
             {
                 Service1Client client = new Service1Client();
-                var query = client.getTbl_departamentos();
-                List<string> depto = new List<string>();
+                var query = client.getTbl_usuarios();
+                List<string> emple = new List<string>();
                 foreach (var item in query)
                 {
-                    depto.Add(item.departamentoid + " " + "|" + item.descripcion);
+                    emple.Add(item.primer_nombre + " " + item.primer_apellido + "|" + item.talento_humano);
                 }
-                ViewBag.depto = depto;
+                ViewBag.Emple = emple;
 
                 return View();
             }
@@ -165,7 +165,40 @@ namespace ASKI_VACACIONES.Controllers
             else
                 return RedirectToAction("Login", "Home");
         }
+        [HttpPost]
+        public ActionResult EditarJefeEmpleado(JerarquiaModel model, string submitButton)
+        {
+            if (Session["User"] != null)
+            {
+                Service1Client client = new Service1Client();
+                if (submitButton.Equals("Editar"))
+                {
+                    var query = client.getTbl_usuarios();
+                    var hola = client.getUsuario(model.talento_humano);
+                    UsuariosModel usuario = new UsuariosModel();
+                    List<string> emple = new List<string>();
+                    foreach (var item in query)
+                    {
+                        emple.Add(item.primer_nombre + " " + item.primer_apellido + "|" + item.talento_humano);
+                    }
+                    ViewBag.Emple = emple;
+                    if (hola == null)
+                    {
+                        client.Close();
+                        return View();
+                    }
+                    ViewBag.nombre = hola.primer_nombre;
+                    ViewBag.apellido = hola.segundo_apellido;
+                    ViewBag.nombre = ViewBag.primerombre + ViewBag.apellido;
+                }
 
+                client.Close();
+                return View();
+
+            }
+            else
+                return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public ActionResult getDptJefe()
         {

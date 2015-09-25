@@ -1,4 +1,4 @@
-﻿
+﻿@model ASKI_VACACIONES.Models.JerarquiaModel
 @{
     
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -52,7 +52,7 @@
                                     <div class="box-body">
                                    
                                         <div class="form-group">
-                                            <table id="empleado_jefe" class="datatable table table-striped table-bordered" width="55%">
+                                            <table id="empleado_jefe" class="datatable table table-striped table-bordered" width="85%">
 
                                                 <thead>
                                                     <tr>
@@ -74,17 +74,25 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="recargar();"></span></button>
                                             <h4 class="modal-title custom_align" id="Heading">Cambiar jefe del empleado</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input class="form-control " type="text" placeholder="Departamento" id="textDepto" >
+                                                <input class="form-control " type="text" value="@ViewBag.nombre" disabled>
+
                                             </div>
                                             <div class="form-group">
+                                                <div class="ui-widget">
+                                                    <select id="combobox" class="form-control">
+                                                        <option value=""></option>
+                                                        @foreach (var item in @ViewBag.Emple)
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
 
-                                                <input class="form-control " type="text" placeholder="Jefe">
-                                            </div>
+                                                    </select>
+                                                </div>
 
                                         </div>
                                         <div class="modal-footer ">
@@ -140,7 +148,7 @@
                         //"data": "id",
                         'className': 'dt-body-center',
                         'render': function (id) {
-                            return '<p data-placement="top" data-toggle="tooltip" title="Edit"><input type="button" class="btn btn-info pull-right" value="Editar" data-title="Edit" onclick="openModal()"/></p>';
+                            return '<p data-placement="top" data-toggle="tooltip" title="Editar jefe"><input type="button" name="submitButton" value="Editar" class="btn btn-primary pull-right"  data-title="Edit" onclick="openModal()"/></p>';
 
                  }
                 }
@@ -155,6 +163,7 @@
     function openModal()
     {
         $("#edit").modal('show');
-        //$("#textDepto").val(departamento);
     }
+
 </script>
+
