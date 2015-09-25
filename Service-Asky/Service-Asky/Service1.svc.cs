@@ -246,6 +246,7 @@ namespace Service_Asky
         }
 
 
+
         //=================== Edit Element from database=============
 
         public void editPermiso(int id, string descripcion, bool Test)
@@ -860,6 +861,68 @@ namespace Service_Asky
             }
 
             return permisos;
+        }
+
+        public List<string>[] getDepartamentoJefe()
+        {
+            List<string>[] permisos = new List<string>[4];
+            permisos[0] = new List<string>();
+            permisos[1] = new List<string>();
+            permisos[2] = new List<string>();
+            permisos[3] = new List<string>();
+            try
+            {
+
+                string query = "select d.descripcion, d.departamentoid, concat(u.primer_nombre,' ',u.primer_apellido) as nombre, u.talento_humano from tbl_departamento as d, tbl_usuarios as u, tbl_departamento_jefe  as dj where d.departamentoid=dj.departamentoid and u.talento_humano=dj.talento_humano and d.activo=true and u.activo = true";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos[0].Add(dataReader["descripcion"] + "");
+                        permisos[1].Add(dataReader["departamentoid"] + "");
+                        permisos[0].Add(dataReader["nombre"] + "");
+                        permisos[1].Add(dataReader["talento_humano"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return permisos;
+
+        }
+
+        public List<string> getDepartamentoUsuario(int id)
+        {
+            List<string> usuario = new List<string>();
+            try
+            {
+                string query = "select concat(u.primer_nombre,' ',u.primer_apellido) as NombreCompleto from tbl_usuarios as u, tbl_departamento as d, tbl_usuarios_departamento as ud where u.talento_humano=ud.talento_humano and d.departamentoid=ud.departamentoid and d.departamentoid= '" + id + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        usuario.Add(dataReader["NombreCompleto"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return usuario;
         }
 
     }

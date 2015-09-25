@@ -1,0 +1,372 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Check-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display = 'block';
+        }
+        else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+<!--Trying-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<style>
+    .custom-combobox {
+        position: relative;
+        display: inline-block;
+    }
+
+    .custom-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+    }
+
+    .custom-combobox-input {
+        margin: 0;
+        padding: 5px 10px;
+    }
+</style>
+
+<script>
+    (function ($) {
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                  .addClass("custom-combobox")
+                  .insertAfter(this.element);
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                  value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                  .appendTo(this.wrapper)
+                  .val(value)
+                  .attr("title", "")
+                  .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                  .autocomplete({
+                      delay: 0,
+                      minLength: 0,
+                      source: $.proxy(this, "_source")
+                  })
+                  .tooltip({
+                      tooltipClass: "ui-state-highlight"
+                  });
+
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+
+            _createShowAllButton: function () {
+                var input = this.input,
+                  wasOpen = false;
+
+                $("<a>")
+                  .attr("tabIndex", -1)
+                  .attr("title", "Show All Items")
+                  .tooltip()
+                  .appendTo(this.wrapper)
+                  .button({
+                      icons: {
+                          primary: "ui-icon-triangle-1-s"
+                      },
+                      text: false
+                  })
+                  .removeClass("ui-corner-all")
+                  .addClass("custom-combobox-toggle ui-corner-right")
+                  .mousedown(function () {
+                      wasOpen = input.autocomplete("widget").is(":visible");
+                  })
+                  .click(function () {
+                      input.focus();
+
+                      // Close if already visible
+                      if (wasOpen) {
+                          return;
+                      }
+
+                      // Pass empty string as value to search for, displaying all results
+                      input.autocomplete("search", "");
+                  });
+            },
+
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+
+            _removeIfInvalid: function (event, ui) {
+
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                  valueLowerCase = value.toLowerCase(),
+                  valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+
+                // Remove invalid value
+                this.input
+                  .val("")
+                  .attr("title", value + " didn't match any item")
+                  .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            }
+        });
+    })(jQuery);
+
+    $(function () {
+        $("#combobox").combobox();
+        $("#toggle").click(function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
+
+<section class="content-header">
+    <h1>
+        Editar jefe de empleado
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Editar jefes</li>
+    </ol>
+</section>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                @using (Html.BeginForm())
+                {
+
+                    <div class="panel-body">
+
+                        <!-- form start -->
+                        @Html.ValidationSummary(true)
+                        <form class="form-horizontal">
+
+
+                            
+                                <div class="box">
+                                    <div class="box-body">
+                                   
+                                        <div class="form-group">
+                                                    <table id="departamento" class="datatable table table-striped table-bordered" width="55%">
+
+                                                        <thead>
+                                                            <tr>
+                                                                <th><input name="select_all" type="checkbox"></th>
+                                                                <th>Descripcion</th>
+                                                                <th>Editar</th>
+                                                                <th>Descripcion</th>
+                                                                <th>Editar</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                            <!--Modal-->
+                            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <h4 class="modal-title custom_align" id="Heading">Cambiar jefe del empleado</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input class="form-control " type="text" placeholder="Departamento">
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input class="form-control " type="text" placeholder="Jefe">
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <button type="button" class="btn btn-primary btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            
+
+                        </form>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable"></section><!-- right col -->
+
+
+</section><!-- /.content -->
+
+
+<script type="text/javascript">
+    function updateDataTableSelectAllCtrl(table) {
+        var $table = table.table().node();
+        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
+        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
+        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
+
+        // If none of the checkboxes are checked
+        if ($chkbox_checked.length === 0) {
+            chkbox_select_all.checked = false;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If all of the checkboxes are checked
+        } else if ($chkbox_checked.length === $chkbox_all.length) {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = false;
+            }
+
+            // If some of the checkboxes are checked
+        } else {
+            chkbox_select_all.checked = true;
+            if ('indeterminate' in chkbox_select_all) {
+                chkbox_select_all.indeterminate = true;
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        var rows_selected = [];
+        var table = $('#departamento').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("getDptJefe", "Jerarquia")",
+                "type": "POST"
+            },
+
+            "columns": [
+                { "data": "descripcion",},
+                { "data": "departamentoid" },
+                { "data": "nombre", },
+                { "data": "talento_humano" },
+                    {
+                        "data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p>';
+
+                        }
+                    }
+
+            ],
+            'order': [1, 'asc'],
+            'rowCallback': function (row, data, dataIndex) {
+                // Get row ID
+                var rowId = data[0];
+
+                // If row ID is in the list of selected row IDs
+                if ($.inArray(rowId, rows_selected) !== -1) {
+                    $(row).find('input[type="checkbox"]').prop('checked', true);
+                    $(row).addClass('selected');
+                }
+
+            }
+        });
+
+        // Handle click on checkbox
+        $('#departamento tbody').on('click', 'input[type="checkbox"]', function (e) {
+            e.stopPropagation();
+        });
+
+        // Handle click on table cells with checkboxes
+        $('#departamento').on('click', 'tbody td, thead th:first-child', function (e) {
+            $(this).parent().find('input[type="checkbox"]').trigger('click');
+        });
+
+        // Handle click on "Select all" control
+        $('#departamento thead input[name="select_all"]').on('click', function (e) {
+            if (this.checked) {
+                $('#departamento tbody input[type="checkbox"]:not(:checked)').trigger('click');
+            } else {
+                $('#departamento tbody input[type="checkbox"]:checked').trigger('click');
+            }
+
+            // Prevent click event from propagating to parent
+            e.stopPropagation();
+        });
+
+        // Handle table draw event
+        table.on('draw', function () {
+            // Update state of "Select all" control
+            updateDataTableSelectAllCtrl(table);
+        });
+    });
+</script>

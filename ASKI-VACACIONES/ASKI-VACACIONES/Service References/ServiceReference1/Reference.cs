@@ -1373,6 +1373,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/get_fecha_eventos", ReplyAction="http://tempuri.org/IService1/get_fecha_eventosResponse")]
         System.Threading.Tasks.Task<string[]> get_fecha_eventosAsync(string evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
+        string[][] getDepartamentoJefe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoJefe", ReplyAction="http://tempuri.org/IService1/getDepartamentoJefeResponse")]
+        System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoUsuario", ReplyAction="http://tempuri.org/IService1/getDepartamentoUsuarioResponse")]
+        string[] getDepartamentoUsuario(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getDepartamentoUsuario", ReplyAction="http://tempuri.org/IService1/getDepartamentoUsuarioResponse")]
+        System.Threading.Tasks.Task<string[]> getDepartamentoUsuarioAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1760,6 +1772,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> get_fecha_eventosAsync(string evento) {
             return base.Channel.get_fecha_eventosAsync(evento);
+        }
+        
+        public string[][] getDepartamentoJefe() {
+            return base.Channel.getDepartamentoJefe();
+        }
+        
+        public System.Threading.Tasks.Task<string[][]> getDepartamentoJefeAsync() {
+            return base.Channel.getDepartamentoJefeAsync();
+        }
+        
+        public string[] getDepartamentoUsuario(int id) {
+            return base.Channel.getDepartamentoUsuario(id);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getDepartamentoUsuarioAsync(int id) {
+            return base.Channel.getDepartamentoUsuarioAsync(id);
         }
     }
 }

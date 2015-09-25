@@ -57,6 +57,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -2314,17 +2315,6 @@
     <Content Include="Template\Validacion\prueba\index.html" />
     <Content Include="Template\Validacion\prueba\styles.css" />
     <Content Include="Template\Validacion\style.css" />
-    <Content Include="validation\assets\css\bootstrap-responsive.min.css" />
-    <Content Include="validation\assets\css\bootstrap.min.css" />
-    <Content Include="validation\assets\img\checked.gif" />
-    <Content Include="validation\assets\img\error.png" />
-    <Content Include="validation\assets\img\valid.png" />
-    <Content Include="validation\assets\js\jquery-1.7.1.min.js" />
-    <Content Include="validation\assets\js\jquery.validate.js" />
-    <Content Include="validation\assets\js\jquery.validate.min.js" />
-    <Content Include="validation\index.html" />
-    <Content Include="validation\script.js" />
-    <Content Include="validation\style.css" />
     <Content Include="Views\Test\arrays.txt" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -2541,6 +2531,7 @@
     <Content Include="Views\Home\Bienvenida.cshtml" />
     <Content Include="Views\Jerarquia\AddJefe.cshtml" />
     <Content Include="Views\Menu\_Navbar.cshtml" />
+    <Content Include="Views\Jerarquia\EditarJefeEmpleado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
