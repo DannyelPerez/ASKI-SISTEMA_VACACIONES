@@ -204,6 +204,7 @@ namespace Service_Asky
                 jerar.jefe_talentohumano = talento_humano_Jefe;
                 jerar.departamentoid = departamentoid;
                 db.tbl_jerarquia.Add(jerar);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -962,6 +963,66 @@ namespace Service_Asky
             return jefe;
 
         }
+
+        public int getTalentoHumano_Jefe_Departamento(int departamentoid)
+        {
+            int jefe = 0;
+            try
+            {
+                string query = "select u.talento_humano from tbl_usuarios as u, tbl_departamento as d, tbl_departamento_jefe  as ud where u.talento_humano=ud.talento_humano and d.departamentoid=ud.departamentoid and d.departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["talento_humano"] + "";
+                        if (!j.Equals(""))
+                            jefe = int.Parse(j);
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
+
+        }
+
+        public int getTalentoHumano_Jefe(int talentoHumano_empleado, int departamentoid)
+        {
+            int jefe = 0;
+            try
+            {
+                string query = "select jefe_talentohumano from tbl_jerarquia where talento_humano='"+talentoHumano_empleado+"' and departamentoid='" + departamentoid + "'";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["jefe_talentohumano"] + "";
+                        if (!j.Equals(""))
+                            jefe = int.Parse(j);
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return jefe;
+        }
+
 
     }
 

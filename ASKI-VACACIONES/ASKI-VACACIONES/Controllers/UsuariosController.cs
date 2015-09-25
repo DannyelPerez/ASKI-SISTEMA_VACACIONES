@@ -36,6 +36,12 @@ namespace ASKI_VACACIONES.Controllers
                     foreach (var item in idDepartamentos)
                     {
                         client.addUsuario_Departamento(model.talento_humano, item);
+                        int jefe = client.getTalentoHumano_Jefe_Departamento(item);
+                        if (jefe == 0)
+                        {
+                            return View();
+                        }
+                        client.addJerarquia(model.talento_humano, jefe, item);
                     }
                     foreach (var item in idRoles)
                     {

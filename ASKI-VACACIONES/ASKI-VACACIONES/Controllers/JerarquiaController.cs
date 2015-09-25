@@ -176,7 +176,22 @@ namespace ASKI_VACACIONES.Controllers
             for (int i = 0; i < query.ElementAt(0).Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
-                json += "{" + String.Format("\"descripcion\":\"{0}\",\"departamentoid\":\"{1}\",\"nombre\":\"{2}\",\"talento_humano\":\"{3}\"", query.ElementAt(0).ElementAt(i), query.ElementAt(1).ElementAt(i), query.ElementAt(2).ElementAt(i), query.ElementAt(3).ElementAt(i)) + "}";
+                int thEm=int.Parse(query.ElementAt(3).ElementAt(i));
+                int depto = int.Parse(query.ElementAt(1).ElementAt(i));
+                int talentoJefe = client.getTalentoHumano_Jefe(thEm,depto);
+                var usu = client.getUsuario(talentoJefe);
+                 string NombreJefe="";
+                 if (usu == null)
+                 {
+                     NombreJefe = "Sin Asignar";
+                     talentoJefe = 0;
+                 }
+                 else
+                 {
+                     NombreJefe = usu.primer_nombre + " " + usu.primer_apellido;
+                 }
+               // string jefe = client.getj
+                json += "{" + String.Format("\"descripcion\":\"{0}\",\"departamentoid\":\"{1}\",\"nombre\":\"{2}\",\"talento_humano\":\"{3}\",\"nombreJefe\":\"{4}\",\"talentoJefe\":\"{5}\"", query.ElementAt(0).ElementAt(i), query.ElementAt(1).ElementAt(i), query.ElementAt(2).ElementAt(i), query.ElementAt(3).ElementAt(i),NombreJefe,talentoJefe) + "}";
 
 
             }
