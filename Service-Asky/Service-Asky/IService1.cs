@@ -47,7 +47,7 @@ namespace Service_Asky
         void addTipo_dia(string descripcion);
         [OperationContract]
         void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id);
-            
+
 
         //=================== Edit Element from database=============
 
@@ -125,10 +125,9 @@ namespace Service_Asky
         [OperationContract]
         List<string> get_fecha_eventos(string evento);
         [OperationContract]
-        List<string>[] getDepartamentoJefe();
+        List<string>[] getDepartamento_Usuario();
         [OperationContract]
         string getJefe_Departamento(int departamentoid);
-
 
 
     }
