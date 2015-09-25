@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("LocalHost", "root", "contrasena");
+        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
