@@ -249,6 +249,49 @@ namespace Service_Asky
 
         }
 
+        public void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada, int diasSolicitados, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_vacaciones tipo = new tbl_vacaciones();
+                tipo.dias_solicitados = diasSolicitados;
+                tipo.estatusid = statusid;
+                tipo.fecha_de_aprobacion = fechaAprobacion;
+                tipo.fecha_entrada = fechaEntrada;
+                tipo.fecha_salida = fechaSalida;
+                tipo.fecha_solicitud = fechaSolicitud;
+                tipo.talento_humano = talentoHumano;
+                tipo.year = year;
+                db.tbl_vacaciones.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual)
+        {
+            try
+            {
+                vsystem_askiEntities db = new vsystem_askiEntities();
+                tbl_log_vacaciones tipo = new tbl_log_vacaciones();
+                tipo.estatus_actual = estatusActual;
+                tipo.estatus_anterior = estatusAnterior;
+                tipo.fecha_modificacion = DateTime.Today;
+                tipo.th_modifico = talentoHumano_Modifico;
+                tipo.vacacionesid = vacacionesid;
+                db.tbl_log_vacaciones.Add(tipo);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
 
         //=================== Edit Element from database=============

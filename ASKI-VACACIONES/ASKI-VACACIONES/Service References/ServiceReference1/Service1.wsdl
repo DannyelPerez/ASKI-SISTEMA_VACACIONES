@@ -87,6 +87,18 @@
   <wsdl:message name="IService1_addCalendario_OutputMessage">
     <wsdl:part name="parameters" element="tns:addCalendarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addVacacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:addVacacion" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addVacacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addVacacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addLogVacaciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:addLogVacaciones" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addLogVacaciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addLogVacacionesResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_editPermiso_InputMessage">
     <wsdl:part name="parameters" element="tns:editPermiso" />
   </wsdl:message>
@@ -356,6 +368,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addCalendario" message="tns:IService1_addCalendario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addCalendarioResponse" message="tns:IService1_addCalendario_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="addVacacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addVacacion" message="tns:IService1_addVacacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addVacacionResponse" message="tns:IService1_addVacacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addLogVacaciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addLogVacaciones" message="tns:IService1_addLogVacaciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addLogVacacionesResponse" message="tns:IService1_addLogVacaciones_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="editPermiso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/editPermiso" message="tns:IService1_editPermiso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/editPermisoResponse" message="tns:IService1_editPermiso_OutputMessage" />
@@ -613,6 +633,24 @@
     </wsdl:operation>
     <wsdl:operation name="addCalendario">
       <soap:operation soapAction="http://tempuri.org/IService1/addCalendario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addVacacion">
+      <soap:operation soapAction="http://tempuri.org/IService1/addVacacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogVacaciones">
+      <soap:operation soapAction="http://tempuri.org/IService1/addLogVacaciones" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

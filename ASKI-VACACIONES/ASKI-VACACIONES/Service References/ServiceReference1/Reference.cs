@@ -1182,6 +1182,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addCalendario", ReplyAction="http://tempuri.org/IService1/addCalendarioResponse")]
         System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, string fecha, int tipo_dia_id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addVacacion", ReplyAction="http://tempuri.org/IService1/addVacacionResponse")]
+        void addVacacion(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, int diasSolicitados, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addVacacion", ReplyAction="http://tempuri.org/IService1/addVacacionResponse")]
+        System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, int diasSolicitados, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addLogVacaciones", ReplyAction="http://tempuri.org/IService1/addLogVacacionesResponse")]
+        void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addLogVacaciones", ReplyAction="http://tempuri.org/IService1/addLogVacacionesResponse")]
+        System.Threading.Tasks.Task addLogVacacionesAsync(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
         
@@ -1528,6 +1540,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, string fecha, int tipo_dia_id) {
             return base.Channel.addCalendarioAsync(talento_humano_jefe, fecha, tipo_dia_id);
+        }
+        
+        public void addVacacion(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, int diasSolicitados, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
+            base.Channel.addVacacion(talentoHumano, year, fechaSalida, fechaEntrada, diasSolicitados, fechaSolicitud, fechaAprobacion, statusid);
+        }
+        
+        public System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, int diasSolicitados, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
+            return base.Channel.addVacacionAsync(talentoHumano, year, fechaSalida, fechaEntrada, diasSolicitados, fechaSolicitud, fechaAprobacion, statusid);
+        }
+        
+        public void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual) {
+            base.Channel.addLogVacaciones(vacacionesid, talentoHumano_Modifico, estatusAnterior, estatusActual);
+        }
+        
+        public System.Threading.Tasks.Task addLogVacacionesAsync(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual) {
+            return base.Channel.addLogVacacionesAsync(vacacionesid, talentoHumano_Modifico, estatusAnterior, estatusActual);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {

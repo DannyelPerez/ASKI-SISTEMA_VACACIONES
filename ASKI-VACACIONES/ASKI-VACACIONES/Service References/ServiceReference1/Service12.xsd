@@ -178,6 +178,40 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="addVacacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano" type="xs:int" />
+        <xs:element minOccurs="0" name="year" type="xs:int" />
+        <xs:element minOccurs="0" name="fechaSalida" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="fechaEntrada" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="diasSolicitados" type="xs:int" />
+        <xs:element minOccurs="0" name="fechaSolicitud" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="fechaAprobacion" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="statusid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addVacacionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addLogVacaciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vacacionesid" type="xs:int" />
+        <xs:element minOccurs="0" name="talentoHumano_Modifico" type="xs:int" />
+        <xs:element minOccurs="0" name="estatusAnterior" type="xs:int" />
+        <xs:element minOccurs="0" name="estatusActual" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addLogVacacionesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="editPermiso">
     <xs:complexType>
       <xs:sequence>
