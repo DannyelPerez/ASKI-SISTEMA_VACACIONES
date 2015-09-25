@@ -17,7 +17,7 @@ namespace Service_Asky
     public class Service1 : IService1
     {
         //cambiar dependiendo del servidor 
-        DBConnect connect = new DBConnect("LocalHost", "root", "1234");
+        DBConnect connect = new DBConnect("LocalHost", "root", "contrasena");
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -134,26 +134,7 @@ namespace Service_Asky
             }
         }
 
-        public void addDepartamentoJefe(int talentoHumano, int DepartamentoId)
-        {
-            try
-            {
-                string query = "INSERT INTO tbl_departamento_jefe (talento_humano, departamentoid) VALUES('" + talentoHumano + "', '" + DepartamentoId + "')";
-                if (connect.OpenConnection() == true)
-                {
-                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
-                    cmd.ExecuteNonQuery();
-                    connect.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-
-        public void addUsuario_Rol(int talentoHumano, int idRol)
+       public void addUsuario_Rol(int talentoHumano, int idRol)
         {
             try
             {

@@ -10,6 +10,71 @@
 
 </section>
 
+<!--Trying-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<style type="text/css">
+    .bs-example {
+        font-family: sans-serif;
+        position: relative;
+        margin: 100px;
+    }
+
+    .typeahead, .tt-query, .tt-hint {
+        border: 2px solid #CCCCCC;
+        border-radius: 8px;
+        font-size: 24px;
+        height: 30px;
+        line-height: 30px;
+        outline: medium none;
+        padding: 8px 12px;
+        width: 396px;
+    }
+
+    .typeahead {
+        background-color: #FFFFFF;
+    }
+
+        .typeahead:focus {
+            border: 2px solid #0097CF;
+        }
+
+    .tt-query {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    }
+
+    .tt-hint {
+        color: #999999;
+    }
+
+    .tt-dropdown-menu {
+        background-color: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 12px;
+        padding: 8px 0;
+        width: 422px;
+    }
+
+    .tt-suggestion {
+        font-size: 24px;
+        line-height: 24px;
+        padding: 3px 20px;
+    }
+
+        .tt-suggestion.tt-is-under-cursor {
+            background-color: #0097CF;
+            color: #FFFFFF;
+        }
+
+        .tt-suggestion p {
+            margin: 0;
+        }
+</style>
+
+
 <!-- Content Wrapper. Contains page content -->
 <!-- Main content -->
 <section class="content">
@@ -28,12 +93,16 @@
 
                                 <div class="form-group">
                                     <div class="box">
-                                                     <div class="box-body">
+                                           <div class="box-body">
+                                               <div class="form-group">
+                                                      <label for="tags" class="col-sm-2 control-label">Empleado </label>
+                                                   <input id="tags">
+                                              </div>
                                             <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
                                                 <thead>
                                                     <tr>
-                                                        <th><input name="select_all" type="checkbox">         Id</th>
-                                                        <th>Descripcion</th>
+                                                        <th>Departamento</th>
+                                                        <th>Jefe Departamento</th>
                                                     </tr>
                                                 </thead>
 
@@ -62,140 +131,54 @@
 
 
 <script type="text/javascript">
-    function updateDataTableSelectAllCtrl(table) {
-        var $table = table.table().node();
-        var $chkbox_all = $('tbody input[type="checkbox"]', $table);
-        var $chkbox_checked = $('tbody input[type="checkbox"]:checked', $table);
-        var chkbox_select_all = $('thead input[name="select_all"]', $table).get(0);
-
-        // If none of the checkboxes are checked
-        if ($chkbox_checked.length === 0) {
-            chkbox_select_all.checked = false;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = false;
-            }
-
-            // If all of the checkboxes are checked
-        } else if ($chkbox_checked.length === $chkbox_all.length) {
-            chkbox_select_all.checked = true;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = false;
-            }
-
-            // If some of the checkboxes are checked
-        } else {
-            chkbox_select_all.checked = true;
-            if ('indeterminate' in chkbox_select_all) {
-                chkbox_select_all.indeterminate = true;
-            }
-        }
-    }
-
-    function checkPermissonsHierarchy() {
-
-        var table = document.getElementById("permiso");
-
-        var isAdministracionActive = false;
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            if (row.cells[1].innerHTML === "Administracion") {
-                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
-                var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
-                isAdministracionActive = check.checked;
-            }
-        }
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            //iterate through rows
-
-            if (row.cells[1].innerHTML === "Usuarios" || row.cells[1].innerHTML === "Roles" || row.cells[1].innerHTML === "Permisos" || row.cells[1].innerHTML === "Departamentos") {
-
-                var pattern = row.cells[0].innerHTML.match(/name="\d*"/);
-                if (pattern !== null) {
-                    var check = document.getElementById("dynamicCheck" + pattern[0].substring(6, pattern[0].length - 1));
-
-                    if (isAdministracionActive) {
-                        if (check != null)
-                            check.disabled = false;
-                    }
-                    else {
-                        if (check != null) {
-                            check.disabled = true;
-                            check.checked = false;
-                        }
-
-                    }
-                }
-            }
-
-        }
-
-
-    }
-
     $(document).ready(function () {
         var rows_selected = [];
         var table = $('#permiso').DataTable({
             responsive: true,
             "ajax": {
-                "url": "@Url.Action("JSonRoles", "Roles")",
+                "url": "@Url.Action("getJefe_Departamanto", "Jerarquia")",
                 "type": "POST"
             },
 
             "columns": [
                     {
-                        "data": "id",
-                        'className': 'dt-body-center',
-                        'render': function (id) {
-                            return '<input type="checkbox" id="' + "dynamicCheck" + id + '" onchange="checkPermissonsHierarchy()" class="call-checkbox" name="' + id + '" value="' + id + '">';
-                        }
+                        "data": "departamento",
+                        'className': 'dt-body-left'
+
                     },
-                    { "data": "descripcion" }
+                    {
+                        "data": "nombre",
+                        'className': 'dt-body-left'
+                    }
 
-            ],
-            'order': [1, 'asc'],
-            'rowCallback': function (row, data, dataIndex) {
-                // Get row ID
-                var rowId = data[0];
-
-                // If row ID is in the list of selected row IDs
-                if ($.inArray(rowId, rows_selected) !== -1) {
-                    $(row).find('input[type="checkbox"]').prop('checked', true);
-                    $(row).addClass('selected');
-                }
-
-            }
+            ]
         });
 
         setInterval(function () {
             table.ajax.reload();
         }, 60000);
 
-        // Handle click on checkbox
-        $('#permiso tbody').on('click', 'input[type="checkbox"]', function (e) {
-            e.stopPropagation();
+       $(function () {
+           var availableTags = $.ajax({
+               type: "POST",
+               url: "@Url.Action("getUsuarios_TalentoHumano", "Jerarquia")",
+               //success: function (result) {
+               //    alert(result.toString() + "  " + result[0]);
+               //},
+               //error: function (req, status, error) {
+               //    //alert("Error");
+               //}
+           });
+            console.log(availableTags);
+            $("#tags").autocomplete({
+                source: availableTags
+            });
         });
 
-        // Handle click on table cells with checkboxes
-        $('#permiso').on('click', 'tbody td, thead th:first-child', function (e) {
-            $(this).parent().find('input[type="checkbox"]').trigger('click');
-        });
 
-        // Handle click on "Select all" control
-        $('#permiso thead input[name="select_all"]').on('click', function (e) {
-            if (this.checked) {
-                $('#permiso tbody input[type="checkbox"]:not(:checked)').trigger('click');
-            } else {
-                $('#permiso tbody input[type="checkbox"]:checked').trigger('click');
-            }
+        @*"@Url.Action("getUsuarios_TalentoHumano", "Jerarquia")"*@
+    //Add sugerencias to textfield
 
-            // Prevent click event from propagating to parent
-            e.stopPropagation();
-        });
-
-        // Handle table draw event
-        table.on('draw', function () {
-            // Update state of "Select all" control
-            updateDataTableSelectAllCtrl(table);
-        });
     });
 </script>
 

@@ -20,34 +20,27 @@ namespace ASKI_VACACIONES.Controllers
 
         public ActionResult JSon()
         {
-           string json = "";
+            string json = "";
             Service1Client client = new Service1Client();
             var query = client.getTbl_usuarios();
-            List<UsuariosModel> user = new List<UsuariosModel>();
-            foreach (var item in query)
+            if (query == null)
             {
-                UsuariosModel u = new UsuariosModel();
-                u.activo = item.activo;
-                u.email = item.email;
-                u.fecha_creacion = item.fecha_creacion;
-                u.fecha_ingreso = item.fecha_ingreso;
-                u.primer_apellido = item.primer_apellido;
-                u.primer_nombre = item.primer_nombre;
-                u.segundo_apellido = item.segundo_apellido;
-                u.segundo_nombre = item.segundo_nombre;
-                u.talento_humano = item.talento_humano;
-                user.Add(u);
+                json += String.Format("\"{0}\"", "");
+                json = "[" + json + "]";
+                return Content(json);
             }
-            for (int i = 0; i < user.Count; i++)
+            for (int i = 0; i < query.Count(); i++)
             {
                 if (!json.Equals("")) { json += ","; }
-                json += "{" + String.Format("\"talento_humano\":\"{0}\",\"primer_nombre\":\"{1}\",\"primer_apellido\":\"{2}\",\"option\":\"{3}\"", user.ElementAt(i).talento_humano, user.ElementAt(i).primer_nombre, user.ElementAt(i).primer_apellido, 1) + "}";
-                
-                
+                string Usuario = query.ElementAt(i).primer_nombre + " " + query.ElementAt(i).primer_apellido + "|" + query.ElementAt(i).talento_humano;
+                json +=  String.Format("\"{0}\"", Usuario);
+
+
             }
 
-             json = "{\"draw\": 1,\"recordsTotal\": 1,\"recordsFiltered\": 1,\"data\": ["+json+"]}";
+           // json = "[" + json + "]";
             return Content(json);
+
         }
     }
 }
