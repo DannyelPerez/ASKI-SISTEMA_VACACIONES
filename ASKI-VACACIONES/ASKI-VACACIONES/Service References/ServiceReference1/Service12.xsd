@@ -624,4 +624,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getTalentoHumano_Jefe_Departamento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departamentoid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTalentoHumano_Jefe_DepartamentoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getTalentoHumano_Jefe_DepartamentoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTalentoHumano_Jefe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="talentoHumano_empleado" type="xs:int" />
+        <xs:element minOccurs="0" name="departamentoid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTalentoHumano_JefeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getTalentoHumano_JefeResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

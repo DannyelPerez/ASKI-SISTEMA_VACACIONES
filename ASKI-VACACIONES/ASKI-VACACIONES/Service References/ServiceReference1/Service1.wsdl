@@ -291,6 +291,18 @@
   <wsdl:message name="IService1_getJefe_Departamento_OutputMessage">
     <wsdl:part name="parameters" element="tns:getJefe_DepartamentoResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getTalentoHumano_Jefe_Departamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTalentoHumano_Jefe_Departamento" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTalentoHumano_Jefe_Departamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTalentoHumano_Jefe_DepartamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTalentoHumano_Jefe_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTalentoHumano_Jefe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getTalentoHumano_Jefe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTalentoHumano_JefeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -479,6 +491,14 @@
     <wsdl:operation name="getJefe_Departamento">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getJefe_Departamento" message="tns:IService1_getJefe_Departamento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getJefe_DepartamentoResponse" message="tns:IService1_getJefe_Departamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTalentoHumano_Jefe_Departamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTalentoHumano_Jefe_Departamento" message="tns:IService1_getTalentoHumano_Jefe_Departamento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTalentoHumano_Jefe_DepartamentoResponse" message="tns:IService1_getTalentoHumano_Jefe_Departamento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTalentoHumano_Jefe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getTalentoHumano_Jefe" message="tns:IService1_getTalentoHumano_Jefe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getTalentoHumano_JefeResponse" message="tns:IService1_getTalentoHumano_Jefe_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -899,6 +919,24 @@
     </wsdl:operation>
     <wsdl:operation name="getJefe_Departamento">
       <soap:operation soapAction="http://tempuri.org/IService1/getJefe_Departamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTalentoHumano_Jefe_Departamento">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTalentoHumano_Jefe_Departamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTalentoHumano_Jefe">
+      <soap:operation soapAction="http://tempuri.org/IService1/getTalentoHumano_Jefe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

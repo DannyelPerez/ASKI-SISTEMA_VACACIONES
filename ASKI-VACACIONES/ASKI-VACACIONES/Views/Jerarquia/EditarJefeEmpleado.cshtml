@@ -58,7 +58,9 @@
                                                     <tr>
                                                         <th>Descripcion</th>
                                                         <th>id</th>
-                                                        <th>Nombre</th>
+                                                        <th>Nombre Empleado</th>
+                                                        <th>id</th>
+                                                        <th>Nombre Jefe</th>
                                                         <th>id</th>
                                                         <th>Editar</th>
                                                     </tr>
@@ -130,18 +132,18 @@
             "columns": [
                 { "data": "descripcion",},
                 { "data": "departamentoid" },
-                { "data": "nombre", },
+                { "data": "nombre"},
                 { "data": "talento_humano" },
-                    {
-                        "data": "id",
+                { "data": "nombreJefe" },
+                { "data": "talentoJefe" },
+                {
+                        //"data": "id",
                         'className': 'dt-body-center',
                         'render': function (id) {
-                            //Jossy: data-toggle="modal" data-target="#edit" 
-                            //<button class="btn btn-primary btn-xs" data-title="Edit" onclick="openModal()"><span class="glyphicon glyphicon-pencil
                             return '<p data-placement="top" data-toggle="tooltip" title="Edit"><input type="button" class="btn btn-info pull-right" value="Editar" data-title="Edit" onclick="openModal()"/></p>';
 
-                        }
-                    }
+                 }
+                }
 
             ],
             'order': [1, 'asc']

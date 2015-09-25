@@ -1385,6 +1385,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getJefe_Departamento", ReplyAction="http://tempuri.org/IService1/getJefe_DepartamentoResponse")]
         System.Threading.Tasks.Task<string> getJefe_DepartamentoAsync(int departamentoid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTalentoHumano_Jefe_Departamento", ReplyAction="http://tempuri.org/IService1/getTalentoHumano_Jefe_DepartamentoResponse")]
+        int getTalentoHumano_Jefe_Departamento(int departamentoid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTalentoHumano_Jefe_Departamento", ReplyAction="http://tempuri.org/IService1/getTalentoHumano_Jefe_DepartamentoResponse")]
+        System.Threading.Tasks.Task<int> getTalentoHumano_Jefe_DepartamentoAsync(int departamentoid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTalentoHumano_Jefe", ReplyAction="http://tempuri.org/IService1/getTalentoHumano_JefeResponse")]
+        int getTalentoHumano_Jefe(int talentoHumano_empleado, int departamentoid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getTalentoHumano_Jefe", ReplyAction="http://tempuri.org/IService1/getTalentoHumano_JefeResponse")]
+        System.Threading.Tasks.Task<int> getTalentoHumano_JefeAsync(int talentoHumano_empleado, int departamentoid);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1788,6 +1800,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> getJefe_DepartamentoAsync(int departamentoid) {
             return base.Channel.getJefe_DepartamentoAsync(departamentoid);
+        }
+        
+        public int getTalentoHumano_Jefe_Departamento(int departamentoid) {
+            return base.Channel.getTalentoHumano_Jefe_Departamento(departamentoid);
+        }
+        
+        public System.Threading.Tasks.Task<int> getTalentoHumano_Jefe_DepartamentoAsync(int departamentoid) {
+            return base.Channel.getTalentoHumano_Jefe_DepartamentoAsync(departamentoid);
+        }
+        
+        public int getTalentoHumano_Jefe(int talentoHumano_empleado, int departamentoid) {
+            return base.Channel.getTalentoHumano_Jefe(talentoHumano_empleado, departamentoid);
+        }
+        
+        public System.Threading.Tasks.Task<int> getTalentoHumano_JefeAsync(int talentoHumano_empleado, int departamentoid) {
+            return base.Channel.getTalentoHumano_JefeAsync(talentoHumano_empleado, departamentoid);
         }
     }
 }
