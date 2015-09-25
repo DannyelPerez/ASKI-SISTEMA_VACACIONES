@@ -13,7 +13,19 @@ namespace ASKI_VACACIONES.Controllers
         public ActionResult AddJefe()
         {
             if (Session["User"] != null)
+            {
+                Service1Client client = new Service1Client();
+                var query = client.getTbl_usuarios();
+                List<string> emple = new List<string>();
+                foreach (var item in query)
+	            {
+		            emple.Add(item.primer_nombre + " " + item.primer_apellido + "|" + item.talento_humano);
+	            }
+                ViewBag.Empleados = emple;
+
                 return View();
+            }
+                
             else
                 return RedirectToAction("Login", "Home");
         }
@@ -37,6 +49,7 @@ namespace ASKI_VACACIONES.Controllers
             return Content(json);
         }
 
+       // [HttpPost]
         [HttpPost]
         public ActionResult getUsuarios_TalentoHumano()
         {

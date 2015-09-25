@@ -12,67 +12,165 @@
 
 <!--Trying-->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 
-<style type="text/css">
-    .bs-example {
-        font-family: sans-serif;
+<style>
+    .custom-combobox {
         position: relative;
-        margin: 100px;
+        display: inline-block;
     }
 
-    .typeahead, .tt-query, .tt-hint {
-        border: 2px solid #CCCCCC;
-        border-radius: 8px;
-        font-size: 24px;
-        height: 30px;
-        line-height: 30px;
-        outline: medium none;
-        padding: 8px 12px;
-        width: 396px;
+    .custom-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
     }
 
-    .typeahead {
-        background-color: #FFFFFF;
+    .custom-combobox-input {
+        margin: 0;
+        padding: 5px 10px;
     }
-
-        .typeahead:focus {
-            border: 2px solid #0097CF;
-        }
-
-    .tt-query {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    }
-
-    .tt-hint {
-        color: #999999;
-    }
-
-    .tt-dropdown-menu {
-        background-color: #FFFFFF;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        margin-top: 12px;
-        padding: 8px 0;
-        width: 422px;
-    }
-
-    .tt-suggestion {
-        font-size: 24px;
-        line-height: 24px;
-        padding: 3px 20px;
-    }
-
-        .tt-suggestion.tt-is-under-cursor {
-            background-color: #0097CF;
-            color: #FFFFFF;
-        }
-
-        .tt-suggestion p {
-            margin: 0;
-        }
 </style>
+
+<script>
+    (function ($) {
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                  .addClass("custom-combobox")
+                  .insertAfter(this.element);
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                  value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                  .appendTo(this.wrapper)
+                  .val(value)
+                  .attr("title", "")
+                  .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                  .autocomplete({
+                      delay: 0,
+                      minLength: 0,
+                      source: $.proxy(this, "_source")
+                  })
+                  .tooltip({
+                      tooltipClass: "ui-state-highlight"
+                  });
+
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+
+            _createShowAllButton: function () {
+                var input = this.input,
+                  wasOpen = false;
+
+                $("<a>")
+                  .attr("tabIndex", -1)
+                  .attr("title", "Show All Items")
+                  .tooltip()
+                  .appendTo(this.wrapper)
+                  .button({
+                      icons: {
+                          primary: "ui-icon-triangle-1-s"
+                      },
+                      text: false
+                  })
+                  .removeClass("ui-corner-all")
+                  .addClass("custom-combobox-toggle ui-corner-right")
+                  .mousedown(function () {
+                      wasOpen = input.autocomplete("widget").is(":visible");
+                  })
+                  .click(function () {
+                      input.focus();
+
+                      // Close if already visible
+                      if (wasOpen) {
+                          return;
+                      }
+
+                      // Pass empty string as value to search for, displaying all results
+                      input.autocomplete("search", "");
+                  });
+            },
+
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+
+            _removeIfInvalid: function (event, ui) {
+
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                  valueLowerCase = value.toLowerCase(),
+                  valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+
+                // Remove invalid value
+                this.input
+                  .val("")
+                  .attr("title", value + " didn't match any item")
+                  .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            }
+        });
+    })(jQuery);
+
+    $(function () {
+        $("#combobox").combobox();
+        $("#toggle").click(function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -95,8 +193,29 @@
                                     <div class="box">
                                            <div class="box-body">
                                                <div class="form-group">
-                                                      <label for="tags" class="col-sm-2 control-label">Empleado </label>
-                                                   <input id="tags">
+                                                   <div class="ui-widget">
+                                                       <label class="form-control-label">Seleccione el Departamento</label>
+                                                       <select id="depto" class="form-control">
+                                                           @foreach (var item in @ViewBag.Empleados)
+                                                           {
+                                                               <option value="@item">@item</option>
+                                                           }
+
+                                                       </select>
+
+                                                   </div>
+                                                   <div class="ui-widget">
+                                                       <label class="form-control-label">Escriba el nombre o talento humano del Empleado</label>
+                                                       <select id="combobox">
+                                                           @foreach (var item in @ViewBag.Empleados)
+                                                           {
+                                                               <option value="@item">@item</option>
+                                                           }
+
+                                                       </select>
+
+                                                   </div>
+                                               <input type="button" onclick="print()" value="Print" class="btn-flat"/>
                                               </div>
                                             <table id="permiso" class="datatable table table-striped table-bordered" width="65%">
                                                 <thead>
@@ -157,55 +276,20 @@
         setInterval(function () {
             table.ajax.reload();
         }, 60000);
-
-       $(function () {
-           var availableTags = $.ajax({
-               type: "POST",
-               url: "@Url.Action("getUsuarios_TalentoHumano", "Jerarquia")",
-               //success: function (result) {
-               //    alert(result.toString() + "  " + result[0]);
-               //},
-               //error: function (req, status, error) {
-               //    //alert("Error");
-               //}
-           });
-            console.log(availableTags);
-            $("#tags").autocomplete({
-                source: availableTags
-            });
-        });
-
-
-        @*"@Url.Action("getUsuarios_TalentoHumano", "Jerarquia")"*@
-    //Add sugerencias to textfield
-
-    });
+          
+ });
 </script>
 
 
 
 
 <script type="text/javascript">
-    function beforeSendInformation() {
+    function print() {
 
         //Permisos
-        var table = $('#permiso').DataTable();
-        table
-         .search('')
-         .columns().search('')
-         .draw();
-
-        var oTable = $('#permiso').DataTable();
-        var cadena = "";
-        var rowcollection = oTable.$(".call-checkbox:checked", { "page": "all" });
-        rowcollection.each(function (index, elem) {
-            var checkbox_value = $(elem).val();
-            cadena += checkbox_value + "/";
-        });
-        console.log("checbox_value: " + cadena);
-        $('#textPermiso').val(cadena)
-
-
+        var table = document.getElementById("combobox").value;
+        console.log("checbox_value: " + table);
+     
 
     }
 </script>

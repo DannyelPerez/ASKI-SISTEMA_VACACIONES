@@ -29,17 +29,19 @@ namespace ASKI_VACACIONES.Controllers
                 json = "[" + json + "]";
                 return Content(json);
             }
+            List<string> lista = new List<string>();
             for (int i = 0; i < query.Count(); i++)
             {
-                if (!json.Equals("")) { json += ","; }
+                //if (!json.Equals("")) { json += ","; }
                 string Usuario = query.ElementAt(i).primer_nombre + " " + query.ElementAt(i).primer_apellido + "|" + query.ElementAt(i).talento_humano;
-                json +=  String.Format("\"{0}\"", Usuario);
-
+                lista.Add(Usuario);
+                //json += String.Format("\"{0}\"", Usuario);
 
             }
 
-           // json = "[" + json + "]";
-            return Content(json);
+            json = "[" + json + "]";
+           // return Content(json);
+            return Json(lista, JsonRequestBehavior.AllowGet);
 
         }
     }
