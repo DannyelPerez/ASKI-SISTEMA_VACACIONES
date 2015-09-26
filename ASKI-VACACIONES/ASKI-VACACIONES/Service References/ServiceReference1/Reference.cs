@@ -1183,10 +1183,10 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         System.Threading.Tasks.Task addCalendarioAsync(int talento_humano_jefe, string fecha, int tipo_dia_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addVacacion", ReplyAction="http://tempuri.org/IService1/addVacacionResponse")]
-        void addVacacion(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
+        void addVacacion(int talentoHumano, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addVacacion", ReplyAction="http://tempuri.org/IService1/addVacacionResponse")]
-        System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
+        System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addLogVacaciones", ReplyAction="http://tempuri.org/IService1/addLogVacacionesResponse")]
         void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual);
@@ -1199,6 +1199,18 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/approveRequest", ReplyAction="http://tempuri.org/IService1/approveRequestResponse")]
         System.Threading.Tasks.Task<bool> approveRequestAsync(System.DateTime fechaSalida, System.DateTime fechaEntrada);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getYear", ReplyAction="http://tempuri.org/IService1/getYearResponse")]
+        int getYear(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getYear", ReplyAction="http://tempuri.org/IService1/getYearResponse")]
+        System.Threading.Tasks.Task<int> getYearAsync(int talentoHumano);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getsolicitud_pendiente", ReplyAction="http://tempuri.org/IService1/getsolicitud_pendienteResponse")]
+        string[][] getsolicitud_pendiente(int talentoh_jefe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getsolicitud_pendiente", ReplyAction="http://tempuri.org/IService1/getsolicitud_pendienteResponse")]
+        System.Threading.Tasks.Task<string[][]> getsolicitud_pendienteAsync(int talentoh_jefe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/editPermiso", ReplyAction="http://tempuri.org/IService1/editPermisoResponse")]
         void editPermiso(int id, string descripcion, bool activo);
@@ -1548,12 +1560,12 @@ namespace ASKI_VACACIONES.ServiceReference1 {
             return base.Channel.addCalendarioAsync(talento_humano_jefe, fecha, tipo_dia_id);
         }
         
-        public void addVacacion(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
-            base.Channel.addVacacion(talentoHumano, year, fechaSalida, fechaEntrada, fechaSolicitud, fechaAprobacion, statusid);
+        public void addVacacion(int talentoHumano, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
+            base.Channel.addVacacion(talentoHumano, fechaSalida, fechaEntrada, fechaSolicitud, fechaAprobacion, statusid);
         }
         
-        public System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, int year, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
-            return base.Channel.addVacacionAsync(talentoHumano, year, fechaSalida, fechaEntrada, fechaSolicitud, fechaAprobacion, statusid);
+        public System.Threading.Tasks.Task addVacacionAsync(int talentoHumano, System.DateTime fechaSalida, System.DateTime fechaEntrada, System.DateTime fechaSolicitud, System.DateTime fechaAprobacion, int statusid) {
+            return base.Channel.addVacacionAsync(talentoHumano, fechaSalida, fechaEntrada, fechaSolicitud, fechaAprobacion, statusid);
         }
         
         public void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual) {
@@ -1570,6 +1582,22 @@ namespace ASKI_VACACIONES.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> approveRequestAsync(System.DateTime fechaSalida, System.DateTime fechaEntrada) {
             return base.Channel.approveRequestAsync(fechaSalida, fechaEntrada);
+        }
+        
+        public int getYear(int talentoHumano) {
+            return base.Channel.getYear(talentoHumano);
+        }
+        
+        public System.Threading.Tasks.Task<int> getYearAsync(int talentoHumano) {
+            return base.Channel.getYearAsync(talentoHumano);
+        }
+        
+        public string[][] getsolicitud_pendiente(int talentoh_jefe) {
+            return base.Channel.getsolicitud_pendiente(talentoh_jefe);
+        }
+        
+        public System.Threading.Tasks.Task<string[][]> getsolicitud_pendienteAsync(int talentoh_jefe) {
+            return base.Channel.getsolicitud_pendienteAsync(talentoh_jefe);
         }
         
         public void editPermiso(int id, string descripcion, bool activo) {

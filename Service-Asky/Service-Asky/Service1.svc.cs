@@ -249,27 +249,23 @@ namespace Service_Asky
 
         }
 
-        public void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada,  DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
+        public void addVacacion(int talentoHumano, DateTime fechaSalida, DateTime fechaEntrada,  DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid)
         {
             try
             {
-                int diasSolicitados = 0;
-                for (DateTime counter = fechaSalida; counter < fechaEntrada; counter.AddDays(1))
-                {
-                    if (counter.DayOfWeek != DayOfWeek.Saturday || counter.DayOfWeek != DayOfWeek.Sunday)
-                        diasSolicitados++;
-                    fechaSalida.AddDays(1);
-                }
+                double diasSolicitados = (fechaEntrada-fechaSalida).TotalDays;
+                int total = (int)diasSolicitados;
+        
                 vsystem_askiEntities db = new vsystem_askiEntities();
                 tbl_vacaciones tipo = new tbl_vacaciones();
-                tipo.dias_solicitados = diasSolicitados;
+                tipo.dias_solicitados = total;
                 tipo.estatusid = statusid;
-                tipo.fecha_de_aprobacion = fechaAprobacion;
+                //tipo.fecha_de_aprobacion = fechaAprobacion;
                 tipo.fecha_entrada = fechaEntrada;
                 tipo.fecha_salida = fechaSalida;
                 tipo.fecha_solicitud = fechaSolicitud;
                 tipo.talento_humano = talentoHumano;
-                tipo.year = year;
+                tipo.year = getYear(talentoHumano);
                 db.tbl_vacaciones.Add(tipo);
                 db.SaveChanges();
             }
@@ -277,6 +273,60 @@ namespace Service_Asky
             {
 
             }
+        }
+
+        public int getYear(int talentoHumano)
+        {
+
+            int year=0;
+            try
+            {
+
+                string numero = "";
+                string query = "select v.fecha_entrada from tbl_vacaciones as v where v.talento_humano='" + talentoHumano + "' and v.estatusid='2' order by v.fecha_entrada desc limit 1 ";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        numero = dataReader["fecha_entrada"] + "";
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+                string diasSolicitados = "";
+                string request = "select v.dias_solicitados from tbl_vacaciones as v where v.talento_humano='" + talentoHumano + "' and v.estatusid='2' order by v.dias_solicitados desc limit 1 ";
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(request, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        diasSolicitados = dataReader["dias_solicitados"] + "";
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
+                }
+                diasSolicitados+= "";
+                int takenDays = int.Parse(diasSolicitados);
+                int availableD = 23 - takenDays;
+
+                string dateTime = numero;
+                DateTime dt = Convert.ToDateTime(dateTime);
+                int Currentyear = dt.Year;
+                if (availableD > 0)
+                    year = Currentyear;
+                else
+                    year = Currentyear + 1;
+            }
+            catch (Exception ex)
+            {
+              
+            }
+            return year;
         }
 
         public void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual)
@@ -302,19 +352,33 @@ namespace Service_Asky
 
         public bool approveRequest(DateTime fechaSalida, DateTime fechaEntrada)
         {
-            List<string> events = get_eventos();
-            for (DateTime counter = fechaSalida; counter < fechaEntrada; counter.AddDays(1))
+            bool fecha = true;
+            try
             {
-                for (int x = 0; x < events.Count; x++)
+                string query = "select fecha from tbl_calendario where fecha between '"+fechaSalida+"' and '"+fechaEntrada+"'";
+                if (connect.OpenConnection() == true)
                 {
-                    string dateTime = events.ElementAt(x);
-                    DateTime dt = Convert.ToDateTime(dateTime);
-                    if (dt.Equals(counter))
-                        return false;
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string j = dataReader["fecha"] + "";
+                        
+                            fecha = false;
+                            break;
+                                                 
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+
                 }
-                fechaSalida.AddDays(1);
+
             }
-            return true;
+            catch (Exception ex)
+            {
+            }
+
+            return fecha;
         }
 
 
@@ -1090,7 +1154,40 @@ namespace Service_Asky
             return jefe;
         }
 
+        public List<string>[] getsolicitud_pendiente(int talentoh_jefe)
+        {
+            List<string>[] permisos = new List<string>[4];
+            permisos[0] = new List<string>();
+            permisos[1] = new List<string>();
+            permisos[2] = new List<string>();
+            permisos[3] = new List<string>();
+            try
+            {
 
+                string query = "select concat(u.primer_nombre,' ',u.primer_apellido) as NombreCompleto, v.fecha_salida, v.fecha_entrada, v.dias_solicitados from tbl_usuarios as u, tbl_vacaciones as v, tbl_jerarquia as j where u.talento_humano=v.talento_humano and u.talento_humano=j.talento_humano and v.estatusid='1' and  j.jefe_talentohumano='"+ talentoh_jefe + "'";
+
+                if (connect.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connect.getConnection());
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        permisos[0].Add(dataReader["NombreCompleto"] + "");
+                        permisos[1].Add(dataReader["fecha_salida"] + "");
+                        permisos[2].Add(dataReader["fecha_entrada"] + "");
+                        permisos[3].Add(dataReader["dias_solicitados"] + "");
+                    }
+                    dataReader.Close();
+                    connect.CloseConnection();
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return permisos;
+
+        }
     }
 
 }

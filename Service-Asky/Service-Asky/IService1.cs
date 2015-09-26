@@ -48,12 +48,17 @@ namespace Service_Asky
         [OperationContract]
         void addCalendario(int talento_humano_jefe, string fecha, int tipo_dia_id);
         [OperationContract]
-        void addVacacion(int talentoHumano, int year, DateTime fechaSalida, DateTime fechaEntrada, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid);
+        void addVacacion(int talentoHumano, DateTime fechaSalida, DateTime fechaEntrada, DateTime fechaSolicitud, DateTime fechaAprobacion, int statusid);
         [OperationContract]
         void addLogVacaciones(int vacacionesid, int talentoHumano_Modifico, int estatusAnterior, int estatusActual);
 
         [OperationContract]
         bool approveRequest(DateTime fechaSalida, DateTime fechaEntrada);
+
+        [OperationContract]
+        int getYear(int talentoHumano);
+        [OperationContract]
+        List<string>[] getsolicitud_pendiente(int talentoh_jefe);
         
 
         //=================== Edit Element from database=============

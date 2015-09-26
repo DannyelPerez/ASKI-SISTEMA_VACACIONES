@@ -2533,6 +2533,7 @@
     <Content Include="Views\Jerarquia\AddJefe.cshtml" />
     <Content Include="Views\Menu\_Navbar.cshtml" />
     <Content Include="Views\Jerarquia\EditarJefeEmpleado.cshtml" />
+    <Content Include="Views\Solicitudes\Aprobar_solicitud.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

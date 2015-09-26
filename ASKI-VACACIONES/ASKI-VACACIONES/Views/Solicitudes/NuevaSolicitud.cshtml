@@ -52,13 +52,13 @@
                                         <div class="form-group">
                                             <label for="inputfecha" class="col-sm-2 control-label">Inicio de vacaciones</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="inputfecha">
+                                                <p>@Html.TextBoxFor(x => x.Fechainicio, new { @class = "form-control", type = "date" })</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputfecha" class="col-sm-2 control-label">Fin de vacaciones</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="inputfecha">
+                                                <p>@Html.TextBoxFor(x => x.Fechafin, new { @class = "form-control", type = "date" })</p>
                                             </div>
                                         </div>
                                          

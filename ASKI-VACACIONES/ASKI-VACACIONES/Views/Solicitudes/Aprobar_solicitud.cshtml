@@ -1,0 +1,138 @@
+﻿@model ASKI_VACACIONES.Models.SolicitudesModel
+@{
+    ViewBag.Title = "Aprobar_solicitud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+       Aprobacion de solicitud
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Calendario"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Aprobacion</li>
+    </ol>
+</section>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                @using (Html.BeginForm())
+                {
+
+                    <div class="panel-body">
+
+                        <!-- form start -->
+                        @Html.ValidationSummary(true)
+                        <form class="form-horizontal">
+
+
+
+                            <div class="box">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <table id="empleado_jefe" class="datatable table table-striped table-bordered" width="85%">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Empleado</th>
+                                                    <th>Fecha de Salida</th>
+                                                    <th>Fecha entrada</th>
+                                                    <th>Dias solicitados</th>
+                                                    <th>Estado</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                                <!--Modal-->
+                                <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="recargar();"></span></button>
+                                                <h4 class="modal-title custom_align" id="Heading"></h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                                <div class="form-group">
+                                                    
+
+                                                </div>
+                                                <div class="modal-footer ">
+
+                                                    <button type="button" class="btn btn-primary btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+
+
+                        </form>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable"></section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable"></section><!-- right col -->
+
+
+</section><!-- /.content -->
+
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+        var rows_selected = [];
+        var table = $('#empleado_jefe').DataTable({
+            responsive: true,
+            "ajax": {
+                "url": "@Url.Action("getDptJefe", "Jerarquia")",
+                "type": "POST"
+            },
+
+            "columns": [
+                { "data": "Nombre",},
+                { "data": "fecha_salida" },
+                { "data": "fecha_entrada" },
+                { "data": "dias" },
+                {
+                        //"data": "id",
+                        'className': 'dt-body-center',
+                        'render': function (id) {
+                            return '<p data-placement="top" data-toggle="tooltip" title="Editar jefe"><input type="button" name="submitButton" value="Editar" class="btn btn-primary pull-right"  data-title="Edit" onclick="openModal()"/></p>';
+
+                 }
+                }
+
+            ],
+            'order': [1, 'asc']
+
+        });
+
+    });
+
+    function openModal()
+    {
+        $("#edit").modal('show');
+    }
+
+</script>
+
+
+
